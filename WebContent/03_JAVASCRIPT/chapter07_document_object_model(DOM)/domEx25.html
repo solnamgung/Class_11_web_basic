@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>새로운 노드 추가 및 삭제</title>
+<script>
+
+	/*
+	
+		# 노드 추가 & 삭제 관련 메서드
+	
+		1) createElement   : html element를 생성한다.
+		2) createTextNode   : text노드를 생성한다.
+		3) appendChild      : 현재 노드에 자녀 노드를 추가한다.
+		4) removeChild      : 현재 노드에 자녀 노드를 삭제한다. 
+		5) parentNode       : 현재노드의 부모노드를 반환한다.
+		6) childNodes       : 한 요소의 모든 자식에 접근 할 수 있다. 배열이 반환된다.
+		7) firstChild       : 배열의 첫번째 자식 노드가 반환된다. childNodes[0]과 같다.
+		8) lastChild        : 배열의 마지막 자식 노드가 반환된다. childNodes[childNodes.length -1]과 같다.
+		9) nextSibling      : 현재노드의 다음 형제 노드를 반환한다.
+		10) previousSibling  : 현재 노드의 이전 형제 노드를 반환한다.
+		
+		
+		# 새로운 노드를 추가 하는 방법
+	
+		1) 원하는 노드를 생성한다.
+		2) 새로운 노드의 속성값을 부여한다.
+		3) 노드가 html에 문서에 추가되기 위해서 연결할 부모노드를 찾아서 연결한다.
+	
+	*/
+	
+	
+	function addElement() {
+	
+		// [필수] createElement("태그명") 메서드를 이용하여 새로운 태그를 생성한다.
+		var addImg = document.createElement("img");  // <img>
+
+		// [옵션] 태그에 속성을 부여한다.
+		addImg.src = "../images/pic_1.jpg";  // <img src="../images/pic_1.jpg">
+		addImg.width = "100";  // <img src="../images/pic_1.jpg" width="100">
+		addImg.height = "100"; // <img src="../images/pic_1.jpg" width="100" height="100">
+		
+		// [필수] 부모의 노드를 찾아서 appendChild(노드) 메서드를 이용하여 새로운 노드를 연결한다.
+		document.getElementById("target1").appendChild(addImg);
+		
+	}
+	
+	function removeElement() {
+		
+		// 삭제하고 싶은 노드의 부모를 선택한다.
+		var parentNode = document.getElementById("target1");
+		
+		// 자녀노드를 삭제한다.
+		parentNode.removeChild(parentNode.lastChild);
+							// parentNode.firstChild
+							// parentNode.childNodes[n]
+		
+		
+	}
+		
+	function addText() {
+		
+		// [필수] 새로운 태그 및 텍스트를 생성한다. 
+		var addP = document.createElement("p");			// p 태그 생성
+		var addSpan = document.createElement("span");   // span태그 생성
+		var addText = document.createTextNode("동적으로 텍스트가 추가됩니다."); // 텍스트 생성
+		
+		// [옵션] 노드에 속성을 부여한다.
+		addSpan.style="color:red";
+		
+		// [필수] 부모의 노드를 찾아서 appendChild(노드) 메서드를 이용하여 새로운 노드를 연결한다.
+		addP.appendChild(addSpan);
+		addSpan.appendChild(addText);
+		
+		document.getElementById("target2").appendChild(addP);
+		
+	}
+
+	function removeText() {
+		
+		var parentNode = document.getElementById("target2");
+		
+		for (var i = parentNode.childNodes.length - 1 ; i >= 0; i--) {
+			parentNode.removeChild(parentNode.childNodes[i]);
+		}
+		
+	}
+	
+	
+</script>
+</head>
+<body>
+	<h2>첫번째 단락</h2>
+	<div id="target1"></div>
+	
+	<h2>두번째 단락</h2>
+	<div id="target2"></div>
+	
+	<button onclick="addElement()">엘리먼트 추가</button>
+	<button onclick="removeElement()">엘리먼트 삭제</button>
+	<button onclick="addText()">텍스트 추가</button>
+	<button onclick="removeText()">텍스트 삭제</button>
+</body>
+</html>

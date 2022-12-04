@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>document.ready함수를 생성하는 방법</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	// 방법 1) jQuery를 명시하는 방법
+	jQuery(document).ready(function(){
+		$("body").css("background" , "blue");		
+	});
+	
+	// 방법 2) 일반적인 사용방법
+	$(document).ready(function(){
+		$("body").css("background" , "green");		
+	});
+	
+	// 방법 3) document를 생략하는 방법
+	$().ready(function(){
+		$("body").css("background" , "yellow");		
+	});
+	
+	// 방법 4) 축약하여 사용하는 방법
+	$(function(){
+		$("body").css("background" , "red");		 
+	});
+	
+</script>
+</head>
+<body>
+</body>
+</html>

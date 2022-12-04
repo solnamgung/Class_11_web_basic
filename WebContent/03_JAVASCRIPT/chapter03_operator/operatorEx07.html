@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 문자결합 연산자 + </title>
+<script>
+
+	//1) 문자열 + 문자열 = 문자열
+	var data1 = "data1";
+	var data2 = "2";
+	document.write(data1 + data2 , "<br><br>");
+	
+	//2) 문자열 + 숫자 = 문자열
+	data1 = "data1";
+	data2 = 2;
+	document.write(data1 + data2 , "<br><br>");
+
+	//3) 숫자 + 숫자 = 숫자
+	data1 = 1;
+	data2 = 2;
+	document.write(data1 + data2 , "<br><br>");
+	
+	
+	//예제1)
+	var t1 = "web ";
+	var t2 = "languages step";
+	var t3 = " javascript";
+	var result;
+
+	result = t1 + t2 + t3; 
+	document.write(result + "<br>");
+	
+	//예제2)
+	var str = "<table border='1'>";
+		str += "<tr>";
+		str += "<td>1</td><td>2</td><td>3</td>";
+		str += "</tr>";
+		str += "</table>";
+	document.write(str);
+	
+</script>
+</head>
+<body>
+</body>
+</html>

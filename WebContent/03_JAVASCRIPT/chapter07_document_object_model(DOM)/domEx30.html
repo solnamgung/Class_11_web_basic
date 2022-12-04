@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>name 셀렉터</title>
+<script>
+
+	/*
+	
+		form 태그의 name값에 접근할때 아래와 같은 형태로 접근이 가능하다.
+		
+		[ 형식 ]
+		
+		document.[form tag의 name명].[name명] 
+	
+		예시)
+		document.f.name			// form태그의 name이 f이며 그 안의 name값이 name인 값을 선택
+		document.f.address		// form태그의 name이 f이며 그 안의 name값이 address인 값을 선택
+		document.join.password  // form태그의 name이 join이며 그 안의 name값이 password인 값을 선택
+	
+	*/
+	
+	function printDataInConsole() {
+		
+		console.log("학번 : " + document.join.studentNum.value);
+		console.log("이름 : " + document.join.name.value);
+		console.log("학년 : " + document.join.grade.value);
+		console.log("선택과목 : " + document.join.subject.value);
+		
+		var webLanguege = document.join.webLanguege;
+		
+		for (var i = 0; i < webLanguege.length; i++) {
+			if (webLanguege[i].checked) {
+				console.log("희망과목 : " + webLanguege[i].value);
+			}
+		}
+		
+		console.log("");
+		
+	}
+	
+	
+	
+	
+</script>
+</head>
+<body>
+ 	<form name="join">
+ 		<fieldset>
+ 			<legend>회원가입</legend>
+	         <p><label for="studentNum">학번 : </label><input type="text" id="studentNum" name="studentNum"></p>
+	         <p><label for="name">이름 : </label><input type="text" id="name" name="name"></p>
+	         <p>
+	         	학년 :
+		        <input type="radio" name="grade" value="1" checked>1학년&nbsp;
+		        <input type="radio" name="grade" value="2">2학년&nbsp;
+		        <input type="radio" name="grade" value="3">3학년&nbsp;
+		        <input type="radio" name="grade" value="4">4학년
+	         </p>
+	         <p>
+				<label for="subject">선택과목 : </label>
+		        <select id="subject" name="subject">
+		             <option value="JAVA">JAVA</option>
+		             <option value="JSP">JSP</option>
+		             <option value="XML">XML</option>
+	        	 </select>
+	         </p>
+	         <p>
+	         	<label>희망 과목
+		         	<input type='checkbox' name='webLanguege' value='html'/> html
+					<input type='checkbox' name='webLanguege' value='css'/> css
+					<input type='checkbox' name='webLanguege' value='javascript'/> javascript
+				</label>
+	         </p>
+	         <p>
+	         	<input type="button" onclick="printDataInConsole()" value="확인">
+	         </p>
+    	</fieldset>
+    </form>
+</body>
+</html>

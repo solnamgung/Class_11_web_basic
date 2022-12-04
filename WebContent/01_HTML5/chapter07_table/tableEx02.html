@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>테이블 관련 태그 및 속성</title>
+</head>
+<body>
+	
+	<!-- 
+	
+		# 테이블 관련 태그 및 속성
+	
+		[ 태그 ]
+
+			1) caption : 테이블에 제목을 중앙 정렬로 표시한다.
+			
+			2) th : 헤더 효과(글자크기, 진하게, 가운데정렬)의 기능을 한다.
+			
+			3) thead , tbody , tfoot : 
+			
+				thead : 표의 머리
+				tbody : 표의 본문
+				tfoot : 표의 바닥
+			
+				- sementic tag : 문서의 의미를 만들어 주는 구조
+				- CSS , Javascript , Jquery로 타겟을 지정하는 부분에 용이하다.
+				- thead요소에는 관용적으로 <th>태그를 사용한다.
+			
+			4) colgroup , col : 열의 구조적인 그룹화를 하기 위해 사용한다.
+		
+		
+		
+		[ 속성 ]
+		
+			border : 테이블의 테두리
+			bordercolor : 테이블의 테두리 색상 
+			width : 테이블 가로 크기 
+			height  : 테이블 세로 크기 
+			align : 정렬
+		    bgcolor : 배경색 
+		    colspan : 가로 합병(열 합병)
+			rowspan : 세로 합병(행 합병)
+			
+	 -->
+	
+	<table border="1">
+		<caption>테이블 예제</caption>
+		<colgroup>
+			<col style="background-color:skyblue;">
+			<col style="background-color:lime;">
+			<col style="background-color:yellow;">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>헤더1</th>
+				<th>헤더2</th>
+				<th>헤더3</th>
+			</tr>
+		</thead>
+		<tbody align="center">
+			<tr>
+				<td>10</td>
+				<td>100</td>
+				<td>1000</td>
+			</tr>
+			<tr>
+				<td>20</td>
+				<td>200</td>
+				<td>2000</td>
+			</tr>
+			<tr>
+				<td>30</td>
+				<td>300</td>
+				<td>3000</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>10의 자리</td>
+				<td>100의 자리</td>
+				<td>1000의 자리</td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	
+</body>
+</html>

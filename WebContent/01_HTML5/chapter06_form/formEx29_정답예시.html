@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습문제</title>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>결제정보</legend>
+			<p>
+				<input type="radio" name="payMethod" value="신용카드" checked>신용카드 &emsp; 
+				<input type="radio" name="payMethod" value="제휴 신용카드"  >제휴 신용카드 &emsp;
+				<input type="radio" name="payMethod" value="실시간 계좌이체">실시간 계좌이체 &emsp;
+				<input type="radio" name="payMethod" value="무통장 입금">무통장 입금&emsp;
+			</p>
+			<p>
+				<input type="radio" name="payMethod" value="휴대폰결제">휴대폰 결제 &emsp;
+				<input type="radio" name="payMethod" value="카카오페이(간편결제)">카카오페이(간편결제) &emsp;
+				<input type="radio" name="payMethod" value="페이나우(간편결제)">페이나우(간편결제) &emsp;
+				<input type="radio" name="payMethod" value="페이코(간편결제)">페이코(간편결제) &emsp;
+				<input type="radio" name="payMethod" value="직접입금">직접입금 &emsp;
+			</p>
+			<p>
+				카드 선택 : 
+				<select>
+					<option value="삼성">삼성</option>
+					<option value="하나SK">하나SK</option>
+					<option value="현대">현대</option>
+					<option value="KB">KB</option>
+					<option value="신한">신한</option>
+					<option value="롯데">롯데</option>
+					<option value="BC">BC</option>
+					<option value="시티">시티</option>
+					<option value="NH농협">NH농협</option>
+				</select>
+			</p>
+			<p>
+				할부 기간 :  
+				<select>
+					<option value="일시불">일시불</option>
+					<option value="2개월">2개월</option>
+					<option value="3개월">3개월</option>
+					<option value="4개월">4개월</option>
+					<option value="5개월">5개월</option>
+					<option value="6개월">6개월</option>
+				</select>
+			</p>	
+			<p>
+				휴대폰 번호 입력 : 
+				<input type="text" size="5"/> -
+				<input type="text" size="5"/> -
+				<input type="text" size="5"/>
+			</p>
+		</fieldset>
+	</form>
+</body>
+</html>

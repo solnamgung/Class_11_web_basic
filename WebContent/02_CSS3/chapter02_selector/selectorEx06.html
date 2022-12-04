@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자식(자손) 선택자2</title>
+<style>
+	
+	#header > h1 {
+		color: red;
+	}
+	
+	#header > #nav2 > h1 {
+		color: purple;
+	}
+	
+	#section h1 { 
+		color: green;
+	}
+	
+	#tail > #nav6 > #nav7 h1 {
+		color: pink;
+	}
+	
+</style>
+</head>
+<body>
+
+	<div id="header">
+		<h1>Header Basic</h1>		<!--header안에 있으므로 직계자식-->
+		<div id="nav1">
+			<h1>Navigation1</h1>	<!--header안에 있긴 하나, nav라는 부모가 있으므로 직계가 아님-->
+		</div>
+		<div id="nav2">
+			<h1>Navigation2</h1>
+		</div>
+		<div id="nav3">
+			<h1>Navigation3</h1>
+		</div>
+	</div>
+	<hr>
+	<div id="section">
+		<h1 class="title">Selector</h1> <!-- section의 직계자식 -->
+		<div id="nav4">	
+			<h1>Navigation4</h1> <!-- section의 후손 -->
+		</div>
+		<div id="nav5">	
+			<h1>Navigation5</h1> <!-- section의 후손 -->
+		</div>
+	</div>
+	<hr>
+	<div id="tail">
+		<div id="nav6">
+			<h1 class="title">Tail</h1>
+			<div id="nav7">	
+				<h1>Navigation7</h1>   
+				<div id="nav8">
+					<h1>Navigation8</h1> 	
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>	
+</html>

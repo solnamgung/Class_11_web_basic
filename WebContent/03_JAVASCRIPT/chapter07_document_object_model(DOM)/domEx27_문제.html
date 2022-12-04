@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+	
+	<!-- 
+		
+		비밀번호가 8글자 미만일경우 "비밀번호는 8자리 이상으로 작성하세요."를 빨간색 글씨로
+		비밀번호 input태그 아래에 출력해 보시오.
+		
+		비밀번호가 8글자 이상으로 수정되었을때 "비밀번호는 8자리 이상으로 작성하세요." 텍스트를 삭제해 보시오.
+	
+	 -->
+
+	<fieldset>
+		<form>
+	   		<p>
+				<label>아이디 : <input type="text" id="id" name="name" ></label>
+			</p>
+	   		<p id="target">
+				<label>비밀번호 : <input type="password" id="pwd" name="pwd" onblur="checkPwdLength()"></label>
+			</p>
+	   		<p >
+				<label>이메일 : <input type="email" id="email" name="email" ></label>
+			</p>
+			<p>
+				<input type="submit" value="전송">
+			</p>
+		</form>
+	</fieldset>	
+	
+</body>
+</html>

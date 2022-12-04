@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트의 변수</title>
+<script>
+
+	/*
+	
+		# 자바스크립트의 변수
+		
+		- 자바스크립트에서는 데이터의 타입을 따로 명시하지 않고 var로 사용한다.
+		- 변수의 역할, 명명규칙 , 활용등은 다른 언어와 같다.
+		- 자바스크립트의 데이터 타입
+		
+			1) 숫자 (number)
+			2) 문자열 (string)
+			3) 불리언 (boolean)
+			4) undefined
+			5) 객체(object)
+	
+	*/
+
+	// 변수명 앞에 var(variable) 키워드를 붙여서 변수를 생성한다.
+	var nData = 1;	 // 자바스크립트에서는 정수,실수 모두 number 타입이다. 
+	var fData = 1.5; // 자바스크립트에서는 정수,실수 모두 number 타입이다. 
+	
+	var cData = 'Y';		// 자바스크립트에서는 '' , "" 모두 string 타입이다.
+	var strData = "data";	// 자바스크립트에서는 '' , "" 모두 string 타입이다.
+	
+	var isChecked = true;
+	var temp;				// 초기화하지 않은 변수나 존재하지 않는 값의 데이터는 undefined 타입이다.
+	
+	var Product = new Object(); {
+		pdCode : "0x1234";
+		pdName : "상품";
+	}
+	
+	console.log("--- 데이터 출력 ---");
+	console.log("nData : "     , nData);
+	console.log("fData : "     , fData);
+	console.log("cData : "     , cData);
+	console.log("strData : "   , strData);
+	console.log("isChecked : " , isChecked);
+	console.log("temp : "      , temp);
+	console.log("Product : "   , Product);
+	console.log("");
+	
+	// typeof : 데이터의 타입을 반환하는 연산자
+	console.log("--- 데이터 타입 출력 ---");
+	console.log("nData : "     , typeof nData);
+	console.log("fData : "     , typeof fData);
+	console.log("cData : "     , typeof cData);
+	console.log("strData : "   , typeof strData);
+	console.log("isChecked : " , typeof isChecked);
+	console.log("temp : "      , typeof temp);
+	console.log("Product : "   , typeof Product);
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+<script>
+
+	/*
+	 * # ATM[1단계] : 이체하기
+	 * 
+	 * 1. 이체할 계좌번호를 입력받는다.
+	 * 2. 계좌번호가 일치하면,
+	 * 3. 이체할 금액을 입력받는다.
+	 * 4. 이체할 금액 <= myMoney	: 이체가능
+	 * 			myMoney   - 이체할 금액
+	 * 			yourMoney + 이체할 금액
+	 *    이체할 금액  > myMoney 	: 이체불가
+	 */
+	 
+	var myMoney = 8700;
+	
+	var yourAcc = "4321";
+	var yourMoney = 12000;
+	
+	var transAcc = prompt("이체할 계좌번호를 입력하세요 : ");
+	
+	if (transAcc == yourAcc) {
+		
+		var transMoney = prompt("이체금액을 입력하세요 : ");
+		transMoney = Number(transMoney);
+		
+		if (transMoney <= myMoney) {
+			myMoney = myMoney - transMoney;
+			yourMoney = yourMoney + transMoney;
+			document.write("이체를 완료하였습니다.<br>");
+			document.write("myMoney = " + myMoney + "원<br>");
+			document.write("yourMoney = " + yourMoney + "원<br>");
+		}
+		else {
+			document.write("계좌잔액이 부족합니다.<br>");
+		}
+		
+	}
+	else {
+		document.write("계좌번호를 확인해주세요.<br>");
+	}
+	
+		
+</script>
+</head>
+<body>
+</body>
+</html>

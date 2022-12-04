@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form 기초</title>
+</head>
+<body>
+
+	<!-- 
+  
+  		# fieldset
+  		
+  		- 입력요소를 그룹핑하는데 사용되는 태그이다. 
+		- fieldset 요소 안에는 다양한 입력 요소를 넣을 수 있으며 그룹의 경계에 선을 그려준다.
+		- <legend> 태그를 사용하면 그룹에 제목을 붙일 수 있다.
+ 
+ 
+ 
+ 		# label
+ 		
+		- label태그는 <input>요소를 위한 레이블을 정의한다.
+		- label태그의 속성 for를 사용하면 레이블과 input 요소를 서로 연결 할 수 있다.
+		- 마우스로 label을 클릭해도 input요소를 클릭한 것과 똑같은 효과를 낸다.
+		- 명시적 레이블과 암묵적 레이블로 구현 가능하다.
+	
+	-->
+	
+	<fieldset>
+	
+		<legend>정보입력</legend>
+		
+		<!-- 명시적 레이블 -->
+		<p><label for="id">아이디 : </label><input type="text" id="id"></p>
+		<p><label for="name">이름 : </label><input type="text" id="name"></p>
+		
+		<!-- 암묵적 레이블 -->
+		<p><label>주소 : <input type="text"></label></p>
+		<p><label>연락처 : <input type="text"></label></p>
+		
+	</fieldset>
+
+
+
+</body>
+</html>

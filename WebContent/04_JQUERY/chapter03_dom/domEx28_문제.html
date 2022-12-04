@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+
+	<!-- 
+	
+		1) 추가하기 버튼을 클릭할 경우 
+		
+			<p><input type="file" name="file2(3,4,5,6,7,8)"></p>
+		
+			요소가 추가되도록 스크립트를 작성해 보시오.
+	
+	
+	
+		2) 삭제하기 버튼을 클릭할 경우
+		
+			마지막 file 요소가 삭제되도록 스크립트를 작성해 보시오.
+			단, 처음 파일 <input type="file" name="file1">는 삭제가 되어서는 안 된다.
+			
+	-->
+	
+	<form method="post" enctype="multipart/form-data">
+		<div id="fileList">
+			<input type="file" name="file1">
+		</div>
+		<p>
+			<input type="button" value="추가하기" id="appendFile">
+			<input type="button" value="삭제하기" id="removeFile">
+		</p>
+	</form>
+	
+</body>
+</html>

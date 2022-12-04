@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+<script>
+
+	function changeSearchMethod() {
+		
+		var search = document.getElementsByName("search");
+		var keyword = "";
+		for (var i = 0; i < search.length; i++) {
+			if (search[i].checked) {
+				keyword = search[i].value;
+			}
+		}
+		
+		
+		if(keyword == 'detail') {
+			document.getElementById("category").disabled = false;
+			document.getElementById("keyword").disabled = false;
+			document.getElementById("today").disabled = false;
+			document.getElementById("1week").disabled = false;
+			document.getElementById("1month").disabled = false;
+		}
+		else {
+			document.getElementById("category").disabled = true;
+			document.getElementById("keyword").disabled = true;
+			document.getElementById("today").disabled = true;
+			document.getElementById("1week").disabled = true;
+			document.getElementById("1month").disabled = true;
+		}
+		
+	}
+
+</script>
+</head>
+<body>
+
+	<!-- 
+	
+		1) 상세조회의 라디오가 선택되었을때 셀렉트박스 및 버튼 사용가능
+		2) 다시 기본 조회를 보였을때 셀렉트 박스 및 버튼 사용 불가
+		3) 1~2번이 모두 반복적으로 가능하도록
+		
+		스크립트를 작성해보시오.
+	
+	 -->
+	
+	
+	<p>
+		<input type="radio" name="search" value="base" checked > 기본 조회	
+		<input type="radio" name="search" value="detail"> 상세 조회
+		<input type="button" value="정답" onclick="changeSearchMethod()">
+	</p>
+	<div>
+	<p>
+		<select id="category" disabled>
+			<option>사용자 이름</option>
+			<option>사용자 ID</option>
+			<option>제품명</option>
+		</select>
+		<input type="text" id="keyword"  disabled>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" id="today" value="당일" disabled>
+		<input type="button" id="1week" value="1주" disabled>
+		<input type="button" id="1month" value="1달" disabled>
+	</p>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>prop</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	/*
+	
+		# property
+		
+			$(셀렉터).prop(propertyName) 		: 해당 속성값을 가져온다.
+			$(셀렉터).prop(propertyName,value) 	: 해당 속성값을 변경한다.
+		
+			- jQuery 1.6버전 이전에는 attr() 함수를 이용하여 모든 태그의 속성을 제어하였는데 jQeury 1.6버전 이후부터는 prop()라는 함수가 추가되었다.
+		  	- 일반적인 태그속성의 값을 변경하고자 할때는 attr()함수를 사용하고 태그속성에 따라서 기능이 제어되는 속성에 대해서는 prop()함수를 사용한다. 
+			- 백엔드 개발에서 attr()보다 대부분의 기능에서 prop()사용을 권장한다.
+	
+	*/
+	
+	$().ready(function(){
+
+		$("#button1").click(function(){
+			alert($("input[name='radioTarget']:checked").val());
+		});
+		
+		
+		$("#button2").click(function(){
+			
+			var getYear = prompt("년도 : ");
+			
+			$("[name='radioTarget']").each(function(){
+				if ($(this).val() == getYear) {
+					$(this).prop("checked" , true);
+				} 
+			});
+			
+		});
+		
+		var toggle = true;
+		$("#button3").click(function(){
+		
+			if (toggle) {
+				$("[name='radioTarget']").prop("disabled" , true);
+				toggle = false;
+			}
+			else {
+				$("[name='radioTarget']").prop("disabled" , false);
+				toggle = true;
+			}
+			
+		});
+		
+	});
+
+	
+</script>
+</head>
+<body>
+    
+    <input type="radio" name="radioTarget" value="2018">2018년
+    <input type="radio" name="radioTarget" value="2019">2019년
+    <input type="radio" name="radioTarget" value="2020">2020년
+    <input type="radio" name="radioTarget" value="2021" checked>2021년
+    <input type="radio" name="radioTarget" value="2022">2022년
+	<hr>
+	
+	<button id="button1">조회하기</button>
+    <button id="button2">데이터 변경하기</button>
+    <button id="button3">속성 변경하기</button>
+	 
+</body>
+</html>

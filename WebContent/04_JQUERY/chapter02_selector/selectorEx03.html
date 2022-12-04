@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폼 요소 선택자</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	/*
+	
+		# 폼 요소 선택자 
+		
+		- 폼 요소의 선택자는 다음과 같다.
+		
+		[예시]
+		
+		$(":input") 		모든 input요소 선택
+		$(":text") 			모든 input요소중 type="text"인 요소만 선택
+		$(":password") 		모든 input요소중 type="password"인 요소만 선택
+		$(":radio") 		모든 input요소중 type="radio"인 요소만 선택
+		$(":checkbox") 		모든 input요소중 type="checkbox"인 요소만 선택
+		$(":submit") 		모든 input요소중 type="submit"인 요소만 선택
+		$(":reset") 		모든 input요소중 type="reset"인 요소만 선택
+		$(":button") 		모든 input요소중 type="button"인 요소만 선택
+		$(":image") 		모든 input요소중 type="image"인 요소만 선택
+		$(":file") 			모든 input요소중 type="file"인 요소만 선택
+		$(":hidden") 		모든 input요소중 type="hidden"인 요소만 선택
+	
+	*/	
+	
+	$(document).ready(function(){
+		
+		$(':text').css("background","green");
+		$(':password').css("background","gray");
+		$(':file').css("background","purple");
+		$(':button').css("background","yellow");
+		$(':submit').css("background","orange");
+		
+		$(':radio').change(function(){
+			alert("라디오 엘리먼트가 선택되었습니다.");
+		});
+
+		$(':checkbox').change(function(){
+			alert("체크박스 엘리먼트가 선택되었습니다.");
+		});
+		
+		
+	});
+	
+</script>
+</head>
+<body>
+	<form>
+		<p>text :     <input type="text"></p>
+		<p>password : <input type="password"></p>
+		<p>file :     <input type="file"></p>
+		<p>button :   <input type="button" value="button"></p>
+		<p>submit :   <input type="submit" value="submit"></p>
+		<p>radio :    <input type="radio" name="r"> <input type="radio"  name="r"> <input type="radio"  name="r"></p> 
+		<p>checkbox : <input type="checkbox" name="c"> <input type="checkbox" name="c"> <input type="checkbox" name="c"></p>
+	</form>
+
+</body>
+</html>

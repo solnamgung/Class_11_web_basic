@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getElementById 함수</title>
+<script>
+
+	/*
+		
+		# 문서 객체 모델 (DOM : Document Object Model)
+		
+		- 웹페이지가 적재되면 브라우저는 DOM을 생성한다.
+		
+		- DOM은 트리(tree)로 표현하며 , 트리에 있는 하나의 잎(요소)를 node라고 한다.
+		
+		- 관련 용어 : 부모노드 , 형제노드 , 자식노드	
+	
+	*/
+
+	/*
+		
+		# document.getElementById("아이디명");
+	
+		- HTML문서에 id와 일치한 엘리먼트를 선택한다.
+		
+		- 내용 , 스타일 , 속성 모두에 변화를 줄 수 있다.
+		
+		- 엘리먼트가 발견되지 않으면 null을 반환한다.
+		
+		- 엘리먼트의 '값'에 접근할 경우 셀렉터.value로 접근한다.
+	
+		[예시]
+		getter = document.getElementById("totalPrice").value    
+		setter = document.getElementById("totalPrice").value = 90000;
+	
+		- 엘리먼트의 '속성'에 접근할 경우 셀렉터.속성명으로 접근한다.
+			
+			[예시]
+			getter = document.getElementById("mainImage").width;
+			setter = document.getElementById("mainImage").width = 700;
+			
+		- 엘리먼트의 '텍스트'에 접근 할 경우 셀렉터.innerHTML로 접근한다.
+		
+			[예시]
+		getter = document.getElementById("title").innerHTML;
+		setter = document.getElementById("title").innerHTML = "주문페이지";
+	
+	*/
+	
+	function confirmBranchNm() {
+		
+		//alert("test");
+		//alert(document.getElementById("branchNm").value);
+		
+		var branchNm = document.getElementById("branchNm").value;
+		
+		if (branchNm == "서울" || branchNm == "경기" || branchNm == "인천") {
+			
+			alert("확인되었습니다.");
+			
+			// .value 사용예시
+			document.getElementById("orderGoodsNm").value = "";
+			
+			// .attribute 사용예시
+			document.getElementById("orderGoodsNm").disabled = false;
+			document.getElementById("orderGoodsQty").disabled = false;
+			
+			// .innerHTML 사용예시
+			document.getElementById("msg").innerHTML = "";
+			
+		}
+		else {
+			
+			alert("확인에 실패하였습니다.");
+			
+			// .value 사용예시
+			document.getElementById("branchNm").value = "잘못된 지점명";
+			document.getElementById("orderGoodsNm").value = "없음";
+			
+			// .attribute 사용예시
+			document.getElementById("orderGoodsNm").disabled = true;
+			document.getElementById("orderGoodsQty").disabled = true;
+			
+			// .innerHTML 사용예시
+			document.getElementById("msg").innerHTML = "확인에 실패했습니다.";
+			
+			
+		}
+		
+		
+	} 
+	
+</script>
+</head>
+<body>
+	
+	<fieldset>
+   		<legend>상품주문</legend>
+   		<p>
+			지점명 : <input type="text" id="branchNm">
+			<input type="button" value="확인" onclick="confirmBranchNm()"> <span id="msg"></span>
+		</p>
+		<p>
+			주문제품명 : <input type="text" id="orderGoodsNm" >
+			주문개수 : 
+		    <select id="orderGoodsQty" >
+		        <option value="100">100개</option>
+		        <option value="500">500개</option>
+		        <option value="1000">1000개</option>
+		   	</select>
+		</p>
+    </fieldset>
+
+</body>
+</html>

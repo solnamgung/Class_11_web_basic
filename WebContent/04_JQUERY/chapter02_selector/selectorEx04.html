@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본 선택자</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+	
+	/*
+		
+		# 자식 선택자
+		
+			- 직계 자식만 선택
+		
+			[형식]
+			$(‘부모요소1>자식요소2’)
+
+			
+
+		# 후손 선택자
+		
+			- 선택자 하위 요소 포함
+			
+			[형식]
+			$(‘요소1 요소2’) 	  	 
+	 
+	 */
+	 
+	 $(document).ready(function(){
+		
+		$("#btn1").click(function() {
+			$("#header > h1").css("color","purple"); 
+		});
+		
+		$("#btn2").click(function() {
+			$("#section h1").css("color","gray");	
+		});
+		
+	 });
+	 
+</script>
+</head>
+<body>
+
+	<hr>
+    <div id="header">
+		<h1>Header Basic</h1>				<!--header안에 있으므로 직계자식-->
+		<div id="nav1">
+			<h1>Navigation1</h1>			<!--header안에 있긴 하나, nav라는 부모가 있으므로 직계가 아님-->
+		</div>
+		<div id="nav2">
+			<h1>Navigation2</h1>			<!--header안에 있긴 하나, nav라는 부모가 있으므로 직계가 아님-->
+		</div>
+		<div id="nav3">
+			<h1>Navigation3</h1>			<!--header안에 있긴 하나, nav라는 부모가 있으므로 직계가 아님-->
+		</div>
+	</div>
+	
+	<hr>
+	
+	<div id="section">
+		<h1 class="title">Selector</h1> 	<!-- section의 직계자식 -->
+		<div id="nav4">	
+			<h1>Navigation4</h1> 			<!-- section의 후손 -->
+		</div>
+		<div id="nav5">	
+			<h1>Navigation5</h1> 			<!-- section의 후손 -->
+		</div>
+	</div>
+	
+	<input type="button" id="btn1" value="버튼1"/>				
+	<input type="button" id="btn2" value="버튼2"/>
+</body>
+</html>

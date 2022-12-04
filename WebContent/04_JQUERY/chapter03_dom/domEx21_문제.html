@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+
+	<!-- 
+		
+		버튼을 클릭할때 checkbox에서 선택한 데이터들의 합을
+		
+		totalPrice 위치에 텍스트로 출력되도록 스크립트를 작성해보시오.
+	
+	 -->
+
+    <table border="1">
+    	<colgroup>
+    		<col width="30px"/>
+    		<col width="150px"/>
+    		<col width="100px"/>
+    	</colgroup>
+    	<tr height="40px">
+    		<th></th>
+    		<th>상품</th>
+    		<th>가격</th>
+    	</tr>
+    	<tr height="40px" align="center">
+    		<td><input type="checkbox" name="products" value="keyboard"></td>
+    		<td>기계식 키보드</td>
+    		<td>35000원</td>
+    	</tr>
+    	<tr height="40px" align="center">
+    		<td><input type="checkbox" name="products" value="mouse"></td>
+    		<td>무소음 마우스</td>
+    		<td>28000원</td>
+    	</tr>
+    	<tr height="40px" align="center">
+    		<td><input type="checkbox" name="products" value="pad"></td>
+    		<td>장패드</td>
+    		<td>10000원</td>
+    	</tr>
+	</table>
+	<p>최종 구매 가격 : <span id="totalPrice">0</span>원</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+<script>
+
+	// 문제 1) 숫자 2개를 입력받아, 합 출력
+	
+	var getNum1 = prompt("정수1 입력");
+	var getNum2 = prompt("정수2 입력");
+	
+	var totalNubmer = Number(getNum1) + Number(getNum2);
+	document.write("두 수의 합 = " + totalNubmer , "<br>");
+	
+	
+	// 문제 2) 숫자 1개를 입력받아, 홀수이면 true 출력
+	
+	var getNum3 = prompt("숫자 한 개 입력");
+	getNum3 = Number(getNum3);
+	document.write(getNum3 % 2 == 1  , "<br>");
+	
+	
+	// 문제 3) 성적을 입력받아, 60점 이상이고 100점 이하이면 true 출력
+	var getScore = prompt("성적 입력");
+	getScore = Number(getScore);
+	document.write(60 <= getScore && getScore <= 100) ;
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

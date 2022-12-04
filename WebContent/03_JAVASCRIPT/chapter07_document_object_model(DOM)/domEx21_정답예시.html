@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+<script>
+
+	function showSearchWord() {
+		var searchWord = document.getElementById("search").value;
+		document.getElementById("displaySearchWord").innerHTML = "입력된 검색어 : " + searchWord;
+	}
+
+</script>
+</head>
+<body>
+
+	<!-- 
+		
+		키보드에 글자가 입력될때마다 입력된 내용을 "displaySearchWord"에 출력하는 스크립트를 작성해보시오.
+	
+	 -->
+
+
+	<p>검색어 : <input type="text" id="search" onkeyup="showSearchWord()"></p>
+	
+	<div id="displaySearchWord">
+		
+	</div>
+
+</body>
+</html>

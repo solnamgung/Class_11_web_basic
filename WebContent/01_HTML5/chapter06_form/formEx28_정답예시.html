@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>배송지 정보</legend>
+			<p>
+				배송방법
+			    <input type="radio" name="deliveryMethod" value="일반택배" checked>일반택배 &emsp; 
+				<input type="radio" name="deliveryMethod" value="편의점택배">편의점택배 &emsp;  
+				<input type="radio" name="deliveryMethod" value="해외배송">해외배송&emsp; 
+			</p>
+			<p>
+				배송지 선택
+				<input type="radio" name="delivery_place" value="기본배송지" checked>기본배송지 &emsp; 
+				<input type="radio" name="deliveryPlace"  value="새로입력" >새로입력 &emsp; 
+				<input type="radio" name="deliveryPlace"  value="최근배송지">최근배송지 &emsp; 
+			</p>
+			<p>
+				받으실 분
+				<input type="text" name="receiverName" size="40" />
+			</p>
+			<p>
+				휴대폰번호
+				<select>
+						<option>없음</option>
+						<option value="010" selected>010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+				</select> 
+				 - <input size="10px" type="text"> 
+				 - <input size="10px" type="text">
+			</p>
+			<p>
+				유선전화(선택)
+				<select name="tel1">
+						<option value="02">02</option>
+						<option value="031">031</option>
+						<option value="032">032</option>
+						<option value="033">033</option>
+						<option value="041">041</option>
+						<option value="042">042</option>
+						<option value="043">043</option>
+						<option value="044">044</option>
+						<option value="051">051</option>
+						<option value="052">052</option>
+						<option value="053">053</option>
+						<option value="054">054</option>
+						<option value="055">055</option>
+						<option value="061">061</option>
+						<option value="062">062</option>
+						<option value="063">063</option>
+						<option value="064">064</option>
+						<option value="0502">0502</option>
+						<option value="0503">0503</option>
+						<option value="0505">0505</option>
+						<option value="0506">0506</option>
+						<option value="0507">0507</option>
+						<option value="0508">0508</option>
+						<option value="070">070</option>
+				</select> - 
+				<input type="text" size="10px" > - 
+				<input type="text" size="10px">
+			</p>
+			<p>
+				주소
+				<input type="text" size="5"> <a href="#">우편번호검색</a><br>
+			</p>
+			<p>
+				지번 주소 : <input type="text" size="50" /><br><br> 
+				도로명 주소 : <input type="text" size="50" /><br><br> 
+				나머지 주소 : <input type="text" size="50" /> 
+			</p> 
+			<p>
+				배송 메시지
+				<input type="radio" name="deliveryMessageYn" value="yes">예 &emsp; 
+				<input type="radio" name="deliveryMessageYn" value="no" checked>아니요<br>
+				<input type="text" size="50" placeholder="택배 기사님께 전달할 메시지를 남겨주세요." />
+			</p>
+		</fieldset>
+	</form>	
+					
+</body>
+</html>

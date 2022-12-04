@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지의 경로</title>
+</head>
+<body>
+	
+	<!--
+	
+		# 절대경로
+					
+			 - 클라이언트 웹서비스를 이용할수 있는 웹서비스의 절대경로를 모두 작성한다.
+			   예시) http://도메인명:포트번호/폴더명/이미지명
+				
+		
+		# 상대경로 
+		
+			- 현재 위치한 html파일을 기준으로 파일의 경로를 작성한다.
+			
+			- 현재 위치 html파일과 같은 폴더에 있을 경우 아래의 두 방법중 1가지를 선택하여 이미지의 경로를 적어준다. 
+				1) <img src="파일명">
+				2) <img src="./파일명">
+			
+			- 현재 html보다 상위에 위치했을경우 아래와 같이 이미지의 경로를 적어준다. 
+				<img src="../파일명">
+	
+	  -->
+	  
+	<h3>클라이언트가 요청하는 이미지의 절대 경로1</h3>
+	<img src="http://localhost:8080/11_web_basic/01_HTML5/images/americano.jpg">
+	
+	<h3>클라이언트가 요청하는 이미지의 상대 경로1</h3>
+	<img src="../images/americano.jpg">
+	
+	<hr>
+	
+	<h3>클라이언트가 요청하는 이미지의 절대 경로2</h3>
+	<img src="http://localhost:8080/11_web_basic/01_HTML5/chapter04_image/apple.jpg">
+	`
+	<h3>클라이언트가 요청하는 이미지의 상대 경로2</h3>
+	<img src="apple.jpg">
+	<img src="./apple.jpg">
+	
+	
+</body>
+</html>

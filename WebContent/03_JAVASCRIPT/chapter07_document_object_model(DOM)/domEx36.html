@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폼 검증</title>
+<script>
+
+	function formValidationCheck() {
+		
+		var name = document.f.name;
+		if (name.value == "") {
+			alert("이름을 입력하세요.");
+			name.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var id = document.f.id;
+		if (id.value == "") {
+			alert("아이디를 입력하세요.");
+			id.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var pwd = document.f.pwd;
+		if (pwd.value == "") {
+			alert("비밀번호를 입력하세요.");
+			pwd.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var age = document.f.age;
+		if (age.value == "") {
+			alert("나이를 입력하세요.");
+			age.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var gender = document.f.gender;	
+		if (gender.value == "") {
+			alert("성별을 입력하세요.");
+			gender[0].focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var hobbies = document.f.hobbies;
+		var isChecked = false;
+		for (var i = 0; i < hobbies.length; i++) {
+			if (hobbies[i].checked) {
+				isChecked = true;
+			}
+		}
+		if (!isChecked) {
+			alert("취미를 입력하세요.");
+			hobbies[0].focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}	
+		
+		var travel = document.f.travel;
+		if (travel.value == "없음") {
+			alert("여행지를 입력하세요.");
+			travel.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		var memo = document.f.memo;
+		if (memo.value == "") {
+			alert("메모를 입력하세요.");
+			memo.focus(); //선택자.focus(); 선택된 엘리먼트에 focus이벤트를 적용한다.
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+
+</script>
+</head>
+<body>
+
+	<!-- 
+		return 값이 false일 경우 폼데이터를 서버로 전송하지 않으며 
+		return 값이 true일 경우 폼데이터를 서버로 전송한다.
+	-->
+	
+	<form name="f" onsubmit="return formValidationCheck()">
+		<fieldset>
+			<legend>회원가입 폼</legend>
+			<p>이름 : <input type="text" name="name"/></p>
+			<p>아이디 : <input type="text" name="id"/></p>
+			<p>비밀번호 : <input type="password" name="pwd"/></p>
+			<p>나이 : <input type="text" name="age"/></p>
+			<p>
+				성별 : <input type="radio" name="gender" value="1"/>남자
+			   		   <input type="radio" name="gender" value="2"/>여자
+			</p>
+			<p>
+				취미 : <input type="checkbox" name="hobbies" value="운동"/>운동
+					   <input type="checkbox" name="hobbies" value="잠자기"/>잠자기
+					   <input type="checkbox" name="hobbies" value="공부하기"/>공부하기
+			</p>
+			<p>가고 싶은 여행지는
+				<select name="travel">
+					<option value="없음">없음</option>
+					<option value="괌">괌</option>
+					<option value="다낭">다낭</option>
+					<option value="나트랑">나트랑</option>
+					<option value="코타키나발루">코타키나발루</option>
+					<option value="대만">대만</option>
+					<option value="푸꾸옥">푸꾸옥</option>
+				</select>
+			</p>
+			<p>메모<br/>
+				<textarea rows="10" cols="50" name="memo"></textarea>
+			</p>
+			<p>
+				<input type="submit" value="확인" />
+			</p>
+		</fieldset>
+	</form>
+</body>
+</html>
+

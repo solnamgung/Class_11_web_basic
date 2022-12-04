@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트</title>
+<script>
+
+	/*
+	     
+		 # 이벤트
+	
+         onchange        : 엘리먼트의 상태가 변경되었을 때 발생하는 이벤트
+
+         onmouseenter    : 엘리먼트안으로 마우스 포인트가 옮겨왔을 때 발생하는 이벤트 
+         onmouseleave    : 엘리먼트밖으로 아무스 포인트가 옮겨갔을 때 발생하는 이벤트
+                     
+         onkeydown       : 엘리먼트에서 키보드의 키가 눌렀을 때 발생하는 이벤트
+         onkeyup         : 엘리먼트에서 키보드의 키가 올라올때 발생하는 이벤트
+                       
+         onmousedown     : 엘리먼트에서 키보드의 키가 눌렀을 때 발생하는 이벤트
+         onmouseup       : 엘리먼트에서 키보드의 키가 올라올때 발생하는 이벤트
+         
+         
+         onfocus         : 엘리먼트가 포커스를 획득했을 때 발생하는 이벤트
+         onblur          : 엘리먼트가 포커스를 잃었을 때 발생하는 이벤트
+   
+   	  	 onclick         : 엘리먼트를 클릭했을 때 발생하는 이벤트
+         onscroll        : 스크롤바가 스크롤될 때 발생하는 이벤트
+         onsubmit        : 폼의 입력값이 서버로 제출될 때 발생하는 이벤트
+         onload          : 웹페이지가 전부 로딩된 후에 발생하는 이벤트
+         
+     */
+     
+     function kDown() {
+     	document.getElementById("target").src = "../images/pic_1.jpg";
+     }
+     
+     function kUp() {
+    	 document.getElementById("target").src = "../images/pic_2.jpg";
+     }
+     
+     function mDown() {
+     	document.getElementById("target").src = "../images/pic_3.jpg";
+     }
+     
+     function mUp() {
+    	 document.getElementById("target").src = "../images/pic_4.jpg";
+     }
+     
+     function doFocus() {
+     	document.getElementById("target").src = "../images/pic_5.jpg";
+     }
+     
+     function doBlur() {
+    	 document.getElementById("target").src = "../images/pic_6.jpg";
+     }
+     
+     function mEnter() {
+     	document.getElementById("target").src = "../images/pic_7.jpg";
+     }
+     
+     function mLeave() {
+    	 document.getElementById("target").src = "../images/pic_8.jpg";
+     }
+     
+     var toggle = true;
+     function doChange() {
+    	 
+    	 if (toggle) {
+	    	 document.getElementById("target").src = "../images/pome.png";
+    		 toggle = false;
+    	 }
+    	 else {
+    		 document.getElementById("target").src = "../images/poodle.png";
+    		 toggle = true; 
+    	 }
+     
+     }
+     
+</script>
+</head>
+<body>
+	
+	<img src="../images/poodle.png" id="target" height="300" width="300" alt="이미지">
+    <hr>
+    
+    키보드 다운 & 업 : <input type="text" onkeydown="kDown()" onkeyUp="kUp()">
+    <hr>
+    
+    마우스 다운 & 업 : <input type="button" value="버튼" onmousedown="mDown()" onmouseup="mUp()">
+	<hr>
+    
+    포커스 획득 & 잃음 : <input type="text" onfocus="doFocus()" onblur="doBlur()">    
+    <hr>
+
+    마우스 진입 & 아웃 : <img src="../images/pic_1.jpg" width="50" height="50" onmouseenter="mEnter()"  onmouseleave="mLeave()">
+    <hr>
+    
+    변화 : <input type="radio" name="brand1" onchange="doChange()"> apple   
+    	   <input type="radio" name="brand1" onchange="doChange()"> samsung   
+    	   <input type="radio" name="brand1" onchange="doChange()"> lg  &emsp;&emsp;
+    	   
+   		   <input type="checkbox" name="brand2" onchange="doChange()"> apple   
+    	   <input type="checkbox" name="brand2" onchange="doChange()"> samsung   
+    	   <input type="checkbox" name="brand2" onchange="doChange()"> lg  &emsp;&emsp;
+    	   
+    	   <select onchange="doChange()">
+    	   		<option>apple</option>
+    	   		<option>samsung</option>
+    	   		<option>lg</option>
+    	   </select>
+	
+</body>
+</html>

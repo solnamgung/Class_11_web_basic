@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수의 생명주기</title>
+<script>
+	
+	var data = "전역 데이터";					// 전역 변수
+	
+	function func1() {
+		
+		var func1Data = "함수1 데이터";			// 지역 변수
+		
+		document.write(func1Data + "<br>");
+		//document.write(func2Data + "<br>");
+		document.write(data + "<br>");
+		
+	}
+	
+	function func2() {
+		
+		var func2Data = "함수2 데이터";			// 지역 변수
+		
+		//document.write(func1Data + "<br>");
+		document.write(func2Data + "<br>");
+		document.write(data + "<br>");
+		
+	}
+	
+	func1();
+	func2();
+	
+	var idx1 = 1;
+	function func3() {
+		
+		var idx2 = 1;
+		
+		console.log("idx1 : " + idx1 + " / idx2 : " + idx2);
+		
+		idx1++;
+		idx2++;
+		
+	}
+	
+</script>
+</head>
+<body>
+
+	<input type="button" value="다음" onclick="func3();">
+
+</body>
+</html>

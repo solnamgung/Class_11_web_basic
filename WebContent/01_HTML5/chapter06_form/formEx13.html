@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기타 타입</title>
+</head>
+<body>
+	 <form>
+		<fieldset>
+			
+			<!-- 
+		
+				# url type
+				
+				- 웹 주소를 입력하기 위한 입력필드를 생성한다.
+				- 브라우저는 입력된 주소에 대하여 검증 작업을 한다. 
+				- 검증 작업을 시키려면 requird 속성을 설정한다.
+				
+		 	-->
+		 	
+		 	<h2>url type</h2>
+			<label>URL: <input type="url" name="url"></label>
+			<hr>	
+		
+			<!-- 
+			
+				# color type
+			
+				- 색상을 선택받을 수 있다.
+				- 익스플로러 웹브라우저는 지원이 아직안된다. 
+			-->
+			
+			<h2>color type</h2>
+		 	<label>색상선택: <input type="color" name="color"/></label>
+		 	<hr>
+		 
+		 
+		 
+			 <!-- 
+			 
+			 	# range type
+			 	
+			 	- 어떤 범위에 속하는 정수를 입력받을 수 있다. 
+			 
+			 -->
+			 
+			 <h2>range type</h2>
+			 <label>스킬 <input type="range" min="1" max="10" 	value="1"></label>
+		 	 <hr>
+		 
+		 
+		 
+			 <!--
+			  
+			 	# tel type
+				
+				- 전화번호를 입력하기 위한 필드를 생성한다.
+				- 세계적으로 너무 다양한 형태의 전화번호가 사용되고 있기 때문에 검증을 하려면 pattern 속성에 정규식을 지정해준다.
+				
+			 -->
+			 
+			<h2>tel type</h2>
+		    <label>
+		    	전화번호:
+		    	<input type="tel" name="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="###-####-####">
+		    </label>
+			<hr>
+			
+			
+			
+			<!-- 
+			 	
+			 	# time type
+				
+				- 시간과 관련된 입력값이다.
+				
+			 -->
+		
+			<h2>time type</h2>
+			
+			<label>month <input type="month" /><br></label>
+		    <label>time <input type="time" /><br></label>
+		    <label>week <input type="week" /><br></label>
+			<label>시작시간 <input type="time" name=“start-time”></label>
+			
+			<h4>대관시간을 선택하세요(오늘)</h4>
+			<label>시작 시간 <input type="time" value="09:00" id="start"></label>,
+			<label>종료 시간 <input type="time" value="18:00" id="end"></label>
+		
+			<h4>대관시간을 선택하세요(다른날짜)</h4>
+			<label>시작 시간 <input type="datetime-local" value="2016-03-02T09:00" id="start"></label>,
+			<label>종료 시간 <input type="datetime-local" value="2016-03-02T18:00" id="end"></label>
+			
+			<hr>
+  	       <input type="submit" />  
+  		</fieldset>
+  	</form>
+</body>
+</html>

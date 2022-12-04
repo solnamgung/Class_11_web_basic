@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>attribute</title>
+<head>
+<script>
+
+	/*
+	
+		# 속성(attribute)
+		
+		- 셀렉터.속성명 형태로 html 엘리먼트의 속성값에 접근이 가능하다.
+		
+		 [ 예시 ]
+		 
+		document.getElementById("target")			> id가 target인 엘리먼트에 접근
+		document.getElementById("target").src		> id가 target인 엘리먼트의 src 속성에 접근
+		document.getElementById("target").width		> id가 target인 엘리먼트의 width 속성에 접근
+		document.getElementById("target").height	> id가 target인 엘리먼트의 height 속성에 접근
+		
+	
+	*/
+	var imageIdx = 1;
+	function changeImg(direct) {
+			
+		if (direct == "next") {
+			if (imageIdx == 9) return;
+			imageIdx++;
+		}
+		else {
+			if (imageIdx == 1) return;
+			imageIdx--;
+		}
+		
+		document.getElementById("photo").src = "../images/pic_" + imageIdx + ".jpg";
+		
+	}
+	
+	
+	function changeImgSize(method) {
+		
+		var photo = document.getElementById("photo");
+		
+		var width = photo.width;
+		var height = photo.height;
+		
+		if (method == 'extend') {
+			width += 30;
+			height += 30;
+		}
+		else {
+			width -= 30;
+			height -= 30;
+		}
+		
+		photo.width = width;
+		photo.height = height;
+		
+	}
+	
+	function changeColor1(color) {
+		document.getElementById("target").style.backgroundColor = color;
+	}
+	
+	var colors = ["pink" , "navy" , "gray" , "red" , "yellow" ,
+		"white" , "purple" , "lime" , "orange" , "gold" , "silver"];
+	
+	var colorIdx = 0;
+	
+	function changeColor2(){
+		
+		document.getElementById("target").style.backgroundColor = colors[colorIdx];
+		
+		colorIdx++;
+		
+		if (colorIdx == colors.length) colorIdx = 0;
+		
+	}
+	
+	
+</script>
+</head>
+<body id="target">
+	
+	<div>
+		<img src="../images/pic_1.jpg" width="200" height="200" id="photo" alt="">
+	</div>
+	
+	<hr>
+	
+	<p>
+		이미지 변경 : 
+		<button onclick="changeImg('before')">이전</button>
+		<button onclick="changeImg('next')">다음</button>
+	</p>
+
+	<hr>
+
+	<p>
+		이미지 크기 변경 :
+		<button onclick="changeImgSize('extend')">확대</button>
+		<button onclick="changeImgSize('reduce')">축소</button>
+	</p>
+	
+	<hr>
+	<p>
+		배경색 변경1 :
+	    <input type="radio" name="color" onclick="changeColor1('blue')">파랑색
+	    <input type="radio" name="color" onclick="changeColor1('green')">녹색
+	    <input type="radio" name="color" onclick="changeColor1('purple')">자주색
+	    <input type="radio" name="color" onclick="changeColor1('yellow')">노란색
+	    <input type="radio" name="color" onclick="changeColor1('orange')">주황색
+    </p>
+    <hr>
+    <p>
+	    배경색 변경2 :
+	    <input type="button" value="변경"  onclick="changeColor2()">
+    </p>
+
+</body>
+</html>

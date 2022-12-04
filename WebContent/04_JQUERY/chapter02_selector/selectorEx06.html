@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>this</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	/*
+	
+		# this : 셀렉터 자신을 선택
+		
+			[ 예시 ]
+			
+			$("#productCd")의 $(this)의 값 >> $("#productCd")
+			$("#productNm")의 $(this)의 값 >> $("#productNm")
+	
+			
+		# $(셀렉터).each(function(){}); : 복수의 셀렉터의 반복문으로 사용한다.	
+			
+			[형식]
+		
+			$(체크박스 및 라디오 등).each(function(){
+				
+				$(this)
+				
+			});
+			
+	*/
+	
+	$(document).ready(function(){
+		
+		$("#id , #pwd").focus(function(){
+			$(this).css("background" , "skyblue");
+		});
+		
+		$("#id , #pwd").blur(function(){
+			$(this).css("background" , "white");
+		});
+ 		
+		$("input[name='skillCheckbox']").each(function(){
+			console.log($(this).val());
+		});
+		console.log("");
+		
+		$("input[name='skillCheckbox']").change(function(){
+			
+			$("input[name='skillCheckbox']:checked").each(function(){
+				console.log("checked : " + $(this).val());
+			});
+			console.log("");
+			
+		});
+		
+	});
+	
+</script>
+</head>
+<body>
+
+	<p>id : <input type="text" id="id"></p>
+	
+	<p>password : <input type="password" id="pwd"></p>
+	
+	<p>skill checkbox :
+		<input type="checkbox" name="skillCheckbox" value="vHtml"> html
+		<input type="checkbox" name="skillCheckbox" value="vCss"> css
+		<input type="checkbox" name="skillCheckbox" value="vJavascript"> javascript
+	</p>
+	
+</body>
+</html>

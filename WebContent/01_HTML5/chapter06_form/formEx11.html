@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>날짜와 숫자 타입</title>
+</head>
+<body>
+
+	<!-- 
+		
+		# date 타입
+		
+		- 사용자로 하여금 날짜를 선택하게 한다.
+		
+		- min,max속성을 사용해 특정기간에서만 날짜를 선택하도록 할 수 있다.
+		
+		- 익스플로어 및 특정 브라우저는 아직 지원이 되지 않는다.
+		
+	 -->
+	 
+	 <h2>date type</h2>
+	 <form>
+	 	<p>
+	 		날짜 : <input type="date" name="date1"><br>
+	 		날짜 : <input type="date" name="date2" value="2022-05-13"><br>
+	 		날짜 : <input type="date" name="date3" min="2022-05-01" max="2022-05-07"><br>
+	 	</p>
+	 	<p><input type="submit" value="전송"></p>
+	 </form>
+	 
+	 <hr>
+	 
+	 <!-- 
+	
+		# number type
+		
+		- 정수를 입력받을 수 있다. 
+		- 브라우저에 따라서 다르게 표시된다.
+	 	
+	 	- [ 속성 ]
+	 	
+	 	value     : 초깃값
+	 	step	  : 증감 숫자
+	 	min , max : 최소값, 최대값
+	 	
+	 -->
+	 
+	 <h2>number type</h2>
+	 <form>
+	 	<p>
+	 		주문수량 : <input type="number" name="orderQty"><br>
+	 		신발사이즈 : <input type="number" name="size1" value="260" step="5"><br>
+	 		신발사이즈 : <input type="number" name="size2" value="260" step="10" min="200" max="300"><br>
+	 	</p>
+	 	<p><input type="submit" value="전송"></p>
+	 </form>
+	 
+</body>
+</html>
+
+
+

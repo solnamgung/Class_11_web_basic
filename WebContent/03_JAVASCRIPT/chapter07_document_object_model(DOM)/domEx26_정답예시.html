@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+<script>
+
+	var toggle = true;
+
+	function makeReasonBuy(reason) {
+		
+		if (reason == "etc" && toggle == true) {
+			
+			var aInput = document.createElement("input");	
+			aInput.type = "text";
+			aInput.size = "50";
+			aInput.placeholder = "이유를 적어주세요.";
+			document.getElementById("target").appendChild(aInput);
+			toggle = false;
+			
+		}
+		else if (reason != "etc" && toggle == false) {
+			
+			var node = document.getElementById("target");
+			node.removeChild(node.lastChild);
+			toggle = true;
+			
+		}
+		
+	}
+	
+</script>
+</head>
+<body>
+
+	<!-- 
+		
+		radio에서 '기타'가 선택될 경우 
+		<input type="text" size="50" placeholder="이유를 적어주세요">
+		엘리먼트가 추가되도록 스크립트를 작성해 보시오.
+		
+		기타 이외의 다른 요소가 선택되면 
+		기존의 <input type="text" size="50" placeholder="이유를 적어주세요">
+		엘리먼트를 삭제하도록 스크립트를 작성해 보시오.
+	
+	 -->
+
+	<fieldset>
+		<p id="target">
+			<label for="browser">구매 이유 : </label>
+			<input type="radio" name="reasonBuy" onclick="makeReasonBuy('quality')"> 품질이 좋다
+			<input type="radio" name="reasonBuy" onclick="makeReasonBuy('costEffect')"> 가성비가 좋다
+			<input type="radio" name="reasonBuy" onclick="makeReasonBuy('etc')"> 기타&emsp;&emsp;&emsp;
+		</p>
+	</fieldset>
+		
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 중첩for문 </title>
+<script>
+
+	for (var i = 1; i <= 3; i++){
+		for (var j = 1; j <= 2; j++){
+			document.write(i + "행" + j + "열", "<br>");
+		}
+		document.write("<br>");
+	}
+	
+	document.write("<br><br>");
+	
+	
+	
+	document.write("<h1>구구단표</h1>");
+	document.write("<table border='2' width=50%");
+	
+	for (var i = 1; i <= 9; i++) {  
+	    
+		document.write("<tr>");
+	    document.write("<th>" + i + "</th>");
+	
+	    for (var j = 1; j <= 9; j++) { 
+	        document.write("<td>" + i * j + "</td>");
+	    }
+	
+	    document.write("</tr>");
+	    
+	}
+	
+	document.write("</table>");
+	
+</script>
+</head>
+<body>
+</body>
+</html>

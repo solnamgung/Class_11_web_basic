@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>select 태그</title>
+</head>
+<body>
+
+	<!-- 
+	
+		# select 태그
+		
+		- 메뉴를 표시하고 사용자로 선택하게 한다.
+		- <select>요소는 항상 <option>요소와 함께 사용된다.
+		- <option>요소는 반드시 value속성을 가지고 있어야한다.
+		- selected속성을 이용해 특정 항목을 초깃값으로 선택할 수 있다.
+		- <optgroup>요소를 이용해 option요소를 그룹화 할 수 있다.
+	
+	 -->
+
+	<h2>select tag</h2>
+	<form>
+		<p> choice brand : 
+			<select name="car1">
+				<option value="kia">기아</option>
+				<option value="hyundai">현대</option>
+				<option value="samsung">삼성</option>
+				<option value="ssangyong">쌍용</option>
+				<option value="bmw">BMW</option>
+				<option value="benz">Benz</option>
+				<option value="audi" selected>Audi</option>
+			</select>
+		</p>
+		<p> choice brand : 
+			<select name="car2">
+				<optgroup label="국산차">
+					<option value="kia">기아</option>
+					<option value="hyundai">현대</option>
+					<option value="samsung">삼성</option>
+					<option value="ssangyong">쌍용</option>
+				</optgroup>
+				<optgroup label="수입차">
+					<option value="bmw">BMW</option>
+					<option value="benz">Benz</option>
+					<option value="audi" selected>Audi</option>
+				</optgroup>
+			</select>
+		</p>
+		<p><input type="submit" value="전송"></p>
+	</form>
+
+</body>
+</html>

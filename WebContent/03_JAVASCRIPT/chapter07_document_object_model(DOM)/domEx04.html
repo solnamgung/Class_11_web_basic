@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getElementsByClassName 함수</title>
+<script>
+
+	/*
+	
+		# getElementsByClassName("class name");
+		
+		- HTML문서에 class name과 일치한 값을 선택한다.
+		- 데이터가 컬렉션 형태로 저장된다.
+		- 내용 , 스타일 , 속성 모두에 변화를 줄 수 있다.
+		- '값'에 접근할 경우       > 셀렉터.value로 접근한다.
+		- '속성'에 접근할 경우     > 셀렉터.속성명으로 접근한다.
+		- '텍스트'에 접근 할 경우  > 셀렉터.innerHTML로 접근한다.
+		
+	*/
+
+	function func() {
+	
+		var content = document.getElementsByClassName("content");
+	
+		// 예시 1) 배열의 크기 확인
+		console.log("length : " + content.length);
+		console.log("");
+		
+		// 예시 2) 데이터 조회하기
+		for (var i = 0; i < content.length; i++) {
+			console.log(content[i].innerHTML);
+		}
+		console.log("");
+		
+		// 예시 3) 데이터 수정해보기
+		for (var i = 0 ; i < content.length; i++) {
+			content[i].innerHTML = "입력값 : <input type='text' size='20'>";
+		}
+		
+	}
+	
+</script>
+</head>
+<body>
+
+	<div class="content">데이터1</div>
+	<div class="content">데이터2</div>
+	<div class="content">데이터3</div>
+	<div class="content">데이터4</div>
+	<div class="content">데이터5</div>
+	<input type="button" onclick="func()" value="버튼">
+
+</body>
+</html>

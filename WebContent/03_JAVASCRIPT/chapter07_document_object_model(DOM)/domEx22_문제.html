@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+
+	<!-- 
+		
+		1) radio에서 '기타'가 선택될 경우
+		<input type="text" size="50" placeholder="이유를 적어주세요.">
+		요소가 "etcDetail"에 추가되도록 스크립트를 작성해 보시오.
+	
+	
+		2) radio에서 '기타'이 외의 다른 항목이 선택될 경우
+		"etcDetail"의 내용을 지우는 스크립트를 작성해 보시오.
+	
+	 -->
+
+	<fieldset>
+		<p id="target">
+			구매 이유 : 
+			<input type="radio" name="reasonBuy"> 품질이 좋다
+			<input type="radio" name="reasonBuy"> 가성비가 좋다
+			<input type="radio" name="reasonBuy"> 기타&emsp;&emsp;&emsp;
+			<span id="etcDetail"></span>
+		</p>
+	</fieldset>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본 선택자</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+	
+	/*
+	 
+		# 속성 선택자
+		
+			- 각각의 요소는 속성(attribute)를 가질 수 있으므로 속성 값을 이용하여 관련된 엘리먼트에 접근이 가능하다.
+			
+			[예시]
+		 
+			$("태그[속성]") 		속성에 해당 되는 요소 선택				예시) $("a[href]")
+			$("태그[속성='값']") 	속성과 같이 모두 일치하는 요소 선택		예시) $("a[href='http://www.naver.com']")
+			$("태그[속성*='값']") 	속성에 값이 포함되어 있는 요소 선택		예시) $("div[id*='content']")
+			$("태그[속성$='값']") 	속성에 값으로 끝나는 요소 선택			예시) $("div[id$='content']")
+			$("태그[속성^='값']") 	속성에 값의 단어로 시작되는 요소 선택	예시) $("div[id^='content']")
+			$("태그[속성!='값']") 	속성에 값이 아닌 요소만 찾기			예시) $("div[id!='content']")
+		
+	 		
+	 */
+	 
+	 $(function(){
+	
+		 $("#btn").click(function(){
+			 $("input[name='id']").css("background" , "red");
+			 $("input[type='password']").css("background" , "yellow");
+			 $("select[name='skillSelect']").css("background" , "pink");
+			 $("textarea[name='content']").css("background" , "purple");
+		 });
+		 
+		 $("input[name='skillRadio']").change(function(){
+			 alert("라디오 엘리먼트가 선택되었습니다.");
+		 });
+		 
+		 $("input[name='skillCheckbox']").change(function(){
+			 alert("체크박스 엘리먼트가 선택되었습니다.");
+		 });
+		 
+		 
+	 });
+	 
+</script>
+		
+</head>
+<body>
+
+	<form>
+		<fieldset>
+			<p>id : <input type="text" name="id"></p>
+			<p>password : <input type="password" name="pwd"></p>
+			<p>skill radio : 
+				<input type="radio" name="skillRadio"> html
+				<input type="radio" name="skillRadio"> css
+				<input type="radio" name="skillRadio"> javascript
+			</p>
+			<p>skill checkbox :
+				<input type="checkbox" name="skillCheckbox"> html
+				<input type="checkbox" name="skillCheckbox"> css
+				<input type="checkbox" name="skillCheckbox"> javascript
+			</p>
+			<p>skill select:
+				<select name="skillSelect">
+					<option>html</option>
+					<option>css</option>
+					<option>javascript</option>
+				</select>
+			</p>
+			<p>content:<br>
+				<textarea rows="10" cols="30" name="content"></textarea>
+			</p>
+			<p><input type="button" id="btn" value="버튼"/></p>				
+		</fieldset>
+	</form>
+
+</body>
+</html>

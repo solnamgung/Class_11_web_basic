@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Class 선택자</title>
+<style>
+
+	/*
+	
+		# class Selector
+	
+		- 클래스 선택자는 css요소 앞에 .을 이용해서 정의된다. 
+		- id선택자는 하나의 요소만을 선택할 수 있는 반면에 클래스 선택자는 여러개의 요소를 한꺼번에 선택할 수 있다. 
+		
+	*/
+	
+	.type1 {
+		background-color: red;
+	}
+	
+	p.type1 {
+		background-color: yellow;
+	}
+	
+	.type2 , .type3 , .type4 {
+		background-color: green;
+	}
+	
+</style>
+</head>
+<body>
+
+	<h1 class="type1">class가 type1인 헤딩입니다.</h1>
+	<h1 class="type1">class가 type1인 헤딩입니다.</h1>
+	<h1 class="type1">class가 type1인 헤딩입니다.</h1>
+	<p class="type1">class가 type1인 단락입니다</p>
+	<p class="type2">class가 type2인 단락입니다</p>
+	<p class="type3">class가 type3인 단락입니다</p>
+	<p class="type4">class가 type4인 단락입니다</p>
+	
+</body>
+</html>

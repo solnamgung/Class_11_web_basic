@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text 타입</title>
+</head>
+<body>
+
+	<!-- 
+	
+		# form 태그
+	
+	
+		- 입력양식은 항상 <form>태그로 시작한다. 
+		- action에 입력을 처리하는 서버 스크립트의 주소를 적어준다. 
+		- name : 입력 요소의 이름이며 서버의 변수로 이름처럼 전달된다. 
+		- method속성에 입력데이터가 서버로 보내지는 방법을 기술한다. GET과 POST 방식이 있고 기본방식은 GET방식이다. 
+	
+			1) GET방식 : URL 주소 뒤에 파라미터를 붙여서 데이터를 전달하는 방식.
+			            ? 기호 앞에적힌 곳은 URL주소가 되고 
+			            ? 기호 뒤에 오는 값들이 서버로 전달되는 파라미터 값이 된다.
+			
+			2) POST방식 : 사용자가 입력한 데이터를 URL 주소에 붙이지 않고 
+			             HTTP Request 헤더에 포함시켜서 전송하는 방식이다.
+	
+	
+	
+		# submit 타입
+		
+		- 제출버튼은 데이터를 서버로 전송하는데 사용된다.
+		- 데이터는 name1=Value1&name2=value2형태로 action속성에 지정된 스크립트로 보내진다.
+	
+		
+		
+		# reset 타입
+		
+		- form태그에 속해 있는 태그의 값을 초기화 한다.
+	
+	
+	
+		# text 타입
+		
+		- 가장 일반적이며 많이 사용되어지는 입력 요소의 유형이다.
+		- 기본 길이는 20글자이며 size 속성으로 필드의 크기를 변경할 수 있다. 
+			
+			[ 추가 속성 ] 
+			- autocomplete : 자동으로 입력을 완성한다.
+			- autofocus    : 페이지가 로드되면 자동으로 입력 포커스를 갖는다.
+			- placeholder  : 입력 힌트를 희미하게 보여준다.
+			- readonly     : 읽기 전용 필드
+			- required     : 입력양식을 제출하기 전에 반드시 채워져 있어야 함을 나타낸다.
+			- pattern      : 허용하는 입력의 형태를 정규식으로 지정한다.
+		
+	-->
+	
+	<form action="#" method="post">
+		<fieldset>
+			<legend>상품정보입력</legend>
+			<p><label>상품코드 : <input type="text" name="pdCd" required></label></p>
+			<p><label>상품이름 : <input type="text" name="pdNm" autofocus></label></p>
+			<p><label>상품수량 : <input type="text" name="pdQty" maxlength="3" size="3"></label></p>
+			<p><label>상품정보 : <input type="text" name="pdInfo" placeholder="선택사항입니다."></label></p>
+			<p><label>담당자   : <input type="text" name="mgrNm" value="강과장" readonly></label></p>
+			<p>
+				<input type="submit" value="전송">
+				<input type="reset" value="초기화">
+			</p>
+		</fieldset>
+	</form>
+
+</body>
+</html>
+
+
+

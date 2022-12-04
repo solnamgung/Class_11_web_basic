@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+
+	
+	<!-- 
+	
+		1) 신용카드 라디오 선택시
+		
+			카드 번호 : [   ] [   ] [   ] [   ]        < 표시
+		
+		2) 핸드폰 번호 라디오 선택시
+		
+			핸드폰 번호 :  [010] - [   ] - [   ] 		< 표시 (010부분 : 셀렉트태그)
+		
+		위와 같이 동작하도록 스크립트를 작성해보시오.
+	
+	 -->
+	
+	<p>
+		<input type="radio" name="payMethod" value="phone" checked> 휴대폰 결제
+		<input type="radio" name="payMethod" value="card"> 신용카드	
+	</p>
+	<div>
+	<p id="target">
+		<select id="hp1" >
+			<option value="010">010</option>
+			<option value="017">017</option>
+			<option value="018">018</option>
+			<option value="019">019</option>
+		</select> - 
+		<input type="text" size="10"> - 
+		<input type="text" size="10">
+	</p>
+	</div>
+
+</body>
+</html>

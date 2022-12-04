@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+	
+	$(document).ready( function() {
+		
+		$("#plus, #minus, #multi").click(function() {
+			
+			var calculate = $(this).val();
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);
+			var num2 = Number(n2);
+			
+			var result = 0;
+			var operator = "";
+			
+			switch(calculate){
+			
+			case "합":
+				result = num1 + num2;
+				operator = "+";
+				break;
+				
+			case "차":
+				result = num1 - num2;
+				operator = "-";
+				break;
+				
+			case "곱":
+				result = num1 * num2;
+				operator = "*"
+				break;
+			}
+			
+			$("#result").val(result);
+			$("#op").text(operator);
+			
+		});
+		
+	});	
+</script>
+
+</head>
+<body>
+
+	<!-- 
+		
+		합 버튼을 누르면 op의 부분이 +로 보이며 덧셈의 결과를 result에 출력하고 (예시) 3 + 1 = 4
+		차 버튼을 누르면 op의 부분이 -로 보이며 뺄셈의 결과를 result에 출력하고 (예시) 3 - 1 = 2
+		곱 버튼을 누르면 op의 부분이 *로 보이며 곱셈의 결과를 result에 출력하는 (예시) 3 * 1 = 3
+		
+		스크립트를 작성해보시오.
+	
+	 -->
+
+	<input type="text" id="num1" /> <span id="op"> , </span>
+	<input type="text" id="num2"/> =
+	<input type="text" id="result"/>
+	
+	<hr>
+	
+	<input type="button" id="plus" value="합" />
+	<input type="button" id="minus" value="차" />
+	<input type="button" id="multi" value="곱" />
+	
+</body>
+</html>

@@ -1,0 +1,163 @@
+/*
+
+	# 조인(JOIN) 
+    
+		- 조인은 두 개 이상의 테이블을 결합하는 연산이다.
+		- 각 테이블은 각자에 맞는 데이터를 저장하고 있는데, 서로 다른 테이블에서 데이터를 가져오려면 조인 연산을 해야 한다.
+		- 주로 주키(PRIMARY KEY)와 참조키(FOREIGN KEY)를 기준으로 테이블을 결합한다.
+        - 대표적인 조인은 INNER , LEFT(LEFT OUTER), RIGHT(RIGHT OUTER) 조인이 있다.
+		- 주로 테이블명은 별칭을 사용한다.
+        - INNER JOIN은 INNER를 생략한 JOIN으로 사용가능하다.        Ex) INNER JOIN , JOIN
+        - LEFT JOIN은 OUTER를 생략한 LEFT JOIN으로 사용가능하다.    Ex) LEFT OUTER JOIN , LEFT JOIN
+        - RIGHT JOIN은 OUTER를 생략한 RIGHT JOIN으로 사용가능하다.  Ex) RIGHT OUTER JOIN , RIGHT JOIN
+   
+		[형식]
+		
+		SELECT
+				*
+		FROM
+				(TABLE1 ALIAS)
+			INNER(LEFT,RIGHT) JOIN (TABLE2 ALIAS)
+								ON (CONDITION)
+
+*/
+
+
+USE DML_TEST;
+
+CREATE TABLE CLASS (
+	SUBJECT_CD   VARCHAR(30),
+	SUBJECT_NM   VARCHAR(30),
+	LOCATION	 VARCHAR(30)
+);
+
+
+CREATE TABLE STUDENT (
+    STUDENT_CD 	 VARCHAR(10),
+	STUDENT_NM 	 VARCHAR(10),
+	SUBJECT_CD 	 VARCHAR(20)
+);
+
+
+INSERT INTO CLASS VALUES("C1" , "C" , "201호");
+INSERT INTO CLASS VALUES("C2" , "JAVA" , "202호");
+INSERT INTO CLASS VALUES("C3" , "PYTHON" , "301호");
+INSERT INTO CLASS VALUES("C4" , "SPRING" , "302호");
+INSERT INTO CLASS VALUES("C5" , "JSP" , "303호");
+
+
+INSERT INTO STUDENT VALUES("S1" , "학생1" , "C1");
+INSERT INTO STUDENT VALUES("S2" , "학생2" , "C2");
+INSERT INTO STUDENT VALUES("S3" , "학생3" , "C3");
+INSERT INTO STUDENT VALUES("S4" , "학생4" , NULL);
+INSERT INTO STUDENT VALUES("S5" , "학생5" , NULL);
+INSERT INTO STUDENT VALUES("S6" , "학생6" , NULL);
+INSERT INTO STUDENT VALUES("S7" , "학생7" , NULL);
+
+
+SELECT * FROM CLASS;
+SELECT * FROM STUDENT;
+
+
+# WHERE절을 이용한 두 테이블의 join (ANSI 조인)
+SELECT
+		*
+FROM
+		CLASS , STUDENT
+WHERE
+		CLASS.SUBJECT_CD = STUDENT.SUBJECT_CD;
+
+
+SELECT
+		CLASS.SUBJECT_NM,
+        CLASS.LOCATION,
+        STUDENT.STUDENT_NM
+FROM
+		CLASS , STUDENT
+WHERE
+		CLASS.SUBJECT_CD = STUDENT.SUBJECT_CD;
+	
+	
+SELECT
+		C.SUBJECT_NM   AS SUBJECT_NM,  # 컬럼명에는 AS 키워드를 붙여서 별칭을 사용한다.
+        C.LOCATION	   AS LOCATION,
+        S.STUDENT_NM   AS STUDENT_NM
+FROM
+		CLASS C,    # JOIN을 사용할 경우 대부분 테이블의 별칭을 사용한다.
+        STUDENT S   # 테이블의 AS 키워드는 생략한다.
+WHERE
+		C.SUBJECT_CD = S.SUBJECT_CD;
+    
+    
+# INNER 조인 사용예시    
+SELECT
+		C.SUBJECT_NM	AS SUBJECT_NM,
+        C.LOCATION		AS LOCATION,
+        S.STUDENT_NM	AS STUDENT_NM
+FROM
+		CLASS C
+   INNER JOIN STUDENT S
+		   ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+SELECT
+		C.SUBJECT_NM	AS SUBJECT_NM,
+        C.LOCATION		AS LOCATION,
+        S.STUDENT_NM	AS STUDENT_NM
+FROM
+		CLASS C
+		 JOIN STUDENT S                  # INNER 키워드는 생략가능하다.
+		   ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+
+# LEFT 조인 사용 예시
+SELECT
+		*
+FROM
+		   CLASS C
+ LEFT OUTER JOIN STUDENT S                  
+		      ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+SELECT
+		*
+FROM
+		     CLASS C
+ LEFT JOIN STUDENT S        		# OUTER키워드는 생략가능하다.         
+		        ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+
+# RIGHT 조인 사용 예시
+SELECT
+		*
+FROM
+		    CLASS C
+ RIGHT OUTER JOIN STUDENT S                  
+		       ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+SELECT
+		*
+FROM
+		      CLASS C
+ RIGHT JOIN STUDENT S        		# OUTER키워드는 생략가능하다.         
+		         ON C.SUBJECT_CD = S.SUBJECT_CD;
+		
+        
+# 추가 사용 예시			   	 
+SELECT
+		C.SUBJECT_NM AS SUBJECT_NM,
+        C.LOCATION   AS LOCATION,
+        S.STUDENT_NM AS STUDENT_NM
+FROM	
+		 CLASS C
+	INNER JOIN STUDENT S
+			ON C.SUBJECT_CD  = S.SUBJECT_CD
+		   AND C.LOCATION IN ('201호' , '202호') # 추가 조건 명시
+ORDER BY
+		S.STUDENT_NM DESC;
+
+
+
+
+
+
+
+

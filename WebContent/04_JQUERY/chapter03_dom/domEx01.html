@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text() , html()</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+	
+	/*
+				
+		# text()
+		
+			$(셀렉터).text() 	   : 선택자의 text를 가져온다.
+			$(셀렉터).text(text값) : 선택자의 text를 변경한다.
+		
+			- 선택된 개체의 text를(html을 제외한 순수한text) 가져온다. 
+			- text() 메서드 형식으로 값을 가져오며 값을 설정할 경우는 text(value)형태로 사용한다.
+			- XML과 HTML 문서에서 둘다 사용될 수 있다. 
+			- 폼 태그의 value는 가져오지 못한다. 
+		
+			
+		# html()
+		
+			$(선택자).html() 	   : 선택자의 html를 가져온다.
+			$(선택자).html(html값) : 선택자의 html를 변경한다.
+			
+			- 선택된 개체의 html형식(html의 모든 내용 포함)을 가져온다. 
+			- html() 메서드 형식으로 html값을 가져오며 값을 설정할 경우는 html(value)형태로 사용한다.
+			- XML과 HTML 문서에서 둘다 사용될 수 있다. 
+			- 폼 태그의 value는 가져오지 못한다. 
+
+	*/
+	
+	$().ready(function(){
+		
+		$("#button1").click(function(){
+			alert($("#target1").html());
+		});
+		
+		$("#button2").click(function(){
+			alert($("#target2").text());
+		});
+		
+		$("#button3").click(function(){
+			$("#target1").html("<h1><span style='color:red;'>변경된</span> 데이터 입니다.</h1>");
+		});
+		
+		$("#button4").click(function(){
+			$("#target2").text("<h1><span style='color:red;'>변경된</span> 데이터 입니다.</h1>");
+		});
+		
+	});
+
+</script>
+</head>
+<body>
+
+ 	<div id="target1"> 
+ 		<h2>html태그</h2>
+ 	</div>
+ 	<div id="target2"> 
+ 		<h2>테스트 데이터 입니다.</h2>
+ 	</div>
+ 	
+ 	<hr>
+   	
+   	<button id="button1">html 확인</button>
+   	<button id="button2">text 확인</button>
+   	<button id="button3">html 변경</button>
+   	<button id="button4">text 변경</button>
+   	
+</body>
+</html>

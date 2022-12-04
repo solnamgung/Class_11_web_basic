@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+<script>
+	
+	function changeRadio(brand) {
+		
+		if (brand == 'apple') {
+			document.getElementsByName("brand")[0].checked = true;
+			document.getElementById("showMsg").innerHTML = "apple이 선택되었습니다.";
+		}
+		else if (brand == 'microsoft'){
+			document.getElementsByName("brand")[1].checked = true;
+			document.getElementById("showMsg").innerHTML = "microsoft가 선택되었습니다.";
+		}
+		
+	}
+
+</script>
+</head>
+<body>
+
+	<!-- 
+		
+		1. apple이미지에 마우스커서가 진입하면 
+		  1) apple라디오가 선택되고
+		  2) "apple이 선택되었습니다." 메세지를 화면에 출력하는 스크립트를 작성해보시오.
+		  
+		2. microsoft이미지에 마우스커서가 진입하면 
+		  1) microsoft라디오가 선택되고
+		  2) "microsoft이 선택되었습니다." 메세지를 화면에 출력하는 스크립트를 작성해보시오.
+		    
+	 -->
+
+	<img src="../images/pic_1.jpg" id="brandImg1"  width="200" height="200" onmouseenter="changeRadio('apple')"> &emsp;
+	<img src="../images/pic_3.jpg" id="brandImg2"  width="200" height="200" onmouseenter="changeRadio('microsoft')">
+	
+	<hr>
+	<input type="radio" name="brand" value="apple"> apple &emsp;
+	<input type="radio" name="brand" value="microsoft"> microsoft &emsp;&emsp;&emsp;
+	<span id="showMsg">apple이 선택되었습니다.</span>
+
+</body>
+</html>

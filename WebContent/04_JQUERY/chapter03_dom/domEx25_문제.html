@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+</head>
+<body>
+	
+	<!-- 
+		
+		회원가입을 시도할 때
+		
+		1) 아이디 입력란이 빈칸이면 "<span style='color:red;'>아이디를 입력하세요.</span>" 형식을 idValid에 표시하고 포커스를 준 뒤에 폼 전송이 되지 않도록 스크립트를 작성 하시오.
+		
+		2) 이름 입력란이 빈칸이면 "<span style='color:red;'>이름을 입력하세요.</span>" 형식을 nameValid에 표시하고 포커스를 준 뒤에 폼 전송이 되지 않도록 스크립트를 작성 하시오.
+		
+		3) 입력란이 빈칸이면 "<span style='color:red;'>비밀번호를 입력하세요.</span>" 형식을 pwdValid에 표시하고 포커스를 준 뒤에 폼 전송이 되지 않도록 스크립트를 작성 하시오.
+		
+		4) 패스워드와 패스워드 확인이 일치하지 않으면 "패스워드가 일치하지 않습니다."를 alert으로 출력하고 
+		   패스워드 입력란과 패스워드 확인란을 빈칸으로 만들고 폼 전송이 되지 않도록 스크립트를 작성 하시오.
+
+		위의 4가지 조건이 만족했을때 "회원가입을 축하합니다"를 alert으로 출력하시오.
+	
+	 -->
+
+	<form>
+		<fieldset>
+			<legend>회원가입</legend>
+			<p>
+				아이디  <input type="text" id="userId" />
+				<span id="idValid" ></span>
+			</p>
+			<p>
+				이름 : <input type="text" id="username" />
+				<span id="nameValid"></span>
+			</p>
+			<p>
+				암호 : <input type="password" id="pwd" />
+				<span id="pwdValid"></span>
+			</p>
+			<p>
+				암호 확인 : <input type="password" id="repwd" />
+			</p>
+			<p>
+				<input type="submit" value="회원가입" />
+			</p>
+		</fieldset>
+	</form>	
+</body>
+</html>

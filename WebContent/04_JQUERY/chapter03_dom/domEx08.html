@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본 이벤트</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	/*
+	 
+		[마우스 이벤트]
+	
+		$(셀렉터).click() 	   : $(셀렉터)의 요소를 클릭할 때 발생하는 이벤트
+		$(셀렉터).dblclick()   : $(셀렉터)의 요소를  더블 클릭할 때 발생하는 이벤트
+		$(셀렉터).mousedown()  : $(셀렉터)에 마우스 버튼을 눌렀을 때 발생하는 이벤트
+		$(셀렉터).mouseup()    : $(셀렉터)에 마우스 버튼을 떼었을 때 발생하는 이벤트
+		$(셀렉터).mouseenter() : $(셀렉터)에 마우스가 진입했을 때 발생하는 이벤트
+		$(셀렉터).mouseleave() : $(셀렉터)에 마우스가 벗어났을 때 발생하는 이벤트
+		$(셀렉터).hover()      : 위 둘(mouseenter,mouseleave)를 동시에 수행하는 이벤트
+	
+		
+		[키보드 이벤트]
+		
+		$(셀렉터).keydown()    : 해당 영역에서 키보드를 눌렀을 때에 발생하는 이벤트
+		$(셀렉터).keypress()   : 해당 영역에서 키보드를 누르고 있을 때에 발생하는 이벤트
+		$(셀렉터).keyup()      : 해당 영역에서 키보드를 눌렀다가 떼었을 때에 발생하는 이벤트
+		
+		
+		[폼 이벤트]
+		
+		$(셀렉터).focus()      : 엘리먼트가 포커스를 획득했을 때 발생하는 이벤트
+		$(셀렉터).blur()       : 엘리먼트가 포커스를 잃었을 때 발생하는 이벤트
+		$(셀렉터).change()	   : 폼 필드에서 요소값이 변경되었을 때 발생하는 이벤트
+		$(셀렉터).select() 	   : 텍스트 상자/영역 등에서 영역을 선택할때 발생하는 이벤트
+		$(셀렉터).submit()     : 폼 전송시 발생하는 이벤트
+	
+	     */
+
+	$(document).ready(function(){
+		
+		$("#btnClick").click(function(){
+			$("#target").prop("src" , "../images/programmer.png");
+		});
+		
+		$("#btnDblClick").dblclick(function(){
+			$("#target").prop("src" , "../images/spring.PNG");
+		});
+		
+		$("#focusBlur").focus(function(){
+			$("#target").prop("src" , "../images/pic_1.jpg");
+		});
+		$("#focusBlur").blur(function(){
+			$("#target").prop("src" , "../images/pic_2.jpg");
+		});
+		
+		$("#keyboardDownUp").keydown(function(){
+			$("#target").prop("src" , "../images/pic_3.jpg");
+		});
+		
+		$("#keyboardDownUp").keyup(function(){
+			$("#target").prop("src" , "../images/pic_4.jpg");
+		});
+		
+		$("#mouseDownUp").mousedown(function(){
+			$("#target").prop("src" , "../images/pic_5.jpg");
+		});
+		
+		$("#mouseDownUp").mouseup(function(){
+			$("#target").prop("src" , "../images/pic_6.jpg");
+		});
+		
+		$("#mouseEnterLeave").mouseenter(function(){
+			$("#target").prop("src" , "../images/pic_7.jpg");
+		});
+		
+		$("#mouseEnterLeave").mouseleave(function(){
+			$("#target").prop("src" , "../images/pic_8.jpg");
+		});
+		
+		$("input[name='c']").change(function(){
+			$("#target").prop("src" , "../images/americano.jpg");
+		});
+
+		$("input[name='r']").change(function(){
+			$("#target").prop("src","../images/coffee.gif");
+		});
+		
+	});
+		
+</script>
+</head>
+<body>
+	<h1>TARGET</h1>
+	<img src="../images/poodle.png" id="target" height="500" width="500" alt="샘플 사진">
+    <hr>
+    <br><br><br>
+    click : <input type="button" id="btnClick" value="click">
+    <hr> 
+    
+    double click : <input type="button" id="btnDblClick" value="click">
+    <hr>
+    
+    focus , blur : <input type="text" id="focusBlur">
+    <hr>
+    
+    key down , key up : <input type="text" id="keyboardDownUp">
+    <hr>
+    
+    mouse down , mouse up : <input type="button" value="눌러보세요!" id="mouseDownUp">
+    <hr>
+    
+    mouse enter , mouse leave : <img src="../images/pic_1.jpg" width="50" height="50" id="mouseEnterLeave" >
+    <hr>
+    
+   change :  <input type="checkbox" name="c" >
+   			 <input type="checkbox" name="c" >
+   			 <input type="checkbox" name="c" ><br>
+   			
+   	change : <input type="radio" name="r" >
+   			 <input type="radio" name="r" >
+   			 <input type="radio" name="r" ><br>
+    <hr>
+    
+</body>
+</html>

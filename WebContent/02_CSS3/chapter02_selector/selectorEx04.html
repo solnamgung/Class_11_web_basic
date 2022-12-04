@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>속성 선택자(attributes)</title>
+<style>
+	
+	/*
+		
+		# attributes Selector
+		
+		- 태그[속성="속성명"]으로 접근한다.
+	
+	*/
+	
+	input[type="text"] {
+		background-color: gray;
+	}
+	
+	input[type="password"] {
+		background-color: red;
+	}
+	
+	select[name="skillSelect"] {
+		background-color: blue;
+	}
+	
+	textarea[name="content"] {
+		background-color: pink;
+	}
+	
+</style>
+</head>
+<body>
+
+	<form>
+		<fieldset>
+			<p>id : <input type="text" name="id"></p>
+			<p>password : <input type="password" name="pwd"></p>
+			<p>skill select:
+				<select name="skillSelect">
+					<option>html</option>
+					<option>css</option>
+					<option>javascript</option>
+				</select>
+			</p>
+			<p>content:<br>
+				<textarea rows="10" cols="30" name="content"></textarea>
+			</p>
+		</fieldset>
+	</form>
+</body>
+</html>

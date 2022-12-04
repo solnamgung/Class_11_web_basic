@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	$(document).ready(function(){
+		
+		var trIdx = 1;
+		
+		$("#addRow").click(function(){
+			
+			var data = "<tr>";
+				data += "<td><input type='text' name='orderCd" + trIdx + "'></td>"
+				data += "<td><input type='text' name='orderNm" + trIdx + "'></td>"
+				data += "<td><input type='text' name='mgrCd" + trIdx + "'></td>"
+				data += "<td><input type='text' name='mgrNm" + trIdx + "'></td>"
+				data += "</tr>";
+			
+			$("table").append(data);
+			trIdx++;
+		
+		});
+		
+		$("#deleteRow").click(function(){
+			
+			if (trIdx != 1) {
+				$("tr:last-child").remove();
+				trIdx--;
+			}
+		
+		});
+		
+		
+	});
+
+</script>
+</head>
+<body>
+
+		<!-- 
+	
+		1) 추가 버튼을 클릭할 경우 
+		
+			<tr>
+				<td><input type='text' name='orderCd1(2,3,4,5)'></td>
+				<td><input type='text' name='orderNm1(2,3,4,5)'></td>
+				<td><input type='text' name='mgrCd1(2,3,4,5)'></td>
+				<td><input type='text' name='mgrNm1(2,3,4,5)'></td>
+			</tr>
+		
+			요소가 추가되도록 스크립트를 작성해 보시오.
+	
+	
+	
+		2) 삭제하기 버튼을 클릭할 경우
+		
+			마지막 tr 요소가 삭제되도록 스크립트를 작성해 보시오.
+			
+			단, 처음  
+				<tr>
+					<th>주문코드</th>
+					<th>주문이름</th>
+					<th>담당자코드</th>
+					<th>담당자이름</th>
+				</tr>
+			
+			는 삭제가 되어서는 안 됩니다.
+	-->
+
+	<table border="1">
+		<tr>
+			<th>주문코드</th>
+			<th>주문이름</th>
+			<th>담당자코드</th>
+			<th>담당자이름</th>
+		</tr>
+	</table>
+	<div>
+		<input type="button" id="addRow" value="추가">
+		<input type="button" id="deleteRow" value="삭제">
+	</div>
+
+</body>
+</html>

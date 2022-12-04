@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예제</title>
+</head>
+<body>
+
+	<!-- 
+	
+		# 입력하지 않은 필드의 값을 검증하여 
+		
+			1) alert으로 안내
+			2) focus로 이동
+			
+			하는 스크립트를 작성해 보시오. 
+		
+	-->
+
+	<form name="f"> 
+		<h2>게시글 쓰기</h2>
+		<br>
+		<table style="width: 700px;" border="1">
+			<colgroup>
+				<col width="20%">
+				<col width="80%">
+			</colgroup>
+			<tr>
+				<td align="center"><span style="color: red">*</span> 작성자</td>
+				<td><input type="text" size="80"/></td>
+			</tr>
+			<tr >
+				<td align="center"><span style="color: red">*</span> 제목</td>
+				<td><input type="text" size="80"/></td>
+			</tr>
+			<tr>
+				<td align="center"><span style="color: red">*</span> 이메일</td>
+				<td><input type="email" size="80"/></td>
+			</tr>
+			<tr>
+				<td align="center"><span style="color: red">*</span> 비밀번호</td>
+				<td><input type="password" size="80"/></td>
+			</tr>
+			<tr>
+				<td align="center"><span style="color: red">*</span> 글내용</td>
+				<td><textarea  rows="10" cols="50" ></textarea></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2">
+					<input type="submit"  value="확인"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+<script>
+
+	//예) 현금이 1000원있다. 200원짜리 과자 구입 후, 잔돈 출력 
+	var cash = 1000;
+	var snack = 200;
+	var change = cash - snack;
+	console.log("잔돈 = " + change + "원");
+	console.log("");
+	
+	//문제1) 월급이 100원이다. 연봉은? (조건 : 세금 10% 제외)
+	var salary = 100;
+	var beforeTaxSalary = salary * 12;
+	var tax = parseInt(beforeTaxSalary / 10);
+	var afterTaxSalary = beforeTaxSalary - tax;
+	console.log("세후연봉 = " + afterTaxSalary + "원");
+	console.log("");
+	
+	//문제2) 시험점수를 30, 50, 4점 을 받았다. 평균은?
+	var score1 = 30;
+	var score2 = 50;
+	var score3 = 4;
+	var total = score1 + score2 + score3;
+	var avg = total / 3;
+	console.log("평균 = " + avg + "점");
+	console.log("");
+	
+	
+	//문제3) 가로가 3이고 세로가 6인 삼각형 넓이 출력
+	var width = 3;
+	var height = 6;
+	var triArea = parseInt(width * height / 2);
+	console.log("삼각형의 넓이 = " + triArea);
+	console.log("");
+	
+	
+	//문제4) 100초를 1분 40초로 출력
+	var time = 100;
+	var minutes = parseInt(time / 60);
+	var seconds = time % 60;
+	console.log(minutes + "분 " + seconds + "초");
+	console.log("");
+	
+	
+	//문제5) 800원에서 500원짜리 개수 , 100원짜리 개수
+	//정답5) 500원의 개수 = 1개 
+	//       100원의 개수 = 3개  
+	var money = 800;
+	var fivHund = parseInt(money / 500);
+	var oneHund = money % 500 / 100;
+	console.log("500원의 개수 = " + fivHund);
+	console.log("100원의 개수 = " + oneHund);	
+	console.log("");
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

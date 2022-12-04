@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습예시</title>
+<script>
+	
+	/*
+	 * # 최대값 구하기[2단계]
+	 * 
+	 * 1. 3회 반복을 하면서 정수를 입력받는다.
+	 * 2. 입력받은 3개의 숫자 중 가장 큰 값을 출력한다.
+	 * 
+	 */
+
+	var maxNum = 0;
+		
+	var i = 1;
+	
+	while (i <= 3) {
+		
+		var num = prompt("정수" + i + " 입력 : ");
+		num = Number(num);
+		
+		if (maxNum < num) {
+			maxNum = num;
+		}
+		i++;
+	}
+	
+	document.write("최대값 = " + maxNum);
+	 
+</script>
+</head>
+<body>
+</body>
+</html>

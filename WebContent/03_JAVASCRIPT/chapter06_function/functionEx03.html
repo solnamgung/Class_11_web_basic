@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수의 파라메타</title>
+<script>
+	
+	/*
+	
+		# parameter
+		
+		- 자바와 같이 함수의 파라메타를 전달 받을수 있다.
+		- 함수의 파라메타의 데이터 형식은 선언하지 않고 파라메타 명만 선언하여 사용한다.
+		
+	*/
+	
+	function func1(goodsNm){
+		alert("상품명 : " + goodsNm);
+	}
+
+	function func2(goodsNm , price){
+		alert("상품명 : " + goodsNm + " / 주문금액 : " + price);
+	}
+	
+	function func3(goodsNm , price , qty){
+		alert("상품명 : " + goodsNm + " / 주문금액 : " + price + " / 주문수량 : " + qty);
+	}
+	
+</script>
+</head>
+<body>
+
+	<input type="button" value="함수1" onclick="func1('스마트워치')">
+	<input type="button" value="함수2" onclick="func2('스마트워치' , 700000)">
+	<input type="button" value="함수3" onclick='func3("스마트워치" , 700000 , 3)'>
+
+</body>
+</html>
+
+

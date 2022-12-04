@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>엘리먼트 추가 & 삭제</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+
+	/*
+	
+		# 엘리먼트 추가 & 삭제
+	
+		- 웹 페이지를 동적으로 만들어야 할 경우 사용하는 메서드
+		- append()와 appendTo() 메서드는 동일한 기능을 하지만, 추가될 컨텐츠와 타겟의 위치가 다르다.
+		- prepend()와 prependTo() 역시 메서드의 기능은 동일 하지만, 추가될 컨텐츠와 타겟의 위치가 다르다.
+		- remove()메서드는 객체관련 정보(이벤트 등등)를 모두 제거하지만 detach()메서드는 객체관련 정보는 제거 하지 않는다.
+		  
+		$(셀렉터).append(추가할 내용);			: 셀렉터의 맨 뒤 위치에 요소 추가
+		$(추가할 내용).appendTo(셀렉터);		: 셀렉터의 맨 뒤 위치에 요소 추가
+		
+		$(셀렉터 ).prepend( 추가할 내용);		: 셀렉터의 맨 앞 위치에 요소 추가
+		$(추가할 내용 ).prependTo( 셀렉터 );	: 셀렉터의 맨 앞 위치에 요소 추가
+		
+		$(셀렉터).remove() : 지정한 요소를 '포함하여' 하위요소 모두 제거
+		$(셀렉터).detach() : 지정한 요소를 '포함하여' 하위요소 모두 제거
+		$(셀렉터).empty()  : 지정한 요소의 하위 요소를 제거
+		
+	*/
+	
+	$(document).ready(function(){
+		
+		$("#append").click(function(){
+			$("#wrap").append("<img src='../images/programmer.png' width='50' height='50'>");
+		});
+		
+		$("#appendTo").click(function(){
+			$("<img src='../images/programmer.png' width='50' height='50'>").appendTo("#wrap");
+		});
+		
+		$("#prepend").click(function(){
+			$("#wrap").prepend("<p><span style='color:red;'>*</span> 추가된 데이터 입니다.</p>");
+		});
+		
+		$("#prependTo").click(function(){
+			$("<p><span style='color:red;'>*</span> 추가된 데이터 입니다.</p>").prependTo("#wrap");
+		});
+		
+		$("#remove").click(function(){
+			$("#wrap").remove();
+		});
+		
+		$("#detach").click(function(){
+			$("#wrap").detach();
+		});
+		
+		$("#empty").click(function(){
+			$("#wrap").empty();
+		});
+		
+	});
+	
+</script>
+</head>
+<body>
+
+	<button id="append">append</button>
+	<button id="appendTo">appendTo</button>
+	<button id="prepend">prepend</button>
+	<button id="prependTo">prependTo</button>
+	<button id="remove">remove</button>
+	<button id="detach">detach</button>
+	<button id="empty">empty</button>
+	<hr>
+	
+	<div id="wrap" style="background-color: skyblue">
+		<p style="color:red;">본문 입니다.</p>
+	</div>
+	
+</body>
+</html>
