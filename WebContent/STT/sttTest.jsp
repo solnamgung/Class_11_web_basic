@@ -15,7 +15,7 @@
 	</body>
 	
 	<script>
-		 	<!-- API call -->
+		 	<!-- API call : Crome borwser 만 지원-->
 		
 		if(!("webkitSpeechRecognition" in window)) {
 			alert("지원이 되지 않습니다. 크롬으로 가세요~!");
