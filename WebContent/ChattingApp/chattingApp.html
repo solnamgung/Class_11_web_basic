@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+	<body>
+		<!-- 메세지 폼 -->
+		<form name="publish">
+		  <input type="text" name="message">
+		  <input type="submit" value="Send">
+		</form>
+	
+		<!-- 수신받을 메시지가 노출될 div -->
+		<div id="messages"></div>
+	</body>
+	
+	<script>
+		let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
+	
+		// send message from the form
+		document.forms.publish.onsubmit = function() {
+		  let outgoingMessage = this.message.value;
+	
+		  socket.send(outgoingMessage);
+		  return false;
+		};
+	
+		// message received - show the message in div#messages
+		socket.onmessage = function(event) {
+		  let message = event.data;
+	
+		  let messageElem = document.createElement('div');
+		  messageElem.textContent = message;
+		  document.getElementById('messages').prepend(messageElem);
+		}
+	</script>
+</html>

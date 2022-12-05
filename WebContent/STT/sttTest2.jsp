@@ -16,8 +16,7 @@
 
 <!-- We also added 'WebKit Speech Recognition' to perform speech recognition in Google chrome and Apple safari. -->
 
-<script>
-
+	<script>
 		var speech = true;
 		window.SpeechRecognition = window.SpeechRecognition
 						|| window.webkitSpeechRecognition;
