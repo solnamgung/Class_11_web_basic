@@ -24,4 +24,3 @@ function onSocketConnect(ws) {
     clients.delete(ws);
   });
 }
-
