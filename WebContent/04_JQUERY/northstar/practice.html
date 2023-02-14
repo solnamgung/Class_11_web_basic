@@ -18,7 +18,7 @@
 		
 		//4
 		$(function(){
-			var age = $("span.person-info--age").html(($("span.person-info--age").html().replace('세' , '')));
+			var age = $("span.person-info--age").text().replace('세','');
 			
 			if(age >= 20 & age < 30 ) {
 				$("span.person-info--age").parents('tr').css("background" , "red");
@@ -47,6 +47,16 @@
 		   });
 		});
 				
+		//6
+		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid Blue 5px" });
+		
+		//7
+		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
+		
+		
+		//8
+		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");;
+	
 		
 		
 	</script>
