@@ -4,35 +4,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	<body>
-		<!-- 메세지 폼 -->
-		<form name="publish">
-		  <input type="text" name="message">
-		  <input type="submit" value="Send">
-		</form>
-	
-		<!-- 수신받을 메시지가 노출될 div -->
-		<div id="messages"></div>
-	</body>
 	
 	<script>
-		let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
+		// 1. 4번째 item을 지워라
+		$('tbody tr').eq(3).remove();
+		$("tbody tr:nth-child(4)").remove();
+		
+		var tableRow2 = $('tbody tr:eq(1)');
+		var tableRow1 = $('tbody tr:eq(0)');
+		
+		$('tbody tr:eq(0)').replaceWith(($('tbody tr:eq(1)')).after(($('tbody tr:eq(0)')).clone(true)));
+		
+		$("tbody tr:nth-child(1)").insertAfter($("tbody tr:nth-child(1)").next());
+		
+		$("tbody tr:even").css("background" , "yellow");
+		
 	
-		// send message from the form
-		document.forms.publish.onsubmit = function() {
-		  let outgoingMessage = this.message.value;
-	
-		  socket.send(outgoingMessage);
-		  return false;
-		};
-	
-		// message received - show the message in div#messages
-		socket.onmessage = function(event) {
-		  let message = event.data;
-	
-		  let messageElem = document.createElement('div');
-		  messageElem.textContent = message;
-		  document.getElementById('messages').prepend(messageElem);
-		}
+		
+		$("tbody > tr")
+		
+		
+		$(document).ready(function(){
+    
+   		 $("tbody tr").mouseenter(function(){
+    	
+        	 $("tbody tr).css("background" , "blue");
+        
+       });
+     });
+		
+		$(document).ready(function(){
+		
+		
+		$("tbody tr").each(function(){
+			if($(".person-info--age").val() >= 20 & $(".person-info--age").val() < 30) {
+				 $("tbody tr").css("background", "blue");
+			}
+		});
+		
+			$('tbody tr:eq(0)').replaceWith(($('tbody tr:eq(1)')).after(($('tbody tr:eq(0)')).clone(true)));
+		
 	</script>
 </html>
