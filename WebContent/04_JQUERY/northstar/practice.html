@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text() , html()</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+	<script>
+	
+		//1
+		$("tbody tr:eq(4)").remove();
+		
+		//2	
+		$("tbody tr:nth-child(2)").after($("tbody tr:first-child"));
+		
+
+		//3
+		$("tbody tr:even").css("background" , "yellow");
+		
+		//4
+		$(function(){
+			var age = $("span.person-info--age").html(($("span.person-info--age").html().replace('세' , '')));
+			
+			if(age >= 20 & age < 30 ) {
+				$("span.person-info--age").parents('tr').css("background" , "red");
+			}	
+		});
+		
+		   $(document).ready(function() {
+			   
+			   $("tbody tr").hover
+			   
+			        $(this).css({ "border": "Solid Brown 1px" });
+
+			      
+		   });
+		
+		
+		//5
+		$("tbody tr").css({ "border": "Solid Brown 5px" });
+		
+		$(document).ready(function(){
+		   $('tbody tr').mouseover(function(){
+		      $(this).css("backgroundColor","#0000FF");
+		   });
+		   $('tbody tr').mouseout(function(){
+		      $(this).css("backgroundColor","#FFFFFF");
+		   });
+		});
+				
+		
+		
+	</script>
+	</head>
+	<body>
+	  	
+	</body>
+</html>
