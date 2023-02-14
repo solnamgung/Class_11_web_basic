@@ -55,10 +55,22 @@
 		
 		
 		//8
-		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");;
+		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");
 	
+		//9
+		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "yellow");
 		
+		var count = 0;
 		
+		$("tbody tr").each(function(i) {
+			if($("span.person-resume__career--junior:contains('신입')")) {
+				count++;
+			}
+		});
+	
+		console.log("신입 지원자는 총 " + count + "입니다.");
+		
+		if($(this).is(':contains("Replace Me")'));
 	</script>
 	</head>
 	<body>
