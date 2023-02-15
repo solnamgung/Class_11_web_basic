@@ -120,6 +120,11 @@
 		//17
 		$("button:contains('경기')").parents('tr').css("border" , "5px solid red");
 		
+		//18
+		$("div:contains('채용중')").parents('li').css("background" , "yellow");
+		var countHire = $("div:contains('채용중')").parents('li').size();
+		console.log(countHire);
+		
 	</script>
 	</head>
 	<body>
