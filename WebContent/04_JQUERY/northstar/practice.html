@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>text() , html()</title>
 <script src="../js/jquery-3.6.0.min.js"></script>
+	
 	<script>
 	
 		//1
@@ -12,7 +13,14 @@
 		//2	
 		$("tbody tr:nth-child(2)").after($("tbody tr:first-child"));
 		
-
+		$(function(){
+			var temp = $("tbody tr:nth-child(1)");
+			$("tbody tr:nth-child(1)") = $("tbody tr:nth-child(2)");
+			$("tbody tr:nth-child(2)") = $("tbody tr:nth-child(1)");
+		});
+		
+		
+		
 		//3
 		$("tbody tr:even").css("background" , "yellow");
 		
@@ -54,23 +62,36 @@
 		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
 		
 		
-		//8
+		//8 자격
+		
+		//9
 		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");
 	
-		//9
-		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "yellow");
+		//10
+		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "orange");
+		var sizeOfJunior = $("span.person-resume__career--junior:contains('신입')").size();
+		console.log("신입 지원자는 총 " + sizeOfJunior + "입니다.");
 		
-		var count = 0;
+	/* 	var count = 0;
 		
-		$("tbody tr").each(function(i) {
-			if($("span.person-resume__career--junior:contains('신입')")) {
+		$("tbody tr").each(function() {
+			
+			if($("$('span.person-resume__career--junior'):contains('신입')")) {
 				count++;
 			}
+			console.log("신입 지원자는 총 " + count + "입니다.");
+				
 		});
+		 */
+		//$("div:contains('John')").css("text-decoration", "underline");
 	
-		console.log("신입 지원자는 총 " + count + "입니다.");
 		
-		if($(this).is(':contains("Replace Me")'));
+		
+		//10
+		$(".person-resume--activity clearfix").children("span.button-activity")
+		
+		$(".person-resume--activity clearfix").children("span.button-activity").is(":contains('대기업 근무 경력')").css("background" , "orange");
+		
 	</script>
 	</head>
 	<body>
