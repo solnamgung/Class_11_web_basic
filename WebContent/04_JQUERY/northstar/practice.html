@@ -87,11 +87,15 @@
 	
 		
 		
-		//10
-		$(".person-resume--activity clearfix").children("span.button-activity")
+		//10 filtering 조상찾는 함수, css selector
+		var str = $("tbody div.person-resume--activity span:nth-child(1)").text();
+	
+		var BigCorperations = $("span:contains('대기업 근무 경력')");
+
+		BigCorperations.parent().parent().css("background" , "blue");
 		
-		$(".person-resume--activity clearfix").children("span.button-activity").is(":contains('대기업 근무 경력')").css("background" , "orange");
 		
+
 	</script>
 	</head>
 	<body>
