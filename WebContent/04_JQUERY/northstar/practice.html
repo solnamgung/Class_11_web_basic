@@ -61,7 +61,7 @@
 		//7
 		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
 		
-		
+	
 		//8 자격
 		
 		//9
@@ -88,7 +88,7 @@
 		
 		
 		//10 filtering 조상찾는 함수, css selector
-		var str = $("tbody div.person-resume--activity span:nth-child(1)").text();
+		/* var str = $("tbody div.person-resume--activity span:nth-child(1)").text(); */
 	
 		var BigCorperations = $("span:contains('대기업 근무 경력')");
 
@@ -100,11 +100,23 @@
 	
 	    $("span").filter(".person-resume__career--senior").parents('tr').remove();
 		
-		//12
+		//12 
+	
 		
-		
-		
+		//13
+		$(".education--school:contains('대학교(4년) 졸업')").parents('td').css("background" , "red");
 
+		$(".education--school:contains('대학교(4년) 졸업')").parents('td').siblings('th').find('dt').css("color" , "red");
+		
+		//14
+		$("span:contains('기획·전략·경영')").parents('li').css("background" , "blue");
+		
+		//15
+		$("span:contains('홈페이지 지원')").parent('button').css("background" , "pink");
+		
+		//16
+		$("span:contains('추')").parents('tr').css("background" , "yellow");
+		
 	</script>
 	</head>
 	<body>
