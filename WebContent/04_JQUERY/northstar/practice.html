@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text() , html()</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+	
+	<script>
+	
+		//1
+		$("tbody tr:eq(4)").remove();
+		
+		//2	
+		$("tbody tr:nth-child(2)").after($("tbody tr:first-child"));
+		
+		$(function(){
+			var temp = $("tbody tr:nth-child(1)");
+			$("tbody tr:nth-child(1)") = $("tbody tr:nth-child(2)");
+			$("tbody tr:nth-child(2)") = $("tbody tr:nth-child(1)");
+		});
+		
+		
+		
+		//3
+		$("tbody tr:even").css("background" , "yellow");
+		
+		//4
+		$(function(){
+			var age = $("span.person-info--age").text().replace('세','');
+			
+			if(age >= 20 & age < 30 ) {
+				$("span.person-info--age").parents('tr').css("background" , "red");
+			}	
+		});
+		
+		   $(document).ready(function() {
+			   
+			   $("tbody tr").hover
+			   
+			        $(this).css({ "border": "Solid Brown 1px" });
+
+			      
+		   });
+		
+		
+		//5
+		$("tbody tr").css({ "border": "Solid Brown 5px" });
+		
+		$(document).ready(function(){
+		   $('tbody tr').mouseover(function(){
+		      $(this).css("backgroundColor","#0000FF");
+		   });
+		   $('tbody tr').mouseout(function(){
+		      $(this).css("backgroundColor","#FFFFFF");
+		   });
+		});
+				
+		//6
+		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid Blue 5px" });
+		
+		//7
+		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
+		
+	
+		//8 자격
+		
+		//9
+		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");
+	
+		//10
+		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "orange");
+		var sizeOfJunior = $("span.person-resume__career--junior:contains('신입')").size();
+		console.log("신입 지원자는 총 " + sizeOfJunior + "입니다.");
+		
+	/* 	var count = 0;
+		
+		$("tbody tr").each(function() {
+			
+			if($("$('span.person-resume__career--junior'):contains('신입')")) {
+				count++;
+			}
+			console.log("신입 지원자는 총 " + count + "입니다.");
+				
+		});
+		 */
+		//$("div:contains('John')").css("text-decoration", "underline");
+	
+		
+		
+		//10 filtering 조상찾는 함수, css selector
+		/* var str = $("tbody div.person-resume--activity span:nth-child(1)").text(); */
+	
+		var BigCorperations = $("span:contains('대기업 근무 경력')");
+
+		BigCorperations.parent().parent().css("background" , "blue");
+		
+		//11  $("div:not(:contains('John'))").css("text-decoration", "underline");
+		// var NonJunior = $("span:contains('경력')").effect("highlight" , 1000);
+		// var experiences = $("span").filter(".person-resume__career--senior");
+	
+	    $("span").filter(".person-resume__career--senior").parents('tr').remove();
+		
+		//12 
+	
+		
+		//13
+		$(".education--school:contains('대학교(4년) 졸업')").parents('td').css("background" , "red");
+
+		$(".education--school:contains('대학교(4년) 졸업')").parents('td').siblings('th').find('dt').css("color" , "red");
+		
+		//14
+		$("span:contains('기획·전략·경영')").parents('li').css("background" , "blue");
+		
+		//15
+		$("span:contains('홈페이지 지원')").parent('button').css("background" , "pink");
+		
+		//16
+		$("span:contains('추')").parents('tr').css("background" , "yellow");
+		
+		//17
+		$("button:contains('경기')").parents('tr').css("border" , "5px solid red");
+		
+		//18
+		$("div:contains('채용중')").parents('li').css("background" , "yellow");
+		var countHire = $("div:contains('채용중')").parents('li').size();
+		console.log(countHire);
+		
+		//19
+		$(".ara:not(:contains('서울'))").parents('tr').remove();
+		
+		//20
+		$("*").css("color", "blue");
+		
+	</script>
+	</head>
+	<body>
+	  	
+	</body>
+</html>
