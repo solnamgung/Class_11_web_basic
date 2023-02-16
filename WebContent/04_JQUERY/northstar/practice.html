@@ -16,7 +16,7 @@
 		//3
 		$("tbody tr:even").css("background" , "yellow");
 		
-		//4
+		//4 20대 인사람의 배경색을 빨강색으로 변경
 		$(function(){
 			var age = $("span.person-info--age").text().replace('세','');
 			
@@ -35,7 +35,7 @@
 		   });
 		
 		
-		//5
+		//5 모든 행에 대해서 마우스 올렸을 때 테두리가 파란색(5px)으로 변경, 마우스 떼면 원래대로
 		$("tbody tr").css({ "border": "Solid Brown 5px" });
 		
 		$(document).ready(function(){
@@ -47,8 +47,9 @@
 		   });
 		});
 				
-		//6
-		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid Blue 5px" });
+		
+		//6 1~3번째 까지의 item의 테두리를 굵게(2px) 변하고 노란색으로 변경
+		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid 2px", "background" :"yellow" });
 		
 		//7
 		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
