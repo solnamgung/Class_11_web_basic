@@ -10,32 +10,27 @@
 		//1
 		$("tbody tr:nth-child(4)").remove();
 		
-		//2	
+		//2	********
 		$("tbody tr:nth-child(2)").next().after($("tbody tr:first-child"));
 			
 		//3
 		$("tbody tr:even").css("background" , "yellow");
 		
-		//4 20대 인사람의 배경색을 빨강색으로 변경
-		$(function(){
-			var age = $("span.person-info--age").text().replace('세','');
-			
-			if(age >= 20 & age < 30 ) {
-				$("span.person-info--age").parents('tr').css("background" , "red");
-			}	
-		});
+		//4 20대 인사람의 배경색을 빨강색으로 변경 
+	$(function(){
+				var age = $("span").filter(".person-info--age").text().split('세');
+				
+				$.each(age, function(index, value) {
+					
+					if($(value).text() >= 20 && $(value).text() < 30 ) {
+						$(this).parents('tr').css("background" , "red");
+					}
+				});			
+			});
 		
-		   $(document).ready(function() {
-			   
-			   $("tbody tr").hover
-			   
-			        $(this).css({ "border": "Solid Brown 1px" });
-
-			      
-		   });
-		
-		
-		//5 모든 행에 대해서 마우스 올렸을 때 테두리가 파란색(5px)으로 변경, 마우스 떼면 원래대로
+	
+	
+		//5 모든 행에 대해서 마우스 올렸을 때 테두리가 파란색(5px)으로 변경, 마우스 떼면 원래대로, hover function()
 		$("tbody tr").css({ "border": "Solid Brown 5px" });
 		
 		$(document).ready(function(){
@@ -55,8 +50,6 @@
 		//7 '지원 자격' 항목 중 '경력'이 들어가는 행 전체를 삭제
 		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
 		
-	
-		//8 이력서 요약 항목 중 '자격증' 이 들어가는 행의 테두리를 녹색(5px)으로 변경
 		
 		//9
 		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");
@@ -94,11 +87,38 @@
 		var countHire = $("div:contains('채용중')").parents('li').size();
 		console.log(countHire);
 		
-		//19
-		$(".ara:not(:contains('서울'))").parents('tr').remove();
+		
+		//19 경력을 기준으로 Sort -> insert table(remove fuctions)
+		var junior = $('span:conatains("신입")');
+		var senior = $('sapn:contains("경력")');
+		
+		
+		$().ready(function() { 
+			
+			var arr = $("span").filter(".person-resume__career--senior").text().split('경력');
+			var num = 0;
+			
+			for(var i = 0; i < arr.length; i++) {
+				var oneArr = arr[i].replace("개월", " ").replace("년" , ".");	
+				num += oneArr + ", ";
+			}
+			console.log(num);
+		});
+		
+		
+		
 		
 		//20
+		$(".ara:not(:contains('서울'))").parents('tr').remove();
+		
+		//21
 		$("*").css("color", "blue");
+		
+		//22
+		
+		
+		//23
+		
 		
 	</script>
 	</head>
