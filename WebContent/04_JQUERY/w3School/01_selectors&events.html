@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQuery 사용방법1</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+	
+		  // jQuery methods go here...
+	
+		});
+		
+		
+	$(function(){
+	
+		  // jQuery methods go here...
+	
+		});
+	
+		// *************************************  selector  *************************************
+	
+		
+		// <p>
+		$(document).ready(function(){
+		  $("button").click(function(){
+		    $("p").hide();
+		  });
+		});
+		
+		
+		// #id
+		$(document).ready(function(){
+		  $("button").click(function(){
+		    $("#test").hide();
+		  });
+		});
+		
+		// .class $(".test")
+		$(document).ready(function(){
+		  $("button").click(function(){
+		    $(".test").hide();
+		  });
+		});
+		
+		
+		
+		
+		
+		// click()
+		$(document).ready(function(){
+			  $("button").click(function(){
+			    $("p").hide();
+			  });
+		});
+	
+		
+		$(document).ready(function(){
+			$("p").click(function(){
+				  $(this).hide();
+				});
+		});
+		
+		
+		// dblclick()
+		$(document).ready(function(){
+			$("p").dblclick(function(){
+				  $(this).hide();
+				});
+		});
+		
+		
+		// mouseenter()
+		$(document).ready(function(){
+			$("#p1").mouseenter(function(){
+				  alert("You entered p1!");
+				});
+		});
+		
+		// mouseleave()
+		$(document).ready(function(){
+			$("#p1").mouseleave(function(){
+				  alert("Bye! You now leave p1!");
+				});
+		});
+		
+		
+		// mousedown()
+		$(document).ready(function(){
+			$("#p1").mousedown(function(){
+				  alert("Mouse down over p1!");
+				});
+		});
+		
+		
+		// mouseup()
+		$(document).ready(function(){
+			$("#p1").mouseup(function(){
+				  alert("Mouse up over p1!");
+				});
+		});
+		
+		
+		// hover()
+		$(document).ready(function(){
+			$("#p1").hover(function(){
+				  alert("You entered p1!");
+				},
+				function(){
+				  alert("Bye! You now leave p1!");
+				});
+		});
+		
+		
+		// focus()
+		$(document).ready(function(){
+			$("input").focus(function(){
+				  $(this).css("background-color", "#cccccc");
+				});
+		});
+		
+		
+		// blur()
+		$(document).ready(function(){
+			$("input").blur(function(){
+				  $(this).css("background-color", "#ffffff");
+				});
+		});
+		
+		
+		
+		// on()
+		$(document).ready(function(){
+		  $("p").on("click", function(){
+		    $(this).hide();
+		  });
+		});
+		
+		
+		// <p> element:
+		$("p").on({
+		  mouseenter: function(){
+		    $(this).css("background-color", "lightgray");
+		  },
+		  mouseleave: function(){
+		    $(this).css("background-color", "lightblue");
+		  },
+		  click: function(){
+		    $(this).css("background-color", "yellow");
+		  }
+		});
+		
+		
+</script>
+
+
+</head>
+
+
+
+<body>
+
+</body>
+</html>
