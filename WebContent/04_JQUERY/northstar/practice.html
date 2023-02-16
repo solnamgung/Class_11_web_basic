@@ -31,18 +31,18 @@
 	
 	
 		//5 모든 행에 대해서 마우스 올렸을 때 테두리가 파란색(5px)으로 변경, 마우스 떼면 원래대로, hover function()
-		$("tbody tr").css({ "border": "Solid Brown 5px" });
-		
 		$(document).ready(function(){
-		   $('tbody tr').mouseover(function(){
-		      $(this).css("backgroundColor","#0000FF");
-		   });
-		   $('tbody tr').mouseout(function(){
-		      $(this).css("backgroundColor","#FFFFFF");
-		   });
-		});
-				
+		    $("tbody tr").mouseenter(function(){
+		        $("tbody tr").css({"border" : "Solid Blue 5px"});
+		    });
 		
+		     $("tbody tr").mouseleave(function(){
+		        $("tbody tr").css({"border" : "Solid black 1px"});
+		    });
+		     
+		     
+		    
+		});
 		//6 1~3번째 까지의 item의 테두리를 굵게(2px) 변하고 노란색으로 변경
 		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid 2px", "background" :"yellow" });
 		
