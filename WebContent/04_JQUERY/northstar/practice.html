@@ -51,54 +51,30 @@
 		//6 1~3번째 까지의 item의 테두리를 굵게(2px) 변하고 노란색으로 변경
 		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid 2px", "background" :"yellow" });
 		
-		//7
+		
+		//7 '지원 자격' 항목 중 '경력'이 들어가는 행 전체를 삭제
 		$("span.person-resume__career--senior:contains('경력')").parents('tr').remove();
 		
 	
-		//8 자격
+		//8 이력서 요약 항목 중 '자격증' 이 들어가는 행의 테두리를 녹색(5px)으로 변경
 		
 		//9
 		$("span.person-info--age:contains('28')").parents('dd').css("background" , "yellow");
 	
-		//10
-		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "orange");
+		//10 지원자들 중 '신입'인 경우 해당 행의 배경을 오렌지색으로 바꾸고
+        //콘솔창에 "신입 지원자는 총 n 명입니다." 를 출력		
 		var sizeOfJunior = $("span.person-resume__career--junior:contains('신입')").size();
+		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "orange");
 		console.log("신입 지원자는 총 " + sizeOfJunior + "입니다.");
 		
-	/* 	var count = 0;
 		
-		$("tbody tr").each(function() {
-			
-			if($("$('span.person-resume__career--junior'):contains('신입')")) {
-				count++;
-			}
-			console.log("신입 지원자는 총 " + count + "입니다.");
-				
-		});
-		 */
-		//$("div:contains('John')").css("text-decoration", "underline");
-	
+		//11  '대기업 근무 경력' 이 있는 인재의 (class= person-resume) 의 색 바꾸기 
+	   
 		
+		//12 신입이 아닌 사람들의 tr을지워 신입 강조하기
+	     $("span").filter(".person-resume__career--senior").parents('tr').remove();
 		
-		//10 filtering 조상찾는 함수, css selector
-		/* var str = $("tbody div.person-resume--activity span:nth-child(1)").text(); */
-	
-		var BigCorperations = $("span:contains('대기업 근무 경력')");
-
-		BigCorperations.parent().parent().css("background" , "blue");
-		
-		//11  $("div:not(:contains('John'))").css("text-decoration", "underline");
-		// var NonJunior = $("span:contains('경력')").effect("highlight" , 1000);
-		// var experiences = $("span").filter(".person-resume__career--senior");
-	
-	    $("span").filter(".person-resume__career--senior").parents('tr').remove();
-		
-		//12 
-	
-		
-		//13
-		$(".education--school:contains('대학교(4년) 졸업')").parents('td').css("background" , "red");
-
+		//13 '대학교(4년) 졸업'인 지원자의 경우, 지원자 이름 빨강색으로 변경 
 		$(".education--school:contains('대학교(4년) 졸업')").parents('td').siblings('th').find('dt').css("color" , "red");
 		
 		//14
