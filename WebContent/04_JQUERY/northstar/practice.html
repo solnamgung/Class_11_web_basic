@@ -69,7 +69,7 @@
 		
 		
 		//11  '대기업 근무 경력' 이 있는 인재의 (class= person-resume) 의 색 바꾸기 
-	   
+	       $(".person-resume:contains('대기업 근무 경력')").parents('tr').css("background" , "pink");
 		
 		//12 신입이 아닌 사람들의 tr을지워 신입 강조하기
 	     $("span").filter(".person-resume__career--senior").parents('tr').remove();
