@@ -8,19 +8,11 @@
 	<script>
 	
 		//1
-		$("tbody tr:eq(4)").remove();
+		$("tbody tr:nth-child(4)").remove();
 		
 		//2	
-		$("tbody tr:nth-child(2)").after($("tbody tr:first-child"));
-		
-		$(function(){
-			var temp = $("tbody tr:nth-child(1)");
-			$("tbody tr:nth-child(1)") = $("tbody tr:nth-child(2)");
-			$("tbody tr:nth-child(2)") = $("tbody tr:nth-child(1)");
-		});
-		
-		
-		
+		$("tbody tr:nth-child(2)").next().after($("tbody tr:first-child"));
+			
 		//3
 		$("tbody tr:even").css("background" , "yellow");
 		
