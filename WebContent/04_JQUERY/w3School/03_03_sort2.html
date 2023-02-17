@@ -1,0 +1,120 @@
+<! DOCTYPE HTML>  
+<html>  
+    <head>  
+<meta charset = "utf-8" />      
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">  
+        <title>  
+            Using jQuery Sort a list alphabetically  
+        </title>  
+        <script src =  
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">  
+        </script>  
+    </head>  
+    <style>  
+    h1 {    
+  position: relative;    
+  padding: 10;    
+  margin: 20;    
+  font-family: "Raleway", sans-serif;    
+  font-weight: 200;    
+  font-size: 40px;    
+  color: white;    
+  -webkit-transition: all 0.4s ease 0s;    
+  -o-transition: all 0.4s ease 0s;    
+  transition: all 0.4s ease 0s;    
+}    
+h2 {   
+text-align: center;   
+color: black;   
+font-size: 28px;   
+width: 100%;  
+ margin: 20px 10;   
+position: relative;   
+line-height: 58px;   
+font-weight: 400;   
+}  
+body {   
+  text-align: center;  
+  padding: 20px;  
+background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);  
+background-size: 1800% 1800%;  
+font-family: "HelveticaNeue-Light", "Helvetica Neue" Helvetica, Arial, sans-serif;  
+-webkit-animation: rainbow 18s ease infinite;  
+-z-animation: rainbow 18s ease infinite;  
+-o-animation: rainbow 18s ease infinite;  
+  animation: rainbow 18s ease infinite; }  
+@-webkit-keyframes rainbow {  
+    0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@-moz-keyframes rainbow {  
+        0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@-o-keyframes rainbow {  
+    0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@keyframes rainbow {   
+        0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+ ul li {  
+  width: 25%;  
+  padding: 0 10px;  
+  margin-top: 20px;  
+  box-sizing: border-box;  
+  list-style: none;  
+  text-align: center;  
+}  
+button:nth-child(1) {  
+  background-color: #4984f3;  
+  color: white;  
+  width: 15%;  
+  height: 20px;  
+  padding: 40 10px;  
+  border-radius: 0.5rem;  
+}  
+</style>  
+    <body>  
+    <center>  
+        <h1> Example </h1>  
+        <h2> jQuery Sort data Alphabetically </h2>        
+        <p id = "GG_UP" style =  
+            "text-align:center; font-size: 15px; font-weight: bold;">  
+            click on the button to sort the list  
+        </p>        
+        <ul class = "mylist">  
+            <li> ashu </li>  
+            <li> hasu </li>  
+            <li> bashu </li>  
+            <li> Baby </li>  
+        </ul>  
+        <br>  
+        <center>  
+            <button>  
+                click here  
+            </button>  
+        </center>  
+        <p id = "GG_DOWN" style =  
+            "text-align:center; color:green; font-size:20px; font-weight:bold;">  
+        </p>  
+        <script>  
+            function sort(selector) {  
+                $(selector).children("li").sort(function(a, b) {  
+                    var A = $(a).text().toUpperCase();  
+                    var B = $(b).text().toUpperCase();  
+                    return (A < B) ? -1 : (A > B) ? 1 : 0;  
+                }).appendTo(selector);  
+            }  
+            $('button').on('click', function() {  
+                sort("ul.mylist");  
+                $("#GG_DOWN").text("sorted");  
+            });               
+        </script>  
+    </body>  
+</html>  

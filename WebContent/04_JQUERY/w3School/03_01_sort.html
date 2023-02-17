@@ -1,0 +1,340 @@
+<! DOCTYPE html>  
+<html lang = "en">  
+<head>  
+    <meta charset = "utf-8" />      
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">  
+    <title> Using jQuery Sort a list alphabetically</title>  
+    <link rel = "stylesheet"  
+        href =  
+"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">  
+    <script src =  
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">  
+    </script>  
+    <script src =  
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.8/popper.min.js">  
+    </script>  
+    <script src =  
+"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js">  
+    </script>  
+    <style>  
+    body {   
+  text-align: center;  
+  padding: 20px;  
+background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);  
+background-size: 1800% 1800%;  
+font-family: "HelveticaNeue-Light", "Helvetica Neue" Helvetica, Arial, sans-serif;  
+-webkit-animation: rainbow 18s ease infinite;  
+-z-animation: rainbow 18s ease infinite;  
+-o-animation: rainbow 18s ease infinite;  
+  animation: rainbow 18s ease infinite; }  
+@-webkit-keyframes rainbow {  
+    0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@-moz-keyframes rainbow {  
+        0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@-o-keyframes rainbow {  
+    0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+@keyframes rainbow {   
+        0% { background-position: 0% 82% }  
+    50% { background-position: 100% 19% }  
+    100% { background-position: 0% 82% }  
+}  
+.container {  
+  width: 80%;  
+  max-width: 1200px;  
+  margin: 0 auto;  
+}  
+.boxes {  
+  list-style: none;  
+  display: flex;  
+  flex-wrap: wrap;  
+  padding: 0;  
+  margin: 0 -10px;  
+}  
+.boxes li {  
+  width: 25%;  
+  padding: 0 10px;  
+  margin-top: 20px;  
+  box-sizing: border-box;  
+}  
+.boxes li a:nth-child(odd) {  
+  background-color: lightgrey;  
+}  
+.boxes li a:nth-child(even) {  
+  background-color: orange;  
+}  
+.boxes li a {  
+  display: block;  
+  padding: 8px;  
+  text-align: center;  
+  text-decoration: none;  
+  background: #fff000;  
+  color: #000;  
+}  
+.boxes li a:focus {  
+  outline: 5px solid red;  
+}  
+.boxes .details {  
+  display: flex;  
+  flex-wrap: wrap;  
+  justify-content: center;  
+  margin-top: 10px;  
+}  
+.boxes .details span {  
+  font-size: .8rem;  
+}  
+.boxes .details .length {  
+  margin-right: 10px;  
+}  
+.boxes .details span:before {  
+  content: '?';  
+  padding-right: 3px;  
+}  
+h2 {   
+text-align: center;   
+color: black;   
+font-size: 28px;   
+width: 100%;  
+ margin: 20px 10;   
+position: relative;   
+line-height: 58px;   
+font-weight: 400;   
+}  
+h2:before {   
+content: " ";   
+position: absolute;   
+left: 50%;   
+bottom: 10;   
+width: 100px;   
+height: 2px;  
+font-weight: bold;  
+ background-color: #2079df;   
+margin-left: -50px;  
+ }  
+h1 {    
+  position: relative;    
+  padding: 10;    
+  margin: 20;    
+  font-family: "Raleway", sans-serif;    
+  font-weight: 200;    
+  font-size: 40px;    
+  color: white;    
+  -webkit-transition: all 0.4s ease 0s;    
+  -o-transition: all 0.4s ease 0s;    
+  transition: all 0.4s ease 0s;    
+}    
+    </style>  
+</head>  
+<body>  
+    <center>  
+        <h1> Example </h1>  
+        <h2> jQuery Sort Plugin </h2>  
+    </center>  
+    <div class = "container">  
+  <select class = "b-select">  
+    <option disabled selected> Sort By </option>  
+    <option data-sort = "price:asc"> Price Ascending </option>  
+    <option data-sort = "price:desc"> Price Descending </option>  
+    <option data-sort = "length:asc"> Length Ascending </option>  
+    <option data-sort = "length:desc"> Length Descending </option>  
+  </select>  
+  <ul class = "boxes">  
+    <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 1  
+        <div class = "details">  
+          <span class = "length"> 13M </span>  
+          <span class = "price"> 670? </span>  
+        </div>  
+      </a>  
+    </li>  
+    <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+       Article 2  
+        <div class = "details">  
+          <span class = "length"> 13M </span>  
+          <span class = "price"> 670? </span>  
+        </div>  
+      </a>  
+    </li>  
+    <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+       Article 3  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 670? </span>  
+        </div>  
+      </a>  
+    </li>  
+    <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+      Article 4  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 1670? </span>  
+        </div>  
+      </a>  
+    </li>  
+        <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 5  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 1670? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 6  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 670? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 7  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6710? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 8  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6170? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 9  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6170? </span>  
+        </div>  
+      </a>  
+    </li>  
+        <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 10  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6270? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+     Article 11  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6270? </span>  
+        </div>  
+      </a>  
+    </li>  
+            <li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 12  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6780? </span>  
+        </div>  
+      </a>  
+    </li>  
+<li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 13  
+        <div class = "details">  
+          <span class = ?length"> 1M </span>  
+          <span class = "price"> 2780? </span>  
+        </div>  
+      </a>  
+    </li>  
+<li data-length = "13" data-price = "670">  
+      <a href = "#">  
+        Article 14  
+        <div class = "details">  
+          <span class = ?length"> 13M </span>  
+          <span class = "price"> 6780? </span>  
+        </div>  
+      </a>  
+    </li>  
+<li data-length = "13" data-price = "170">  
+      <a href = "#">  
+        Article 15  
+        <div class = "details">  
+          <span class = ?length"> 23M </span>  
+          <span class = "price"> 7780? </span>  
+        </div>  
+      </a>  
+    </li>  
+  </ul>  
+</div>  
+    <script>  
+        (function($) {  
+			  "use strict";  
+			  $.fn.numericFlexboxSorting = function(options) {  
+				  
+			    const settings = $.extend({ elToSort: ".boxes li" }, options); 
+			    console.log("settings >>>>>> " + JSON.stringify(settings));
+			    
+			    const $select = this;  
+			    
+			    console.log("$select >>>>>> " + JSON.stringify($select));       				// {"elToSort":".boxes li"}
+			    
+			    const ascOrder = (a, b) => a - b;  
+			    console.log("ascOrder >>>>>> " + ascOrder);
+			    
+			    const descOrder = (a, b) => b - a;  
+			    console.log("descOrder >>>>>> " + descOrder);
+			    
+			    $select.on("change", () => {  													//click select
+			      const selectedOption = $select.find("option:selected").attr("data-sort");     
+			      console.log("selectedOption >>>>>> " + selectedOption);
+			    
+			      
+			      sortColumns(settings.elToSort, selectedOption);  
+			    });  
+			    
+			    function sortColumns(el, opt) {  
+			    	console.log("el >>>>>> " + el);  //.boxes li
+			    	console.log("opt >>>>>> " + opt); //price:asc  price:desc
+			    	
+			      const attr = "data-" + opt.split(":")[0];  
+			    	console.log("attr >>>>>>> " + attr);
+			    	
+			      const sortMethod = (opt.includes("asc")) ? ascOrder : descOrder; 
+			        console.log("sortMethod >>>>>>> " + sortMethod);
+			        
+			      const sign = (opt.includes("asc")) ? "" : "-"; 
+			      	console.log("sign >>>>>>> " + sign);
+			      
+			      const sortArray = $(el).map((i, el) => $(el).attr(attr)).sort(sortMethod);  
+			        console.log("sortArray >>>>>>> " + JSON.stringify(sortArray));
+			        
+			      for (let i = 0; i < sortArray.length; i++) {  
+			        $(el).filter(`[${attr}="${sortArray[i]}"]`).css("order", sign + sortArray[i]);  
+			      }  
+			    }  
+			  
+			    return $select;  
+			  };  
+		})(jQuery);  
+$(".b-select").numericFlexboxSorting();  
+    </script>  
+</body>  
+</html>     

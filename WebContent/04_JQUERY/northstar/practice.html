@@ -88,26 +88,60 @@
 		console.log(countHire);
 		
 		
-		//19 경력을 기준으로 Sort -> insert table(remove fuctions)
-		var junior = $('span:conatains("신입")');
-		var senior = $('sapn:contains("경력")');
+		//19 
+		
+		$("tbody tr td:nth-child(2) div:first-child span").css("background" , "pink");
 		
 		
 		$().ready(function() { 
 			
-			var arr = $("span").filter(".person-resume__career--senior").text().split('경력');
-			var num = 0;
+			var arr = $("tbody tr td:nth-child(2) div:first-child span").map(function(){
+				return $(this).text();
+			});
 			
-			for(var i = 0; i < arr.length; i++) {
-				var oneArr = arr[i].replace("개월", " ").replace("년" , ".");	
-				num += oneArr + ", ";
-			}
-			console.log(num);
+			console.log("arrOrigin >>>>>>>>> " + arr);	
+		
+			var junior = "신입";
+			var senior = "경력";
+			var removeRec = "추천";
+			
+			var juniorNum = 0;
+			var seniorNum = 0;
+			var month = 12;
+			
+			var result = [];
+			
+			$.each(arr, function(i, val) {
+				
+				if(val.indexOf(junior) > -1) {
+					juniorNum = 0;
+					result.push(juniorNum);
+				} 
+				
+				else if(val.indexOf(senior > -1)) {
+					var seniorVal = val.replace("경력", "").replace("개월", "").replace("년",".").replace();
+					var tempMon = (seniorVal.split('.')[0]) * month + (seniorVal.split('.')[1]);
+					
+					console.log("months >>>>> " + tempMon);
+					
+					seniorNum = seniorVal;
+					result.push(tempMon);					
+				}
+	
+			});	
+				
+				result = $.grep(result , function(val) {
+					return val != removeRec;
+			});
+			
+			
+			console.log("result>>>>>>> " + result);
+			
 		});
 		
 		
 		
-		
+		console.log($("tbody tr td div:first-child span").text());
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
 		
