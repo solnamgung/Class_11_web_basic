@@ -88,87 +88,25 @@
 		console.log(countHire);
 		
 		
-		//19 
-		// 204,60,0,0,132,48,24,0,108,0,24,108,156,12,156,0,108,408,48,96,0,72,0,0,24,108,0,24,36,120
-		
-		// if I want to get descending sort(depending on experiences) of the table in javascript or JQuery 
-		
-		$("tbody tr td:nth-child(2) div:first-child span").css("background" , "pink");
-		
-		$().ready(function() { 
+		//19 경력을 기준으로 Sort -> insert table(remove fuctions)?
+		$().ready(function() {
 			
-			var arr = $("tbody tr td:nth-child(2) div:first-child span").map(function(){
-				return $(this).text();
-			});
-			
-			console.log("arrOrigin >>>>>>>>> " + arr);	
-		
-			var junior = "신입";
-			var senior = "경력";
-			var removeRec = "추천";
-			
-			var juniorNum = 0;
-			var seniorNum = 0;
-			var month = 12;
-			
-			var result = [];
-			
-			$.each(arr, function(i, val) {
-				
-				if(val.indexOf(junior) > -1) 
-				{
-					juniorNum = 0;
-					result.push(juniorNum);
-				} 
-				else if (val.indexOf(senior) > -1)
-				{
-					var seniorVal = val.replace("경력", "").replace("개월", "");
-				
-					if(seniorVal.split('년')[1] = null) {
-						seniorVal.split('년')[1] = 0;
-						var tempMon   = ((seniorVal.split('년')[0]) * month) + (seniorVal.split('년')[1]);
-					} 
-										
-					
-					console.log("months >>>>> " + tempMon);
-									
-					result.push(tempMon);					
-				}
-	
-			});	
-				
-				result = $.grep(result , function(val) {
-					return val != removeRec;
-			});
-			
-			
-			console.log("result>>>>>>> " + result);
+			$("tbody").find("span.person-resume__career--senior").css("background" , "yellow");
 			
 		});
 		
 		
 		
-		console.log($("tbody tr td div:first-child span").text());
+		
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
 		
 		//21
 		$("*").css("color", "blue");
-	
 		
 		//22
 		
-		/* 		navigation(100, 15, 5, 1)
-				function navigation(total, rowCnt, naviCnt, pageNo) {
-				        이전
-				        
-				        1 2 [3] 4 5
-				        
-				        다음
-				} */
-				
-			
-			
+		
 		//23
 		
 		
