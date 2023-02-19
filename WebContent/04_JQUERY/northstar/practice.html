@@ -99,6 +99,19 @@
 				  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
 				  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;
 				});
+			
+			// Get the table body and detach its rows
+			var tbody = $("tbody");
+			var rows = tbody.find("tr").detach();
+
+			// Sort the rows based on the sorted array of values
+			for (var i = 0; i < arrs.length; i++) {
+				  var value = arrs[i];
+				  var row = rows.filter((index, element) => {
+				    return $(element).find("td.person-resume div.person-resume--title span:not(.person-resume--recommand)").text() === value;
+				  });
+				  tbody.append(row);
+			}
 
 				// Calculate the total number of months of experience for each element in the sorted array
 				const experienceInMonths = arrs.map((exp) => {
