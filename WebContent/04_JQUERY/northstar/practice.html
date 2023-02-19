@@ -7,29 +7,27 @@
 	
 	<script>
 	
-		//1
+		//1 4번째 Item을 지워라
 		$("tbody tr:nth-child(4)").remove();
 		
-		//2	********
-		$("tbody tr:nth-child(2)").next().after($("tbody tr:first-child"));
+		//2	1번째와 2번째의 위치를 바꿔라 => insertAfter , 
+		const $firstRow = $('tbody tr:first');
+		const $secondRow = $('tbody tr:eq(1)');
+		
+		$secondRow.insertBefore($firstRow);
+		$firstRow.insertAfter($secondRow);
+		
 			
 		//3
 		$("tbody tr:even").css("background" , "yellow");
 		
 		//4 20대 인사람의 배경색을 빨강색으로 변경 
-	$(function(){
-				var age = $("span").filter(".person-info--age").text().split('세');
-				
-				$.each(age, function(index, value) {
-					
-					if($(value).text() >= 20 && $(value).text() < 30 ) {
-						$(this).parents('tr').css("background" , "red");
-					}
-				});			
-			});
-		
-	
-	
+		$('tbody th div dl dd span.person-info--age').filter(function() {
+		    var age = parseInt($(this).text());
+		    return age >= 20 && age < 30;
+		}).css('color', 'red');
+			
+			
 		//5 모든 행에 대해서 마우스 올렸을 때 테두리가 파란색(5px)으로 변경, 마우스 떼면 원래대로, hover function()
 		$(document).ready(function(){
 		    $("tbody tr").mouseenter(function(){
@@ -146,7 +144,14 @@
 		
 		//22
 		
-		
+		navigation(100, 15, 5, 1)
+			function navigation(total, rowCnt, naviCnt, pageNo) {
+			        이전
+			        
+			        1 2 [3] 4 5
+			        
+			        다음
+			}
 
 		
 		
