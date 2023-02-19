@@ -89,21 +89,52 @@
 		
 		
 		//19 경력을 기준으로 Sort -> insert table(remove fuctions)? .css("background","yellow");
+			var spans = $("tbody tr td.person-resume div.person-resume--title span:not(.person-resume--recommand)");
+			var arrs = Array.from(spans).map(span => span.textContent); 
+			
+			arrs.sort((a, b) => {
+				  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0);
+				  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0);
+				  const aYears = (a.includes('년') ? parseInt(a.match(/\d+/)[0]) : 0);
+				  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
+				  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;
+				});
+
+				// Calculate the total number of months of experience for each element in the sorted array
+				const experienceInMonths = arrs.map((exp) => {
+				  const months = (exp.includes('개월') ? parseInt(exp.match(/\d+/)[0]) : 0);
+				  const years = (exp.includes('년') ? parseInt(exp.match(/\d+/)[0]) : 0);
+				  return years * 12 + months;
+				});
+
+				console.log(arrs);  // Sorted array
+				console.log(experienceInMonths);  // Array of total months of experience
+			
+		/* 	arrs.sort((a, b) => {
+				  if (a === '신입') return 1; // place '신입' at the end of the array
+				  if (b === '신입') return -1;
+				  var aMonths = parseInt(a.match(/\d+/g)[0]) * 12 + parseInt(a.match(/\d+/g)[1]);
+				  var bMonths = parseInt(b.match(/\d+/g)[0]) * 12 + parseInt(b.match(/\d+/g)[1]);
+				  return bMonths - aMonths;
+				});
+
+				console.log(arrs); */
 		
-		var spans = $("tbody tr td.person-resume div.person-resume--title span:not(.person-resume--recommand)");
+			  
+		var table = document.querySelector('table-list--person');
+		var tbody = table.querySelector('tbody');
 
-		var arrs = Array.from(spans).map(span => span.textContent); 
-
-		arrs.sort((a, b) => {
-		  if (a === '신입') return 1; // place '신입' at the end of the array
-		  if (b === '신입') return -1;
-		  var aMonths = parseInt(a.match(/\d+/g)[0]) * 12 + parseInt(a.match(/\d+/g)[1]);
-		  var bMonths = parseInt(b.match(/\d+/g)[0]) * 12 + parseInt(b.match(/\d+/g)[1]);
-		  return bMonths - aMonths;
 		
-		});
-
-		console.log(arrs);
+		// Remove all existing rows from the table
+		var rows = tbody.querySelectorAll('tr');
+		for (var i = 0; i < rows.length; i++) {
+		  rows[i].remove();
+		}
+		
+		for (var i = 0; i < arrs.length; i++) {
+			
+		}
+		
 		
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
