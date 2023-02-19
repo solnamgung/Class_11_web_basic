@@ -88,15 +88,22 @@
 		console.log(countHire);
 		
 		
-		//19 경력을 기준으로 Sort -> insert table(remove fuctions)?
-		$().ready(function() {
-			
-			$("tbody").find("span.person-resume__career--senior").css("background" , "yellow");
-			
+		//19 경력을 기준으로 Sort -> insert table(remove fuctions)? .css("background","yellow");
+		
+		var spans = $("tbody tr td.person-resume div.person-resume--title span:not(.person-resume--recommand)");
+
+		var arrs = Array.from(spans).map(span => span.textContent); 
+
+		arrs.sort((a, b) => {
+		  if (a === '신입') return 1; // place '신입' at the end of the array
+		  if (b === '신입') return -1;
+		  var aMonths = parseInt(a.match(/\d+/g)[0]) * 12 + parseInt(a.match(/\d+/g)[1]);
+		  var bMonths = parseInt(b.match(/\d+/g)[0]) * 12 + parseInt(b.match(/\d+/g)[1]);
+		  return bMonths - aMonths;
+		
 		});
-		
-		
-		
+
+		console.log(arrs);
 		
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
