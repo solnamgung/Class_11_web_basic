@@ -123,19 +123,7 @@
 				console.log(arrs);  // Sorted array
 				console.log(experienceInMonths);  // Array of total months of experience
 			
-		/* 	arrs.sort((a, b) => {
-				  if (a === '신입') return 1; // place '신입' at the end of the array
-				  if (b === '신입') return -1;
-				  var aMonths = parseInt(a.match(/\d+/g)[0]) * 12 + parseInt(a.match(/\d+/g)[1]);
-				  var bMonths = parseInt(b.match(/\d+/g)[0]) * 12 + parseInt(b.match(/\d+/g)[1]);
-				  return bMonths - aMonths;
-				});
-
-				console.log(arrs); */
 		
-			  
-		var table = document.querySelector('table-list--person');
-		var tbody = table.querySelector('tbody');
 
 		
 		// Remove all existing rows from the table
@@ -155,10 +143,32 @@
 		//21
 		$("*").css("color", "blue");
 		
+		
 		//22
 		
+		function isLeapYear(year) {
+			return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+		}
 		
-		//23
+
+		
+		
+		//23 
+		
+		
+		function yoil(year, month, day) {
+			
+			  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			  const date = new Date(year, month - 1, day); //In JavaScript's Date object, 0 being January - 11 being December.
+			  const dayOfWeek = daysOfWeek[date.getDay()];
+			 	console.log("dayOfWeek >>>>>> " + dayOfWeek);
+			  const leapYear = isLeapYear(year);
+			    console.log("leapYear >>>>>>> " + leapYear);
+			    
+			  return `${dayOfWeek}, ${leapYear ? 'Leap' : 'Common'} Year`;
+			}
+		
+		      console.log(yoil(2023, 2, 19)); // "Sunday, Common Year"
 		
 		
 	</script>
