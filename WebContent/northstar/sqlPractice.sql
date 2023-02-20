@@ -89,7 +89,46 @@
 	  			EMP_NAME ;
 	  		
 		
-// 7. 부서별
+// 7. 부서별 총 연봉합계 구하기 -> 옆으로 가게 정렬
+		
+		SELECT 
+				D.DEP_NAME,
+				SUM(E.SALARY)   AS TOTAA_SALARY
+		  FROM
+		  		EMPLOYEE E
+		  JOIN 
+		  		DEPT D 
+		    ON
+		    	E.DEP_NO = D.DEP_NO 
+	   GROUP BY 
+	   			D.DEP_NAME ;
+
+	SELECT sum(),
+	sum(),
+	sum(),
+	sum()
+	FROM EMPLOYEE 
+	
+	// 10. 부서별 사원수 및 고객수 구하기 , 중복되는 데이터를 어떻게 할 것인지 확인.
+	
+	SELECT 
+			D.DEP_NO,
+			COUNT(DISTINCT E.EMP_NO) AS EMPLOYEE_COUNT,
+			COUNT(DISTINCT C.CUS_NO) AS CUSTOMER_COUNT
+	  FROM 
+			DEPT D
+INNER JOIN 
+			EMPLOYEE E
+		ON 
+			D.DEP_NO = E.DEP_NO
+INNER JOIN 
+			CUSTOMER C
+		ON 
+			D.DEP_NO = C.DEP_NO
+  GROUP BY 
+			D.DEP_NO;
+
+
 			
     		 
 			 	
