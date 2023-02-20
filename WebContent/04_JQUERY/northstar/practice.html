@@ -87,54 +87,57 @@
 		
 		
 		//19 경력을 기준으로 Sort -> insert table(remove fuctions)? .css("background","yellow");
+		
 			var spans = $("tbody tr td.person-resume div.person-resume--title span:not(.person-resume--recommand)");
-			var arrs = Array.from(spans).map(span => span.textContent); 
+			var arrs = Array.from(spans).map(span => span.textContent); //  creates an array 
 			
 			arrs.sort((a, b) => {
-				  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0);
-				  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0);
+				  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0); //The match() method returns an array ["5", "3"]
+				  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0); //[0] retrieves the first match in the array
 				  const aYears = (a.includes('년') ? parseInt(a.match(/\d+/)[0]) : 0);
 				  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
 				  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;
+				  console.log("aMonths >>>> " + aMonths);
+				  console.log("bMonths >>>> " + bMonths);
+				  console.log("aYears >>>> " + aYears);
+				  console.log("bYears >>>> " + bYears);
 				});
+				
+			console.log("arrs >>>>>>> " + arrs);
 			
 			// Get the table body and detach its rows
 			var tbody = $("tbody");
 			var rows = tbody.find("tr").detach();
 
-			// Sort the rows based on the sorted array of values
+			console.log("rows >>>>> " + JSON.stringify(rows));	
+			
+			// Sort the rows based on the "sorted array of values"
+			
 			for (var i = 0; i < arrs.length; i++) {
-				  var value = arrs[i];
-				  var row = rows.filter((index, element) => {
+				  var value = arrs[i];				
+				  
+				  var row = rows.filter((index, element) => {				 
 				    return $(element).find("td.person-resume div.person-resume--title span:not(.person-resume--recommand)").text() === value;
 				  });
+				  
 				  tbody.append(row);
 			}
 
+			console.log(arrs);  // Sorted array
+			
+			
+			
 				// Calculate the total number of months of experience for each element in the sorted array
 				const experienceInMonths = arrs.map((exp) => {
 				  const months = (exp.includes('개월') ? parseInt(exp.match(/\d+/)[0]) : 0);
 				  const years = (exp.includes('년') ? parseInt(exp.match(/\d+/)[0]) : 0);
 				  return years * 12 + months;
 				});
-
-				console.log(arrs);  // Sorted array
+			
 				console.log(experienceInMonths);  // Array of total months of experience
 			
-		
 
-		
-		// Remove all existing rows from the table
-		var rows = tbody.querySelectorAll('tr');
-		for (var i = 0; i < rows.length; i++) {
-		  rows[i].remove();
-		}
-		
-		for (var i = 0; i < arrs.length; i++) {
-			
-		}
-		
-		
+				
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
 		
@@ -143,37 +146,41 @@
 		
 		
 		//22
+				
+			/* 	navigation(100, 15, 5, 1)
+					function navigation(total, rowCnt, naviCnt, pageNo) {
+					        이전
+					        
+					        1 2 [3] 4 5
+					        
+					        다음
+					}
+		 */
 		
-	/* 	navigation(100, 15, 5, 1)
-			function navigation(total, rowCnt, naviCnt, pageNo) {
-			        이전
-			        
-			        1 2 [3] 4 5
-			        
-			        다음
-			}
- */
 		
-		
-		//23 
-		
-		function isLeapYear(year) {
+		//23 calendar check 윤년 평년 -  
+	
+		function isLeapYear(year) {  // check whether leap year is right or not!
 			return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 		}
 
 		function yoil(year, month, day) {
 			
 			  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-			  const date = new Date(year, month - 1, day); //In JavaScript's Date object, 0 being January - 11 being December.
-			  const dayOfWeek = daysOfWeek[date.getDay()];
+			  
+			  const date = new Date(year, month - 1, day);    //In JavaScript's Date object, 0 being January ~ 11 being December.
+			    console.log("date >>>>>>> " + date.getDay()); 
+			  			     
+			  const dayOfWeek = daysOfWeek[date.getDay()];    // Sunday (returns 0 cas its sunday), Wednesday (returns 3)
 			 	console.log("dayOfWeek >>>>>> " + dayOfWeek);
+			 	
 			  const leapYear = isLeapYear(year);
-			    console.log("leapYear >>>>>>> " + leapYear);
+			    console.log("leapYear >>>>>>> " + leapYear); //false
 			    
 			  return `${dayOfWeek}, ${leapYear ? 'Leap' : 'Common'} Year`;
 			}
 		
-		      console.log(yoil(2023, 2, 19)); // "Sunday, Common Year"
+		      console.log(yoil(2023, 2, 22)); // "Sunday, Common Year" "Wednesday, Common Year"
 		
 		
 	</script>
