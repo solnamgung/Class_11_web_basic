@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+
+// btotal : the total number of items to be paged   navigation(100, 15, 5, 1)
+// rowCnt : "" items to be displayed per page
+// naviCnt : buttons to be displayed at a time ???
+// pageNo : the current page number
+
+function navigation(total, rowCnt, naviCnt, pageNo) {
+	  var pageCount = Math.ceil(total / rowCnt);
+	  var navStart = Math.max(1, pageNo - Math.floor(naviCnt / 2));
+	  var navEnd = Math.min(pageCount, navStart + naviCnt - 1);
+
+	  var navLinks = [];
+	  for (var i = navStart; i <= navEnd; i++) {
+	    if (i === pageNo) {
+	      navLinks.push('<strong>' + i + '</strong>');
+	    } else {
+	      navLinks.push('<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + i + ');">' + i + '</a>');
+	    }
+	  }
+
+	  var prevLink = (pageNo > 1) ? '<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + (pageNo - 1) + ');">Prev</a>' : '';
+	  var nextLink = (pageNo < pageCount) ? '<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + (pageNo + 1) + ');">Next</a>' : '';
+
+	  var navHtml = prevLink + ' ' + navLinks.join(' ') + ' ' + nextLink;
+
+	  return navHtml;
+	}
+
+	  console.log(navigation(100, 15, 5, 3));
+
+</script>
+</head>
+<body>
+	  <a href="#" onclick="navigation(100, 15, 5, 1);">Prev</a>
+	  <strong>1</strong> 
+	  <a href="#" onclick="navigation(100, 15, 5, 2);">2</a> 
+	  <a href="#" onclick="navigation(100, 15, 5, 3);">3</a> 
+	  <a href="#" onclick="navigation(100, 15, 5, 4);">4</a> 
+	  <a href="#" onclick="navigation(100, 15, 5, 5);">5</a> 
+	  <a href="#" onclick="navigation(100, 15, 5, 2);">Next</a>
+</body>
+</html>
