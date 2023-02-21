@@ -3,6 +3,51 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
+<script>
+
+function navigation(total, rowCnt, naviCnt, pageNo) {
+	  // Calculate the total number of pages
+	  const pageCount = Math.ceil(total / rowCnt);
+	  
+	  // Calculate the starting and ending page numbers of the navigation bar
+	  let start = Math.max(1, pageNo - Math.floor(naviCnt / 2));
+	  let end = Math.min(pageCount, start + naviCnt - 1);
+	  
+	  // Adjust the starting and ending page numbers if necessary to keep the navigation bar size constant
+	  if (end - start + 1 < naviCnt) {
+	    if (start > 1) {
+	      start -= naviCnt - (end - start + 1);
+	    } else {
+	      end += naviCnt - (end - start + 1);
+	    }
+	  }
+	  
+	  // Generate the navigation bar HTML
+	  let navBar = '';
+	  if (pageNo > 1) {
+	    navBar += '<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + (pageNo - 1) + ');">이전</a>';
+	  }
+	  for (let i = start; i <= end; i++) {
+	    if (i === pageNo) {
+	      navBar += '<strong>' + i + '</strong>';
+	    } else {
+	      navBar += '<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + i + ');">' + i + '</a>';
+	    }
+	  }
+	  if (pageNo < pageCount) {
+	    navBar += '<a href="#" onclick="navigation(' + total + ', ' + rowCnt + ', ' + naviCnt + ', ' + (pageNo + 1) + ');">다음</a>';
+	  }
+	  
+	  // Output the navigation bar HTML
+	  console.log(navBar);
+	}
+
+
+</script>
+
+
+
 <script>
 
 // btotal : the total number of items to be paged   navigation(100, 15, 5, 1)
