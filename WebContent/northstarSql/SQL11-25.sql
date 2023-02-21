@@ -75,10 +75,26 @@
   				
   	// 15) 2017.03 중 가장 많이 팔린 상품 순으로 나열 하시고, 판매 수량도 같이 적어라 (단, 세트메뉴는 구성된 단품으로 ....)!
   				
-  				
-  				try
-  				
-  				
+  			
+  		SELECT 
+	  			COUNT(*)
+		  FROM
+		  		BURGER_ORD_ITEM; //123,627
+		  		
+		  	
+	  	SELECT 
+	  			  b.ITEM_CODE    AS  상품코드,
+		  		  b.ITEM_NAME    AS  상품명,
+		  	 COUNT(o.ORD_CODE)   AS  판매수량
+		  FROM
+		  		BURGER_ITEM b
+  		  JOIN 
+  				BURGER_ORD_ITEM o
+			ON 
+				o.ITEM_CODE = b.ITEM_CODE 
+      GROUP BY 
+      			b.ITEM_CODE,
+      			b.ITEM_NAME ;
   				
   				
   				
