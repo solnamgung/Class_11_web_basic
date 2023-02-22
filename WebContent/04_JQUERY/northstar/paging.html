@@ -60,6 +60,9 @@ function navigation(total, rowCnt, naviCnt, pageNo) {
 	  var navStart = Math.max(1, pageNo - Math.floor(naviCnt / 2));
 	  var navEnd = Math.min(pageCount, navStart + naviCnt - 1);
 
+	  console.log("pageCount>>>>>> " + pageCount);
+	  console.log("navStart>>>>>>> " + navStart);
+	  console.log("navEnd>>>>>>>>> " + navEnd);
 	  var navLinks = [];
 	  for (var i = navStart; i <= navEnd; i++) {
 	    if (i === pageNo) {

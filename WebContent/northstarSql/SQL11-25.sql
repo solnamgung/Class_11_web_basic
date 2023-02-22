@@ -1,21 +1,20 @@
+//11
+		SELECT 
+				s.STORE_CODE       AS  STORE_CODE,
+				s.STORE_ADDR       AS  STORE_ADDR,
+				COUNT(e.EMP_CODE)  AS  EMP_COUNT
+		FROM
+				BURGER_STORE s
+   LEFT JOIN
+				BURGER_EMP e
+		  ON
+		  		e.STORE_CODE = s.STORE_CODE
+       GROUP BY 
+      			s.STORE_CODE,
+      		    s.STORE_ADDR;
 
-	//11 매장별 사원수
-	SELECT 
-					s.STORE_CODE       AS  STORE_CODE,
-					s.STORE_ADDR       AS  STORE_ADDR,
-					COUNT(e.EMP_CODE)  AS  EMP_COUNT
-			FROM
-					BURGER_STORE s
-	   LEFT JOIN
-					BURGER_EMP e
-			  ON
-			  		e.STORE_CODE = s.STORE_CODE
-	       GROUP BY 
-	      			s.STORE_CODE,
-	      		    s.STORE_ADDR;
-		
-	//12 매장별 매출
-	
+  //12
+
 	    SELECT
 	    		s.STORE_CODE   AS  STORE_CODE ,
 	    		s.STORE_ADDR   AS  STORE_ADDR ,
@@ -29,9 +28,10 @@
   	GROUP BY 
   				s.STORE_CODE ,
   				s.STORE_ADDR ;
-  				
-  	//13 품목구분별 매출액 구하라			
-  		SELECT 		
+  			
+  			
+	//13
+			SELECT 		
 					ITEM_NAME    AS  ITEM_NAME,
 					SUM(AMOUNT)  AS  TOTAL_AMT
 			  FROM
@@ -42,79 +42,220 @@
 	  		    	o.ITEM_CODE = b.ITEM_CODE   		    	
 	      GROUP BY
 	      			b.ITEM_NAME ;
-	      			
-	      					
-  				
-  				
-  	// 14 . 최근 30일 이내 가장 많이 팔린 상품 3개와 매출액을 구하라. 2018년 3월 31일 기준 (3/1~3/31)	
-  				
-	  		 SELECT	
-		     		b.ITEM_NAME     AS  상품,
-		     		SUM(o.AMOUNT)   AS  판매액
-	     	   FROM
-	     	   		BURGER_ITEM b
-	   		   JOIN
-	   		   		BURGER_ORD_ITEM o
-		   		 ON
-		   			o.ITEM_CODE = b.ITEM_CODE 
-		   	   JOIN
-		   	   		BURGER_ORD bo
-		   	   	 ON
-		   	   	 	bo.ORD_CODE = o.ORD_CODE 
-			  WHERE 
-			 		bo.ORD_DATE >= '20180301' AND bo.ORD_DATE <= '20180302'
-			
-			GROUP BY 
-					b.ITEM_NAME 
-	   	   ORDER BY
-	   	   			판매액 DESC
-	   	      FETCH
-	   	     		FIRST 3 ROWS ONLY ;
-	   	   		
-   	   					
-  				
-  	// 15) 2017.03 중 가장 많이 팔린 상품 순으로 나열 하시고, 판매 수량도 같이 적어라 (단, 세트메뉴는 구성된 단품으로 ....)!
-  				
-  			
-  		SELECT 
-	  			COUNT(*)
-		  FROM
-		  		BURGER_ORD_ITEM; //123,627
-		  		
-		  	
-	  	SELECT 
-	  			  b.ITEM_CODE    AS  상품코드,
-		  		  b.ITEM_NAME    AS  상품명,
-		  	 COUNT(o.ORD_CODE)   AS  판매수량
-		  FROM
-		  		BURGER_ITEM b
-  		  JOIN 
-  				BURGER_ORD_ITEM o
-			ON 
-				o.ITEM_CODE = b.ITEM_CODE 
-      GROUP BY 
-      			b.ITEM_CODE,
-      			b.ITEM_NAME
-      	HAVING
-      			
-       ORDER BY
-       			판매수;
-       			
-       			SELECT I.ITEM_CODE, SUM(O.QTY) AS TOTAL_QTY
-				FROM EXAM.BURGER_ITEM I
-				JOIN EXAM.BURGER_ORD_ITEM O
-				ON I.ITEM_CODE = O.ITEM_CODE
-				WHERE I.SET_YN = 'N' AND O.CANCEL_YN = 'N' AND O.ORD_CODE IN (
-				  SELECT ORD_CODE FROM EXAM.BURGER_ORD WHERE ORD_DATE BETWEEN '20170301' AND '20170331'
-				)
-				GROUP BY I.ITEM_CODE
-				ORDER BY TOTAL_QTY DESC;
+	
+	   //14
+	   
+	     SELECT	
+	     		b.ITEM_NAME     AS  상품,
+	     		SUM(o.AMOUNT)   AS  판매액
+     	   FROM
+     	   		BURGER_ITEM b
+   		   JOIN
+   		   		BURGER_ORD_ITEM o
+	   		 ON
+	   			o.ITEM_CODE = b.ITEM_CODE 
+	   	   JOIN
+	   	   		BURGER_ORD bo
+	   	   	 ON
+	   	   	 	bo.ORD_CODE = o.ORD_CODE 
+		  WHERE 
+		 		bo.ORD_DATE >= '20180301' AND bo.ORD_DATE <= '20180302'
+		
+		GROUP BY 
+				b.ITEM_NAME 
+   	   ORDER BY
+   	   			판매액 DESC
+   	      FETCH
+   	     		FIRST 3 ROWS ONLY ;
+   	   		
+   	   		//혜원씨
+   	   		SELECT * 
+				FROM 
+				    (SELECT ITEM.ITEM_NAME 상품명, SUM(I.AMOUNT) 매출액
+				     FROM BURGER_ORD_ITEM I, BURGER_ITEM ITEM,
+				         (SELECT ORD_CODE, ORD_DATE
+				          FROM BURGER_ORD
+				          WHERE ORD_DATE>='20180301' AND ORD_DATE <='20180331') ORD_LIST
+				     WHERE I.ORD_CODE = ORD_LIST.ORD_CODE AND ITEM.ITEM_CODE = I.ITEM_CODE
+				     GROUP BY ITEM.ITEM_NAME
+				     ORDER BY 2 DESC)
+				WHERE ROWNUM < 4;
+   	   		
+   	   	//정현
+   	   	select item_name 상품, 판매액 from
+			(
+			    select item_name, sum(qty), sum(amount) "판매액"
+			    from burger_ord_item b
+			    join burger_ord o using(ord_code)
+			    join burger_item i using(item_code)
+			    where b.cancel_yn = 'N' and
+			    ord_date between to_date('20180301') and to_date('20180331')
+			    group by item_name
+			    order by sum(qty) desc
+			    )
+			where rownum <4;
+	
+		//이사님 -> 가독성
+		SELECT b.ITEM_CODE,
+		b.ITEM_NAME,
+		,
+		   FROM(
+		   
+		   SELECT  item_code, qty, sum(AMOUNT) total_amount 
+			FROM   BURGER_ORD a
+			     , BURGER_ORD_ITEM b
+			     , BURGER_ITEM c
+			WHERE 1 = 1
+			  AND a. store_code = b.STORE_CODE 
+			  AND a.ORD_CODE = b.ORD_CODE 
+			  AND a.ord_date BETWEEN '20180301' AND '20180331'
+			GROUP BY	
+						item_code
+			ORDER BY 		
+					total_amount DESC 
+		   )a
+		   ,burger_item b
+		   WHERE 1=1
+		   AND 
+		  WHERE ROW  < 4;
+
+
+	  	// 15) 2017.03월 중 가장 많이 팔린 상품 순으로 나열 하고, 판매 수량도 같이 적어라 (단, 세트메뉴는 구성된 단품으로 ....)!	
+	  	
+	
+	  	
+	  	SELECT
+    REGEXP_REPLACE(ITEM_CODE, '[^1-9]', '') AS 상품코드,
+    ITEM_NAME AS 상품명,
+    SUM(판매수량) AS 판매수량
+FROM (
+    SELECT 
+        oi.item_code AS 상품코드, SUM(QTY) AS 판매수량
+    FROM
+        BURGER_ORD_ITEM oi
+        JOIN BURGER_ORD o
+            ON o.ORD_CODE = oi.ORD_CODE
+    WHERE 
+        1 = 1
+        AND oi.SET_YN  = 'N'
+        AND o.ORD_DATE BETWEEN '20170301' AND '20170331'
+    GROUP BY
+        oi.item_code
+    UNION ALL
+    SELECT 
+        s.UNIT_ITEM_CODE AS 상품코드, SUM(QTY*UNIT_QTY) AS 판매수량
+    FROM
+        BURGER_ORD_ITEM bi
+        JOIN BURGER_ORD o
+            ON o.ORD_CODE = bi.ORD_CODE 	
+        JOIN BURGER_SET_ITEM s
+            ON s.SET_ITEM_CODE = bi.ITEM_CODE 
+    WHERE
+        1 = 1
+        AND bi.SET_YN = 'Y'
+        AND o.ORD_DATE BETWEEN '20170301' AND '20170331'
+    GROUP BY
+        s.UNIT_ITEM_CODE
+) a
+JOIN BURGER_ITEM 
+    ON a.상품코드 = ITEM_CODE 
+GROUP BY
+    a.상품코드, ITEM_NAME
+ORDER BY
+    판매수량 DESC;
+
+	  		  	
+	  	
+	  	
+	  	    SELECT 	
+	  	    	  REGEXP_REPLACE(ITEM_CODE, '[^1-9]', '') 	AS 상품코드,
+	  	    	  ITEM_NAME		AS 상품명,
+	  	    	  SUM(판매수량)		AS 판매수량
+  	    	 FROM (
+  	    	 		SELECT 
+  	    	 			  oi.item_code AS 상품코드, SUM(QTY) AS 판매수량
+  	    	 		  FROM
+  	    	 		  	   BURGER_ORD_ITEM oi
+    	 		  	  JOIN
+    	 		  	  	   BURGER_ORD o
+    	 		  	  	ON
+    	 		  	  		o.ORD_CODE = oi.ORD_CODE
+    	 		  	  WHERE 
+    	 		  	  		1 = 1
+    	 		  	        AND oi.SET_YN  = 'N'
+    	 		  	        AND o.ORD_DATE BETWEEN '20170301' AND '20170331'
+ 		  	        GROUP BY 	
+ 		  	        		상품코드
+ 		  	        
+ 		  	UNION ALL       
+ 		  	        	
+ 		  	  SELECT 	
+ 		  	  		 s.UNIT_ITEM_CODE AS 상품코드, SUM(QTY*UNIT_QTY) AS 판매수량
+  	  		    FROM
+					BURGER_ORD_ITEM bi
+				JOIN
+					BURGER_ORD o
+				  ON
+				  	o.ORD_CODE = bi.ORD_CODE 	
+		  		JOIN 	
+		  			BURGER_SET_ITEM s
+	  			  ON
+	  			  	s.SET_ITEM_CODE = bi.ITEM_CODE 
+  	  		   WHERE
+  	  		   		1 = 1
+  	  		   	 AND
+  	  		   	 	bi.SET_YN = 'Y'
+  	  		   	 AND 
+  	  		   	 	o.ORD_DATE BETWEEN '20170301' AND '20170331'
+	   	 	GROUP BY 
+	   	 			상품코드	  	  		
+  	    	 		) a
+	 		 JOIN
+	 		 	  BURGER_ITEM 
+	 		   ON 
+	 		   	  a.상품코드 = ITEM_CODE 
+	 		GROUP BY
+	 				 a.상품코드, ITEM_NAME
+	 		ORDER BY 
+	 				판매수량 DESC ;
+	
+	//정현	
+				select to_number(to_char(상품코드, 'FM00'), '99') as 상품코드, item_name, sum(판매수량) as 판매수량 
+			from
+			(
+			    select oi.item_code as 상품코드, sum(qty) as 판매수량
+			    from burger_ord_item oi
+			    join burger_ord o on oi.ord_code = o.ord_code
+			    where oi.cancel_yn = 'N' and
+			    oi.set_yn = 'N' and
+			    ord_date between to_date('20170301') and to_date('20170331')
+			    group by oi.item_code
+			    union ALL
+			    select si.unit_item_code as 상품코드, sum(qty*unit_qty) as 판매수량
+			    from burger_ord_item oi
+			    join burger_ord o on oi.ord_code = o.ord_code
+			    left join burger_set_item si on oi.item_code = si.set_item_code
+			    where oi.cancel_yn = 'N' and
+			    oi.set_yn = 'Y' and
+			    ord_date between to_date('20170301') and to_date('20170331')
+			    group by si.unit_item_code
+			) u
+			join burger_item on 상품코드 = item_code
+			group by to_number(to_char(상품코드, 'FM00'), '99'), item_name
+			order by 판매수량 desc;
 				
-				
-	//16
 			
-			SELECT 
-		  ITEM_NAME,
+	// 16 가상의 테이블 - > 구조를 이해 하라(가상으로 만들어서 해라 왜냐면 문법이 적용 되지 않을 수 있다.)	
+			
+
+	SELECT idx1 FROM dual 
+	UNION ALL 
+	SELECT idx2 FROM dual
+
+
+	//내꺼			
+		SELECT 
+		  COALESCE(ITEM_NAME, '합계') AS ITEM_NAME,
 		  SUM(
 		    CASE 
 		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT 
@@ -183,10 +324,11 @@
 		  ) AS NOV,
 		  SUM(
 		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201712' THEN AMOUNT 
+		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201712' THEN AMOUNT
 		      ELSE 0 
 		    END
 		  ) AS DEC
+		  
 		FROM 
 		  BURGER_ORD_ITEM 
 		  JOIN 
@@ -199,13 +341,106 @@
 		WHERE 
 		  SUBSTR(ORD_DATE, 1, 4) = '2017' 
 	 GROUP BY 
-  			GROUPING SETS ((ITEM_NAME), ())
-		  
-		// GROUP BY 
-  			ROLLUP(ITEM_NAME);
+  			GROUPING SETS ((ITEM_NAME), ());
   				
   		
-		  //17 시간대별 매출을 구하라 
+ // another way of dual with unionall
+ 
+ // sum of amount for each ITEM_NAME and insert on final column which name will be "합계". don't use rollup and goruping sets
+		
+	   SELECT 
+		  ITEM_NAME, 
+		  SUM(JAN) AS JAN, 
+		  SUM(FEB) AS FEB,
+		  SUM()    AS 합계
+		FROM (
+		  SELECT 
+		    ITEM_NAME,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB
+		    
+		    
+		  FROM 
+		    BURGER_ORD_ITEM 
+		    JOIN BURGER_ORD 
+		      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+		    JOIN BURGER_ITEM 
+		      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
+		  WHERE 
+		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
+		  
+		) t
+		GROUP BY ITEM_NAME
+		
+		UNION ALL
+		
+		SELECT 
+				'총합', SUM(JAN), SUM(FEB)
+		  FROM (
+			  SELECT 
+				    ITEM_NAME,
+				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
+				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB
+			    FROM 
+			    	 BURGER_ORD_ITEM 
+			    JOIN BURGER_ORD 
+			      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+			    JOIN BURGER_ITEM 
+			      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
+			  WHERE 
+		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
+		) t;
+			 
+		
+//sec
+
+ SELECT 
+		  ITEM_NAME, 
+		  SUM(JAN) AS JAN, 
+		  SUM(FEB) AS FEB,
+		  SUM(AMOUNT) 
+		FROM (
+		  SELECT 
+		    ITEM_NAME,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
+		    SUM(AMOUNT) AS AMOUNT
+		  FROM 
+		    BURGER_ORD_ITEM 
+		    JOIN BURGER_ORD 
+		      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+		    JOIN BURGER_ITEM 
+		      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
+		  WHERE 
+		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
+		  
+		) t
+		GROUP BY ITEM_NAME
+		
+		UNION ALL
+		
+		SELECT '총합', SUM(JAN), SUM(FEB), SUM(AMOUNT)
+		FROM (
+		  SELECT 
+		    ITEM_NAME,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
+		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
+		     SUM(AMOUNT) AS AMOUNT
+		  FROM 
+		    BURGER_ORD_ITEM 
+		    JOIN BURGER_ORD 
+		      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+		    JOIN BURGER_ITEM 
+		      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
+		  WHERE 
+		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
+		) t;
+	
+		
+			 
+  		
+  		
+ //17 시간대별 매출을 구하라 
 				  
 				  SELECT
 			  STORE_ADDR  AS 지점,
