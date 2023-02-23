@@ -245,268 +245,231 @@ ORDER BY
 			order by 판매수량 desc;
 				
 			
-	// 16 가상의 테이블 - > 구조를 이해 하라(가상으로 만들어서 해라 왜냐면 문법이 적용 되지 않을 수 있다.)	
+-- 16 가상의 테이블 - > 구조를 이해 하라(가상으로 만들어서 해라 왜냐면 문법이 적용 되지 않을 수 있다.)	
+
+   	  SELECT 
+   	   			*
+   	   	 FROM (
+   	   	  		SELECT 
+			  ITEM_NAME, 
+			  SUM(JAN)    AS JAN, 
+			  SUM(FEB) 	  AS FEB,
+			  SUM(AMOUNT) AS 합계
+			  
+			FROM (
+				  SELECT 
+				    ITEM_NAME,
+				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
+				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
+				    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
+				  FROM 
+				    BURGER_ORD_ITEM 
+				    JOIN BURGER_ORD 
+				      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+				    JOIN BURGER_ITEM 
+				      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
+				  WHERE 
+				    SUBSTR(ORD_DATE, 1, 4) = '2017' --LIKE '2017'
+			) t 
+			GROUP BY ITEM_NAME   	  
+   	   	  ), 
+   	   	  (SELECT 1 idx FROM dual
+   	     	   UNION all
+   	     	   SELECT 2 idx FROM dual )
+   	     	   GROUP BY
+   	  			IDX,  ITEM_NAME ;
+   	  			
+   	  		
+   	  
+   	  -- 인덱스 가공하지마, 조인을 걸때 
+   	  
+   	  -- swap 환타 to 합계, 합계 should be on the last position. 
+		SELECT 
+				CASE WHEN indexCol=1  THEN ITEM_NAME ELSE '합계' END  AS 상품명,
+				SUM(CASE WHEN indexCol = 1 THEN AMT_JAN ELSE AMT_JAN END )  AS JAN,
+				SUM(CASE WHEN indexCol = 1 THEN AMT_FEB ELSE AMT_FEB END )  AS FEB,
+				SUM(TOTAL_SUM) AS 합계
+		  FROM
+		  		(
+		  		  SELECT
+
+		  		  		bi.ITEM_NAME ,
+		  		  		SUM(CASE WHEN SUBSTR(bo.ORD_DATE, 5, 2) ='01' THEN boi.AMOUNT ELSE 0 END) AS AMT_JAN,
+		  		  		SUM(CASE WHEN SUBSTR(bo.ORD_DATE, 5, 2) ='02' THEN boi.AMOUNT ELSE 0 END) AS AMT_FEB,
+		  		  		SUM(boi.AMOUNT) AS TOTAL_SUM
+	  		  	   FROM
+	  		  	   		BURGER_ORD bo,
+	  		  	   		BURGER_ORD_ITEM boi,
+	  		  	   		BURGER_ITEM bi
+	  	   		  WHERE 
+	  	   		  		1 = 1
+	  	   		  		AND bo.ORD_CODE = boi.ORD_CODE
+	  	   		  		AND boi.ITEM_CODE = bi.ITEM_CODE
+	  	   		  		AND bo.ORD_DATE LIKE '2017%'
+   		  		GROUP BY 
+   		  				 bi.ITEM_NAME 
+		  		) T ,		  			
+		  		(
+		  		  SELECT 1 indexCol FROM DUAL
+		  		  UNION ALL
+		  		  SELECT 2 indexCOl FROM DUAL 
+		  		) U 
+		  		GROUP BY
+		  				CASE WHEN indexCol = 1 THEN ITEM_NAME ELSE '합계' END 
+		  		ORDER BY 
+		  				1;
+	
+		  			
+   	
+  --*******************************************상품코드****************************************************************	
+   	     SELECT 
+				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END AS 상품코드,
+				SUM(CASE WHEN idx = 1 THEN AMOUNT_first ELSE AMOUNT_first END) AS JAN,
+				SUM(CASE WHEN idx = 1 THEN AMOUNT_sec ELSE AMOUNT_sec END) AS FEB,
+				SUM(월합계) AS 합계
+			FROM 
+				(
+				  SELECT
+				  		bi.ITEM_CODE,
+				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '01' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_first,
+				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '02' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_sec,
+				  		SUM(bi.AMOUNT) AS 월합계
+			  	  FROM
+			  	   		BURGER_ORD o,
+			  	   		BURGER_ORD_ITEM bi
+			   	  WHERE 
+			   	  		1 = 1
+			   	  		AND o.ORD_CODE = bi.ORD_CODE 
+			   	  		AND o.ORD_DATE LIKE '2017%'
+			  	  GROUP BY 
+			   	  			bi.ITEM_CODE 
+				) T
+				, (
+					SELECT 1 idx FROM DUAL 
+					UNION ALL
+					SELECT 2 idx FROM DUAL 
+				) U 
 			
-
-	SELECT 
-		  ITEM_NAME, 
-		  SUM(JAN) AS JAN, 
-		  SUM(FEB) AS FEB,
-		  SUM(AMOUNT) AS 합계
-		FROM (
-		  SELECT 
-		    ITEM_NAME,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
-		  FROM 
-		    BURGER_ORD_ITEM 
-		    JOIN BURGER_ORD 
-		      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		    JOIN BURGER_ITEM 
-		      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-		  WHERE 
-		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
-		) t
-		GROUP BY ITEM_NAME
-		
-		UNION ALL
-		
-		SELECT 
-		  '총합', 
-		  SUM(JAN), 
-		  SUM(FEB), 
-		  SUM(AMOUNT)
-		FROM (
-		  SELECT 
-		    ITEM_NAME,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
-		  FROM 
-		    BURGER_ORD_ITEM 
-		    JOIN BURGER_ORD 
-		      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		    JOIN BURGER_ITEM 
-		      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-		  WHERE 
-		    SUBSTR(ORD_DATE, 1, 4) = '2017' 
-		) t;
-		
-		--****************************** dual table *************************
-		SELECT * FROM ALL_TABLES WHERE TABLE_NAME = 'DUAL';
-		SELECT * FROM SYS.dual;
-		SELECT (10+10)/2 FROM DUAL;
-		SELECT * from  (
-		    SELECT 'GoCoder' AS Name FROM dual
-		    union all
-		    SELECT 'Gocoder.Tistory.com' AS Blog FROM dual
-		    union all
-		    SELECT 'GoCoder.net' AS HomePage FROM dual );
-		  
-		   	SELECT '1', '2', '3' FROM DUAL 
-		   	SELECT * FROM DUAL;
-		   
-		--************************* dual ******************************
-		SELECT 
-		  ITEM_NAME, 
-		  SUM(JAN) AS JAN, 
-		  SUM(FEB) AS FEB,
-		  SUM(AMOUNT) AS 합계
-		FROM (
-		  SELECT 
-		    ITEM_NAME,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
-		  FROM 
-		    dual
-		    JOIN (
-		      SELECT *
-		      FROM BURGER_ORD_ITEM 
-		      JOIN BURGER_ORD 
-		        ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		      JOIN BURGER_ITEM 
-		        ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-		      WHERE 
-		        SUBSTR(ORD_DATE, 1, 4) = '2017' 
-		    ) t
-		    ON 1 = 1
-		) t
-		GROUP BY ITEM_NAME
-		
-		UNION ALL
-		
-		SELECT 
-		  '총합', 
-		  SUM(JAN), 
-		  SUM(FEB), 
-		  SUM(AMOUNT)
-		FROM (
-		  SELECT 
-		    ITEM_NAME,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
-		    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
-		  FROM 
-		    dual
-		    JOIN (
-		      SELECT *
-		      FROM BURGER_ORD_ITEM 
-		      JOIN BURGER_ORD 
-		        ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		      JOIN BURGER_ITEM 
-		        ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-		      WHERE 
-		        SUBSTR(ORD_DATE, 1, 4) = '2017' 
-		    ) t
-		    ON 1 = 1
-		) t
-		JOIN dual ON 1=1;
-
-
-
-	//내꺼			
-		SELECT 
-		  COALESCE(ITEM_NAME, '합계') AS ITEM_NAME,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS JAN,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS FEB,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201703' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS MAR,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201704' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS APR,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201705' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS MAY,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201706' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS JUN,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201707' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS JUL,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201708' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS AUG,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201709' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS SEP,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201710' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS OCT,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201711' THEN AMOUNT 
-		      ELSE 0 
-		    END
-		  ) AS NOV,
-		  SUM(
-		    CASE 
-		      WHEN SUBSTR(ORD_DATE, 1, 6) = '201712' THEN AMOUNT
-		      ELSE 0 
-		    END
-		  ) AS DEC
-		  
-		FROM 
-		  BURGER_ORD_ITEM 
-		  JOIN 
-		  BURGER_ORD 
-		  ON
-		  BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		  JOIN
-		  BURGER_ITEM 
-		  ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-		WHERE 
-		  SUBSTR(ORD_DATE, 1, 4) = '2017' 
-	 GROUP BY 
-  			GROUPING SETS ((ITEM_NAME), ());
-  				
-					 
-  		
+		GROUP BY 
+				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END
+		ORDER BY 1;
+	   	  
+   	 --********************************************혜원씨꺼*********************************************************** 
+   	  
+   	   SELECT CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END   AS 상품코드
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_01 ELSE AMOUNT_01 END) AS JAN
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_02 ELSE AMOUNT_02 END) AS FEB
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_03 ELSE AMOUNT_03 END) AS MAR
+      ,SUM(월총합) 합계
+			  FROM (
+			            SELECT B.ITEM_CODE
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='01' THEN B.AMOUNT ELSE 0 END) AMOUNT_01
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='02' THEN B.AMOUNT ELSE 0 END) AMOUNT_02
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='03' THEN B.AMOUNT ELSE 0 END) AMOUNT_03
+			                  ,SUM(B.AMOUNT) 월총합
+			              FROM BURGER_ORD A
+			                  ,BURGER_ORD_ITEM B
+			             WHERE 1=1
+			                AND A.ORD_CODE = B.ORD_CODE
+			                AND A.ORD_DATE LIKE '2017%'
+			                
+			            GROUP BY B.ITEM_CODE
+			        ) A
+			        , (
+			            SELECT 1 IDX FROM DUAL
+			            UNION ALL
+			            SELECT 2 IDX FROM DUAL
+			        ) B
+			        
+			GROUP BY CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END
+			
+			ORDER BY 1;
+   	   
+ --***************************** 상품명순으로*****************************
+ 		
+		  		 SELECT 
+				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END AS 상품코드,
+				SUM(CASE WHEN idx = 1 THEN AMOUNT_first ELSE AMOUNT_first END) AS JAN,
+				SUM(CASE WHEN idx = 1 THEN AMOUNT_sec ELSE AMOUNT_sec END) AS FEB,
+				SUM(월합계) AS 합계
+			FROM 
+				(
+				  SELECT
+				  		bi.ITEM_CODE,
+				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '01' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_first,
+				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '02' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_sec,
+				  		SUM(bi.AMOUNT) AS 월합계
+			  	  FROM
+			  	   		BURGER_ORD o,
+			  	   		BURGER_ORD_ITEM bi
+			   	  WHERE 
+			   	  		1 = 1
+			   	  		AND o.ORD_CODE = bi.ORD_CODE 
+			   	  		AND o.ORD_DATE LIKE '2017%'
+			  	  GROUP BY 
+			   	  			bi.ITEM_CODE 
+				) T
+				, (
+					SELECT 1 idx FROM DUAL 
+					UNION ALL
+					SELECT 2 idx FROM DUAL 
+				) U 
+			
+		GROUP BY 
+				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END
+		ORDER BY 1;
+		  			
+		  			
+		  			
   		//17
 
- SELECT
- 	  NULL AS BLANK_COL,
-	  STORE_ADDR  AS 지점,
-	  EMP_NAME	  AS 사원,
-  SUM(
-    CASE
-      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '00' AND '05' THEN AMOUNT
-      ELSE 0
-    END
-  ) AS "00~06",
-  SUM(
-    CASE
-      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '06' AND '12' THEN AMOUNT
-      ELSE 0
-    END
-  ) AS "06~13",
-  SUM(
-    CASE
-      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '13' AND '19' THEN AMOUNT
-      ELSE 0
-    END
-  ) AS "13~20",
-  SUM(
-    CASE
-      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '20' AND '23' THEN AMOUNT
-      ELSE 0
-    END
-  ) AS "20~24"
-FROM
-     BURGER_STORE 
-JOIN 
-	 BURGER_EMP 
-  ON 
-  	 BURGER_EMP.STORE_CODE = BURGER_STORE.STORE_CODE
-JOIN
-	 BURGER_ORD 
-  ON
-  	 BURGER_ORD.STORE_CODE = BURGER_STORE.STORE_CODE AND BURGER_ORD.EMP_CODE = BURGER_EMP.EMP_CODE 
-JOIN
-	 BURGER_ORD_ITEM
-  ON
-	 BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-GROUP BY
-		  STORE_ADDR,
-		  EMP_NAME;
-
-		  
+		 SELECT
+		 	  NULL AS BLANK_COL,
+			  STORE_ADDR  AS 지점,
+			  EMP_NAME	  AS 사원,
+		  SUM(
+		    CASE
+		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '00' AND '05' THEN AMOUNT
+		      ELSE 0
+		    END
+		  ) AS "00~06",
+		  SUM(
+		    CASE
+		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '06' AND '12' THEN AMOUNT
+		      ELSE 0
+		    END
+		  ) AS "06~13",
+		  SUM(
+		    CASE
+		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '13' AND '19' THEN AMOUNT
+		      ELSE 0
+		    END
+		  ) AS "13~20",
+		  SUM(
+		    CASE
+		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '20' AND '23' THEN AMOUNT
+		      ELSE 0
+		    END
+		  ) AS "20~24"
+		FROM
+		     BURGER_STORE 
+		JOIN 
+			 BURGER_EMP 
+		  ON 
+		  	 BURGER_EMP.STORE_CODE = BURGER_STORE.STORE_CODE
+		JOIN
+			 BURGER_ORD 
+		  ON
+		  	 BURGER_ORD.STORE_CODE = BURGER_STORE.STORE_CODE AND BURGER_ORD.EMP_CODE = BURGER_EMP.EMP_CODE 
+		JOIN
+			 BURGER_ORD_ITEM
+		  ON
+			 BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
+		GROUP BY
+				  STORE_ADDR,
+				  EMP_NAME;
+		
+				  
 
 		  //18
 	SELECT 
@@ -542,5 +505,64 @@ GROUP BY
 	  SUBSTR(BURGER_ORD.ORD_DATE, 1, 4) = '2017'
 	GROUP BY
 	  BURGER_ITEM.ITEM_NAME;
-	 
-	 
+	  
+	  
+	  // 21
+	  --21 지점별 가장 많은 매출을 올린 직원 구하기
+			-- 더 좋은 방법이 있을거다.
+			select emp_name 사원명
+			     , store_addr 지점명
+			     , "총 매출"
+			 from (
+			        select emp_code
+			             , o.store_code
+			             , sum(amount) "총 매출"
+			          from burger_ord_item oi
+			        inner join burger_ord o 
+			                on oi.ord_code = o.ord_code
+			        group by emp_code, o.store_code
+			      ) t1
+			inner join burger_emp e 
+			        on t1.emp_code = e.emp_code
+			inner join burger_store s 
+			        on t1.store_code = s.store_code
+			where (t1.store_code, "총 매출") 
+			   in (
+			        select store_code
+			             , max(합계) 맥스 
+			          from (
+			                select emp_code
+			                     , o.store_code
+			                     , sum(amount) 합계
+			                  from burger_ord_item oi
+			                inner join burger_ord o 
+			                        on oi.ord_code = o.ord_code
+			                group by emp_code, o.store_code
+			                )
+			        group by store_code
+			      )
+			order by "총 매출";
+			-- dual
+			select case when idx = 1 then emp_code else '최대' end 사원명
+			     , store_code
+			     , case when idx = 1 then sum(tot_amount) else max(tot_amount) end 총매출
+			     , idx
+			  from (
+			            select emp_code
+			                 , o.store_code
+			                 , sum(amount) tot_amount
+			              from burger_ord_item oi
+			            inner join burger_ord o 
+			                    on oi.ord_code = o.ord_code
+			            group by emp_code, o.store_code
+			        ) a
+			      , (
+			          select 1 idx from dual
+			          union all
+			          select 2 idx from dual
+			        ) b
+			group by idx
+			       , store_code
+			       , case when idx = 1 then emp_code else '최대' end;
+				 
+				 
