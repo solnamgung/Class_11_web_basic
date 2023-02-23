@@ -381,13 +381,14 @@ ORDER BY
 			            SELECT 2 IDX FROM DUAL
 			        ) B
 			        
-			GROUP BY CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END
+			GROUP BY CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END '합계' END
 			
 			ORDER BY 1;
    	   
  --***************************** 상품명순으로*****************************
  		
-		  		 SELECT 
+		  	SELECT 
+		  		
 				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END AS 상품코드,
 				SUM(CASE WHEN idx = 1 THEN AMOUNT_first ELSE AMOUNT_first END) AS JAN,
 				SUM(CASE WHEN idx = 1 THEN AMOUNT_sec ELSE AMOUNT_sec END) AS FEB,
