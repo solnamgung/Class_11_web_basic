@@ -385,7 +385,7 @@ ORDER BY
 			
 			ORDER BY 1;
    	   
- --***************************** 상품명순으로*****************************
+ --***************************** 상품명순으로*****************************************************************
  		
 		  	SELECT 
 		  		
@@ -424,6 +424,44 @@ ORDER BY
 		  			
   		//17
 
+		  		SELECT 
+		    CASE WHEN INDEXFIR = 1 THEN STORE_ADDR ELSE '합계' END AS 지점,
+		    CASE WHEN INDEXFIR = 1 THEN EMP_NAME ELSE '지점 합계' END AS 사원,
+		    SUM(CASE WHEN SUBSTR(ORD_TIME, 1, 2) BETWEEN '00' AND '05' THEN AMOUNT ELSE 0 END) AS "00~06 시간",
+		FROM (
+		    SELECT 
+		        bs.STORE_ADDR, 
+		        emp.EMP_NAME, 
+		        bo.ORD_TIME, 
+		        boi.AMOUNT
+		    FROM 
+		        BURGER_STORE bs
+		        INNER JOIN BURGER_EMP emp ON bs.STORE_CODE = emp.STORE_CODE
+		        INNER JOIN BURGER_ORD bo ON emp.EMP_CODE = bo.EMP_CODE
+		        INNER JOIN BURGER_ORD_ITEM boi ON bo.ORD_CODE = boi.ORD_CODE
+		    WHERE 
+		        bo.ORD_TIME IS NOT NULL AND
+		        bo.ORD_TIME BETWEEN '0000' AND '2359' AND
+		        bo.ORD_DATE LIKE '2017%'
+		)
+		CROSS JOIN (
+		    SELECT 1 INDEXFIR FROM DUAL UNION ALL
+		    SELECT 2 INDEXSEC FROM DUAL UNION ALL
+		    SELECT 3 INDEXSEC FROM DUAL
+		)
+		GROUP BY 
+		    CASE WHEN INDEXFIR = 1 THEN STORE_ADDR ELSE '합계' END,
+		    CASE WHEN INDEXFIR = 1 THEN EMP_NAME ELSE '지점 합계' END,
+		    ORD_TIME
+		ORDER BY 
+		    지점,
+		    사원,
+		    ORD_TIME;
+
+  		
+  		
+  		
+  		
 		 SELECT
 		 	  NULL AS BLANK_COL,
 			  STORE_ADDR  AS 지점,
