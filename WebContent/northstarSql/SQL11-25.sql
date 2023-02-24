@@ -247,52 +247,23 @@ ORDER BY
 			
 -- 16 가상의 테이블 - > 구조를 이해 하라(가상으로 만들어서 해라 왜냐면 문법이 적용 되지 않을 수 있다.)	
 
-   	  SELECT 
-   	   			*
-   	   	 FROM (
-   	   	  		SELECT 
-			  ITEM_NAME, 
-			  SUM(JAN)    AS JAN, 
-			  SUM(FEB) 	  AS FEB,
-			  SUM(AMOUNT) AS 합계
-			  
-			FROM (
-				  SELECT 
-				    ITEM_NAME,
-				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201701' THEN AMOUNT ELSE 0 END AS JAN,
-				    CASE WHEN SUBSTR(ORD_DATE, 1, 6) = '201702' THEN AMOUNT ELSE 0 END AS FEB,
-				    CASE WHEN SUBSTR(ORD_DATE, 1, 4) = '2017' THEN AMOUNT ELSE 0 END AS AMOUNT
-				  FROM 
-				    BURGER_ORD_ITEM 
-				    JOIN BURGER_ORD 
-				      ON BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-				    JOIN BURGER_ITEM 
-				      ON BURGER_ORD_ITEM.ITEM_CODE = BURGER_ITEM.ITEM_CODE 
-				  WHERE 
-				    SUBSTR(ORD_DATE, 1, 4) = '2017' --LIKE '2017'
-			) t 
-			GROUP BY ITEM_NAME   	  
-   	   	  ), 
-   	   	  (SELECT 1 idx FROM dual
-   	     	   UNION all
-   	     	   SELECT 2 idx FROM dual )
-   	     	   GROUP BY
-   	  			IDX,  ITEM_NAME ;
-   	  			
-   	  		
+ 
    	  
    	  -- 인덱스 가공하지마, 조인을 걸때 
-   	  
-   	  -- swap 환타 to 합계, 합계 should be on the last position. 
-		SELECT 
-				CASE WHEN indexCol=1  THEN ITEM_NAME ELSE '합계' END  AS 상품명,
+   	 
+   	
+  --*******************************************상품코드****************************************************************	
+   	  	SELECT 
+				CASE WHEN indexCol = 1     THEN ITEM_CODE ELSE '합계' END    AS 상품코드,
+				CASE WHEN indexCol = 1     THEN ITEM_NAME ELSE '합계' END    AS 상품명,
 				SUM(CASE WHEN indexCol = 1 THEN AMT_JAN ELSE AMT_JAN END )  AS JAN,
 				SUM(CASE WHEN indexCol = 1 THEN AMT_FEB ELSE AMT_FEB END )  AS FEB,
 				SUM(TOTAL_SUM) AS 합계
+	
 		  FROM
 		  		(
 		  		  SELECT
-
+		  		  		boi.ITEM_CODE, 
 		  		  		bi.ITEM_NAME ,
 		  		  		SUM(CASE WHEN SUBSTR(bo.ORD_DATE, 5, 2) ='01' THEN boi.AMOUNT ELSE 0 END) AS AMT_JAN,
 		  		  		SUM(CASE WHEN SUBSTR(bo.ORD_DATE, 5, 2) ='02' THEN boi.AMOUNT ELSE 0 END) AS AMT_FEB,
@@ -312,48 +283,13 @@ ORDER BY
 		  		(
 		  		  SELECT 1 indexCol FROM DUAL
 		  		  UNION ALL
-		  		  SELECT 2 indexCOl FROM DUAL 
-		  		) U 
-		  		GROUP BY
-		  				CASE WHEN indexCol = 1 THEN ITEM_NAME ELSE '합계' END 
-		  		ORDER BY 
-		  				1;
-	
-		  			
-   	
-  --*******************************************상품코드****************************************************************	
-   	     SELECT 
-				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END AS 상품코드,
-				SUM(CASE WHEN idx = 1 THEN AMOUNT_first ELSE AMOUNT_first END) AS JAN,
-				SUM(CASE WHEN idx = 1 THEN AMOUNT_sec ELSE AMOUNT_sec END) AS FEB,
-				SUM(월합계) AS 합계
-			FROM 
-				(
-				  SELECT
-				  		bi.ITEM_CODE,
-				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '01' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_first,
-				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '02' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_sec,
-				  		SUM(bi.AMOUNT) AS 월합계
-			  	  FROM
-			  	   		BURGER_ORD o,
-			  	   		BURGER_ORD_ITEM bi
-			   	  WHERE 
-			   	  		1 = 1
-			   	  		AND o.ORD_CODE = bi.ORD_CODE 
-			   	  		AND o.ORD_DATE LIKE '2017%'
-			  	  GROUP BY 
-			   	  			bi.ITEM_CODE 
-				) T
-				, (
-					SELECT 1 idx FROM DUAL 
-					UNION ALL
-					SELECT 2 idx FROM DUAL 
-				) U 
-			
-		GROUP BY 
-				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END
-		ORDER BY 1;
-	   	  
+		  		  SELECT 2 indexCol FROM DUAL 
+		  		) U  
+		  		GROUP BY 
+				    CASE WHEN indexCol = 1 THEN 상품코드 ELSE '합계' END, 
+				    CASE WHEN indexCol = 1 THEN 상품명 ELSE '합계' END
+		  	    ORDER BY 1;
+		  	   
    	 --********************************************혜원씨꺼*********************************************************** 
    	  
    	   SELECT CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END   AS 상품코드
@@ -387,128 +323,53 @@ ORDER BY
    	   
  --***************************** 상품명순으로*****************************************************************
  		
-		  	SELECT 
-		  		
-				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END AS 상품코드,
-				SUM(CASE WHEN idx = 1 THEN AMOUNT_first ELSE AMOUNT_first END) AS JAN,
-				SUM(CASE WHEN idx = 1 THEN AMOUNT_sec ELSE AMOUNT_sec END) AS FEB,
-				SUM(월합계) AS 합계
-			FROM 
-				(
-				  SELECT
-				  		bi.ITEM_CODE,
-				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '01' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_first,
-				  		SUM(CASE WHEN SUBSTR(o.ORD_DATE, 5, 2) = '02' THEN bi.AMOUNT ELSE 0 END) AS AMOUNT_sec,
-				  		SUM(bi.AMOUNT) AS 월합계
-			  	  FROM
-			  	   		BURGER_ORD o,
-			  	   		BURGER_ORD_ITEM bi
-			   	  WHERE 
-			   	  		1 = 1
-			   	  		AND o.ORD_CODE = bi.ORD_CODE 
-			   	  		AND o.ORD_DATE LIKE '2017%'
-			  	  GROUP BY 
-			   	  			bi.ITEM_CODE 
-				) T
-				, (
-					SELECT 1 idx FROM DUAL 
-					UNION ALL
-					SELECT 2 idx FROM DUAL 
-				) U 
+    SELECT CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END   AS 상품코드
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_01 ELSE AMOUNT_01 END) AS JAN
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_02 ELSE AMOUNT_02 END) AS FEB
+      ,SUM(CASE WHEN IDX=1 THEN AMOUNT_03 ELSE AMOUNT_03 END) AS MAR
+      ,SUM(월총합) 합계
+			  FROM (
+			            SELECT B.ITEM_CODE
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='01' THEN B.AMOUNT ELSE 0 END) AMOUNT_01
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='02' THEN B.AMOUNT ELSE 0 END) AMOUNT_02
+			                  ,SUM(CASE WHEN SUBSTR(A.ORD_DATE, 5,2)='03' THEN B.AMOUNT ELSE 0 END) AMOUNT_03
+			                  ,SUM(B.AMOUNT) 월총합
+			              FROM BURGER_ORD A
+			                  ,BURGER_ORD_ITEM B
+			             WHERE 1=1
+			                AND A.ORD_CODE = B.ORD_CODE
+			                AND A.ORD_DATE LIKE '2017%'
+			                
+			            GROUP BY B.ITEM_CODE
+			        ) A
+			        , (
+			            SELECT 1 IDX FROM DUAL
+			            UNION ALL
+			            SELECT 2 IDX FROM DUAL
+			        ) B
+			        
+			GROUP BY CASE WHEN IDX=1 THEN ITEM_CODE ELSE '합계' END
 			
-		GROUP BY 
-				CASE WHEN idx = 1 THEN ITEM_CODE ELSE '합계' END
-		ORDER BY 1;
-		  			
-		  			
-		  			
-  		//17
-
-		  		SELECT 
-		    CASE WHEN INDEXFIR = 1 THEN STORE_ADDR ELSE '합계' END AS 지점,
-		    CASE WHEN INDEXFIR = 1 THEN EMP_NAME ELSE '지점 합계' END AS 사원,
-		    SUM(CASE WHEN SUBSTR(ORD_TIME, 1, 2) BETWEEN '00' AND '05' THEN AMOUNT ELSE 0 END) AS "00~06 시간",
-		FROM (
-		    SELECT 
-		        bs.STORE_ADDR, 
-		        emp.EMP_NAME, 
-		        bo.ORD_TIME, 
-		        boi.AMOUNT
-		    FROM 
-		        BURGER_STORE bs
-		        INNER JOIN BURGER_EMP emp ON bs.STORE_CODE = emp.STORE_CODE
-		        INNER JOIN BURGER_ORD bo ON emp.EMP_CODE = bo.EMP_CODE
-		        INNER JOIN BURGER_ORD_ITEM boi ON bo.ORD_CODE = boi.ORD_CODE
-		    WHERE 
-		        bo.ORD_TIME IS NOT NULL AND
-		        bo.ORD_TIME BETWEEN '0000' AND '2359' AND
-		        bo.ORD_DATE LIKE '2017%'
-		)
-		CROSS JOIN (
-		    SELECT 1 INDEXFIR FROM DUAL UNION ALL
-		    SELECT 2 INDEXSEC FROM DUAL UNION ALL
-		    SELECT 3 INDEXSEC FROM DUAL
-		)
-		GROUP BY 
-		    CASE WHEN INDEXFIR = 1 THEN STORE_ADDR ELSE '합계' END,
-		    CASE WHEN INDEXFIR = 1 THEN EMP_NAME ELSE '지점 합계' END,
-		    ORD_TIME
-		ORDER BY 
-		    지점,
-		    사원,
-		    ORD_TIME;
-
-  		
-  		
-  		
-  		
-		 SELECT
-		 	  NULL AS BLANK_COL,
-			  STORE_ADDR  AS 지점,
-			  EMP_NAME	  AS 사원,
-		  SUM(
-		    CASE
-		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '00' AND '05' THEN AMOUNT
-		      ELSE 0
-		    END
-		  ) AS "00~06",
-		  SUM(
-		    CASE
-		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '06' AND '12' THEN AMOUNT
-		      ELSE 0
-		    END
-		  ) AS "06~13",
-		  SUM(
-		    CASE
-		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '13' AND '19' THEN AMOUNT
-		      ELSE 0
-		    END
-		  ) AS "13~20",
-		  SUM(
-		    CASE
-		      WHEN TO_CHAR(TO_DATE(REPLACE(ORD_TIME, ':', ''), 'HH24MI'), 'HH24') BETWEEN '20' AND '23' THEN AMOUNT
-		      ELSE 0
-		    END
-		  ) AS "20~24"
-		FROM
-		     BURGER_STORE 
-		JOIN 
-			 BURGER_EMP 
-		  ON 
-		  	 BURGER_EMP.STORE_CODE = BURGER_STORE.STORE_CODE
-		JOIN
-			 BURGER_ORD 
-		  ON
-		  	 BURGER_ORD.STORE_CODE = BURGER_STORE.STORE_CODE AND BURGER_ORD.EMP_CODE = BURGER_EMP.EMP_CODE 
-		JOIN
-			 BURGER_ORD_ITEM
-		  ON
-			 BURGER_ORD.ORD_CODE = BURGER_ORD_ITEM.ORD_CODE
-		GROUP BY
-				  STORE_ADDR,
-				  EMP_NAME;
+			ORDER BY 1;
 		
-				  
+		
+  		//17
+  		
+  		
+  		SELECT 
+		   CASE 
+		      WHEN condition1 THEN result1 
+		      WHEN condition2 THEN result2 
+		      WHEN condition3 THEN result3 
+		      ELSE default_result 
+		   END 
+		FROM your_table;
+  		
+ 
+ 
+ 
+ 
+
 
 		  //18
 	SELECT 
