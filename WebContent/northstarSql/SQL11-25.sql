@@ -354,21 +354,76 @@ ORDER BY
 		
 		
   		//17
+  				
+		SELECT 
+		    CASE 
+		        WHEN B.IDX = 1 THEN STOREadd 
+		        ELSE STOREadd || ' 합계' 
+		    END AS STORE_ADD,
+		    EMPname,
+		    CASE WHEN B.IDX = 1 THEN SIXHOURS_AMOUNT ELSE SIXHOURS_AMOUNT END AS SIX_AMT
+		FROM (
+		    SELECT
+		        bs.STORE_ADDR AS STOREadd,
+		        e.EMP_NAME    AS EMPname,
+		        SUM(CASE WHEN bo.ORD_TIME BETWEEN '0000' AND '0559' THEN boi.AMOUNT ELSE 0 END) AS SIXHOURS_AMOUNT
+		    FROM 
+		        BURGER_STORE bs,
+		        BURGER_EMP e,
+		        BURGER_ORD bo,
+		        BURGER_ORD_ITEM boi
+		    WHERE 1=1
+		        AND bs.STORE_CODE = e.STORE_CODE
+		        AND e.EMP_CODE  = bo.EMP_CODE 
+		        AND bo.ORD_CODE = boi.ORD_CODE
+		    GROUP BY  bs.STORE_ADDR, e.EMP_NAME    
+		) A ,
+		(
+		    SELECT 1 IDX FROM DUAL
+		    UNION ALL
+		    SELECT 2 IDX FROM DUAL
+		) B
+		GROUP BY 
+		    CASE WHEN B.IDX = 1 THEN STOREadd ELSE STOREadd || ' 합계' END,
+		    EMPname,
+		    CASE WHEN B.IDX = 1 THEN SIXHOURS_AMOUNT ELSE SIXHOURS_AMOUNT END
+		    
+		ORDER BY 1;
   		
   		
-  		SELECT 
-		   CASE 
-		      WHEN condition1 THEN result1 
-		      WHEN condition2 THEN result2 
-		      WHEN condition3 THEN result3 
-		      ELSE default_result 
-		   END 
-		FROM your_table;
   		
- 
- 
- 
- 
+	SELECT 
+	    CASE 
+	        WHEN B.IDX = 1 THEN STOREadd 
+	        ELSE STOREadd || ' 합계' 
+	    END AS STORE_ADD,
+	    EMPname,
+	    SUM(CASE WHEN IDX = 1 THEN SIXHOURS_AMOUNT ELSE SIXHOURS_AMOUNT END) AS SIX_AMT
+	FROM (
+	    SELECT
+	        bs.STORE_ADDR AS STOREadd,
+	        e.EMP_NAME    AS EMPname,
+	        SUM(CASE WHEN bo.ORD_TIME BETWEEN '0000' AND '0559' THEN boi.AMOUNT ELSE 0 END) AS SIXHOURS_AMOUNT
+	    FROM 
+	        BURGER_STORE bs,
+	        BURGER_EMP e,
+	        BURGER_ORD bo,
+	        BURGER_ORD_ITEM boi
+	    WHERE 1=1
+	        AND bs.STORE_CODE = e.STORE_CODE
+	        AND e.EMP_CODE  = bo.EMP_CODE 
+	        AND bo.ORD_CODE = boi.ORD_CODE
+	    GROUP BY  bs.STORE_ADDR, e.EMP_NAME    
+	) A ,
+	(
+	    SELECT 1 IDX FROM DUAL
+	    UNION ALL
+	    SELECT 2 IDX FROM DUAL
+	) B
+	GROUP BY 
+	    CASE WHEN B.IDX = 1 THEN STOREadd ELSE STOREadd || ' 합계' END,
+	    EMPname
+	ORDER BY 1;
 
 
 		  //18
