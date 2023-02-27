@@ -147,6 +147,27 @@ ORDER BY
 LIMIT
 		3;
 		
+// it's mine!
+	SELECT
+			m.SEX		  	   		AS GENDER ,
+			p.PRODUCT_NM  	   		AS PD_NAME,
+	        SUM(o.ORDER_GOODS_QTY)  AS QTY_PRODUCT
+	  FROM 
+			    ORDER_TB o
+	INNER JOIN  MEMBER_TB m
+			ON  o.MEMBER_ID = m.MEMBER_ID
+	INNER JOIN  PRODUCT_TB p
+			ON  p.PRODUCT_CD = o.PRODUCT_CD
+		   AND  m.SEX = 'm'
+	  GROUP BY
+				p.PRODUCT_NM
+	  ORDER BY
+				QTY_PRODUCT ASC
+		 LIMIT 3;
+		
+		
+
+#from here
 		
 # 여자가 주문한 상품별로 상품의 이름을 조회하되, 주문량의 합이 많은 순서로 정렬하여 3개만 조회하기.
 
