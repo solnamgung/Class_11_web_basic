@@ -166,8 +166,6 @@ LIMIT
 		 LIMIT 3;
 		
 		
-
-#from here
 		
 # 여자가 주문한 상품별로 상품의 이름을 조회하되, 주문량의 합이 많은 순서로 정렬하여 3개만 조회하기.
 
@@ -201,7 +199,7 @@ FROM
              ON O.PRODUCT_CD = P.PRODUCT_CD
 			AND O.ORDER_DT BETWEEN '2020-01-01' AND '2020-12-31'
 GROUP BY
-		P.PRODUCT_CD
+		P.PRODUCT_NM
 ORDER BY	
 		SUM(O.ORDER_GOODS_QTY) DESC
 LIMIT 
@@ -249,6 +247,18 @@ FROM
 GROUP BY
 		P.PRODUCT_CD;
 
+
+ SELECT
+		P.PRODUCT_CD AS PRODUCT_CD,
+        P.PRODUCT_NM AS PRODUCT_NM,
+        SUM(O.ORDER_GOODS_QTY)
+FROM
+		ORDER_TB O
+	 INNER JOIN PRODUCT_TB P
+             ON O.PRODUCT_CD = P.PRODUCT_CD
+			AND P.PRICE BETWEEN 1000000 AND 2000000
+GROUP BY
+		PRODUCT_CD, PRODUCT_NM;
 		
 # 1000000 ~ 2000000가격의 판매된 상품별로 상품의 코드 , 이름 , 총 판매량을 조회하되
 # 판매량이 5개 이상인 상품을 판매량이 높은순서 , 상품이름을 ㄱ~ㅎ 순서로 조회하기
@@ -271,6 +281,7 @@ ORDER BY
         P.PRODUCT_NM ASC;
         
 
+#from here
 # 한번에 주문 수량이 10개 이상인 상품 정보 모두와 주문수량 조회하기.
 
 SELECT
