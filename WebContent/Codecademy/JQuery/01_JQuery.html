@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text() , html()</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+
+	$(document).ready(() => {
+	
+	});
+		
+	$('.login-button').on('click', () => {
+		  $('.login-form').toggle();
+		});
+		
+		
+	$(document).ready(() => {
+	    $('#nav-dropdown').hide();
+	});
+
+	$(document).ready(() => {
+		  const $navDropdown = $('#nav-dropdown')
+		  $navDropdown.hide()
+		});
+
+ //event handlers
+	$(document).ready(() => {
+		  const $menuButton = $('.menu-button');
+		  const $navDropdown = $('#nav-dropdown');
+
+		  $menuButton.on('click', () => {
+		    $navDropdown.show();
+		  })
+		})
+	
+// Madison square market
+		$(document).ready(() => {
+		
+		$('#cart').on('click', () => {
+		    $('#cartMenu').show();
+		});
+		
+		$('#account').on('click' , () => {
+		    $('#accountMenu').show();
+		});
+		
+		$('#help').on('click', ()  => {
+		  $('#helpMenu').show();
+		});
+		
+		$('.dropdown-menu').on('mouseleave' , () => {
+		   $('.dropdown-menu').hide();
+		 
+		});
+		
+		});
+		
+ //effects
+ 
+ //hide & show
+ 		$(document).ready(() => {
+		   $('.hide-button').on('click' , () => {
+		       $('.first-image').hide();
+		   });
+		});
+ 
+ 
+ 		$(document).ready(() => {
+ 			  $('.hide-button').on('click', () => {
+ 			    $('.first-image').hide();
+ 			  });
+ 			  
+ 			  $('.show-button').on('click', () => {
+ 			     $('.first-image').show();
+ 			  });
+ 			  
+ 			});
+ 		
+ 	//toggle
+ 	$(document).ready(() => {
+		  $('.hide-button').on('click', () => {
+		    $('.first-image').hide();
+		  });
+		  
+		  $('.show-button').on('click', () => {
+		    $('.first-image').show();
+		  });
+		  
+		  $('.toggle-button').on('click', () => {
+		      $('.first-image').toggle();
+		  });
+		  
+		});
+ 	
+ 	//fadeOut & fadeIn & fadeToggle
+ 	
+ 	  $('.fade-out-button').on('click', () => {
+      $('.fade-image').fadeOut(500);
+	  });
+	  
+	  $('.fade-in-button').on('click', () => {
+	      $('.fade-image').fadeIn(4000);
+	  });
+	  
+	  $('.fade-toggle-button').on('click', () => {
+	      $('.fade-image').fadeToggle('fast');
+	  });
+	  
+ 	
+ 	//slideUp, slideDown, slideToggle
+ 	  $('.up-button').on('click', () => {
+      $('.slide-image').slideUp(100);
+	  });
+	  
+	  $('.down-button').on('click', () => {
+	    $('.slide-image').slideDown('slow');
+	  });
+	  
+	  $('.slide-toggle-button').on('click', () => {
+	     $('.slide-image').slideToggle(400);
+	  });
+ 	
+ 	
+//Projects
+
+$(document).ready(() =>{
+
+  $('.hint-box').on('click' , () => {
+    $('.hint').slideToggle(500); 
+  });
+
+
+    $('.wrong-answer-one').on('click' , () => {
+      $('.wrong-text-one').fadeOut('fast');
+      $('.frown').show();
+    });
+    
+    $('.wrong-answer-two').on('click' , () => {
+      $('.wrong-text-two').fadeOut('fast');
+      $('.frown').show();
+    });
+    
+    $('.wrong-answer-three').on('click' , () => {
+      $('.wrong-test-three').fadeOut('slow');
+      $('.frown').show();
+    });
+
+    $('.correct-answer').on('click' , () => {
+        $('.frown').hide();
+        $('.smiley').show();
+    });
+});
+ 	
+ 	//mouseenter & mouseleave
+ 	$(document).ready(() => {
+  $('.login-button').on('click', () => {
+    $('.login-form').show();
+  });
+  
+  $('.menu-button').on('mouseenter', () => {
+    $('.nav-menu').show();
+  })
+  
+  $('.nav-menu').on('mouseleave' , () => {
+    $('.nav-menu').hide();
+  })
+  
+}); 
+
+ 	
+ 	
+ // chaining event 
+ 
+ 	$('.example-class').on('mouseenter', () => {
+	  $('.example-class-one').show();
+	}).on('mouseleave', () => {
+	  $('.example-class-one').hide();
+	});   // both of the event handlers target 'example-class' elements.
+	
+	
+ 	
+	$(document).ready(() => {
+		  $('.login-button').on('click', () => {
+		    $('.login-form').show();
+		  });
+		  
+		  $('.menu-button').on('mouseenter', () => {
+		    $('.nav-menu').show()
+		  })
+		  
+		  $('.nav-menu').on('mouseleave', () => {
+		    $('.nav-menu').hide();
+		  })
+		  
+		  $('.product-photo').on('mouseenter', () => {
+		    $('.product-photo').addClass('photo-active')
+		  }).on('mouseleave', () => {
+		    $('.product-photo').removeClass('photo-active')
+		  })  
+		  
+		  
+			//currentTarget $(event.currentTarget)
+		    $('.product-photo').on('mouseenter', (event) => {
+			    $(event.currentTarget).addClass('photo-active')
+			  }).on('mouseleave', event => {
+			    $(event.currentTarget).removeClass('photo-active')
+			  })
+		   }); 
+	
+	// Project - Feedster (event handlers, Mouse events)
+		$(document).ready(() => {
+		  $('.menu').on('mouseenter' , () => {
+		    $('.nav-menu').show();
+		  }).on('mouseleave' , () => {
+		    $('.nav-menu').hide();
+		  });
+		
+		  $('.btn').on('mouseenter', (event) => {
+		    $(event.currentTarget).addClass('btn-hover');
+		  }).on('mouseleave', (event) => {
+		    $(event.currentTarget).removeClass('btn-hover');
+		  })
+		
+		  $('.postText').on('keyup', (event) => {
+		     $('.postText').focus();
+		
+		     var $post = $(event.currentTarget).val();
+		     var $postLength = $post.length;
+		     var $remaining = 140 - $postLength;
+		    
+		     $('.characters').html($remaining);
+		
+		     if($remaining <= 0) {
+		       $('.wordcount').addClass('red');
+		     } else {
+		       $('.wordcount').removeClass('red');
+		     }
+		  })
+		}); 
+	//done
+
+
+
+	
+	
+	
+	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 
+ 
+		
+		
+		
+		
+</script>
+</head>
+<body>
+	
+   	
+</body>
+</html>
