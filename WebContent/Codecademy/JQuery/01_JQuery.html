@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>text() , html()</title>
+<title>Effects, Event Handlers, Style Methods, Traversing the DOM</title>
 <script src="../js/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -24,7 +24,7 @@
 		  $navDropdown.hide()
 		});
 
- //event handlers
+ // Event handlers
 	$(document).ready(() => {
 		  const $menuButton = $('.menu-button');
 		  const $navDropdown = $('#nav-dropdown');
@@ -34,50 +34,47 @@
 		  })
 		})
 	
-// Madison square market
-		$(document).ready(() => {
-		
-		$('#cart').on('click', () => {
-		    $('#cartMenu').show();
+// Project - Madison square market
+	$(document).ready(() => {
+	
+	$('#cart').on('click', () => {
+	    $('#cartMenu').show();
+	});
+	
+	$('#account').on('click' , () => {
+	    $('#accountMenu').show();
+	});
+	
+	$('#help').on('click', ()  => {
+	  $('#helpMenu').show();
+	});
+	
+	$('.dropdown-menu').on('mouseleave' , () => {
+	   $('.dropdown-menu').hide();
+	 
+	});
+	
 		});
 		
-		$('#account').on('click' , () => {
-		    $('#accountMenu').show();
-		});
-		
-		$('#help').on('click', ()  => {
-		  $('#helpMenu').show();
-		});
-		
-		$('.dropdown-menu').on('mouseleave' , () => {
-		   $('.dropdown-menu').hide();
-		 
-		});
-		
-		});
-		
- //effects
- 
- //hide & show
- 		$(document).ready(() => {
-		   $('.hide-button').on('click' , () => {
-		       $('.first-image').hide();
-		   });
-		});
+ // Effects, hide & show
+	$(document).ready(() => {
+    $('.hide-button').on('click' , () => {
+       $('.first-image').hide();
+       });
+    });
  
  
- 		$(document).ready(() => {
- 			  $('.hide-button').on('click', () => {
- 			    $('.first-image').hide();
- 			  });
- 			  
- 			  $('.show-button').on('click', () => {
- 			     $('.first-image').show();
- 			  });
- 			  
- 			});
- 		
- 	//toggle
+	$(document).ready(() => {
+		  $('.hide-button').on('click', () => {
+		    $('.first-image').hide();
+		  });
+		  
+		  $('.show-button').on('click', () => {
+		     $('.first-image').show();
+		  });  
+	});
+	
+ // Toggle
  	$(document).ready(() => {
 		  $('.hide-button').on('click', () => {
 		    $('.first-image').hide();
@@ -93,8 +90,8 @@
 		  
 		});
  	
- 	//fadeOut & fadeIn & fadeToggle
- 	
+ // FadeOut & fadeIn & fadeToggle
+ 
  	  $('.fade-out-button').on('click', () => {
       $('.fade-image').fadeOut(500);
 	  });
@@ -108,7 +105,7 @@
 	  });
 	  
  	
- 	//slideUp, slideDown, slideToggle
+ // SlideUp, slideDown, slideToggle
  	  $('.up-button').on('click', () => {
       $('.slide-image').slideUp(100);
 	  });
@@ -121,8 +118,7 @@
 	     $('.slide-image').slideToggle(400);
 	  });
  	
- 	
-//Projects
+// Project
 
 $(document).ready(() =>{
 
@@ -152,31 +148,31 @@ $(document).ready(() =>{
     });
 });
  	
- 	//mouseenter & mouseleave
- 	$(document).ready(() => {
-  $('.login-button').on('click', () => {
-    $('.login-form').show();
-  });
-  
-  $('.menu-button').on('mouseenter', () => {
-    $('.nav-menu').show();
-  })
-  
-  $('.nav-menu').on('mouseleave' , () => {
-    $('.nav-menu').hide();
-  })
-  
-}); 
+ // mouseenter & mouseleave
+	 	$(document).ready(() => {
+	  $('.login-button').on('click', () => {
+	    $('.login-form').show();
+	  });
+	  
+	  $('.menu-button').on('mouseenter', () => {
+	    $('.nav-menu').show();
+	  })
+	  
+	  $('.nav-menu').on('mouseleave' , () => {
+	    $('.nav-menu').hide();
+	  })
+	  
+	}); 
 
  	
  	
- // chaining event 
+ // chaining event - both of the event handlers target 'example-class' elements.
  
  	$('.example-class').on('mouseenter', () => {
 	  $('.example-class-one').show();
 	}).on('mouseleave', () => {
 	  $('.example-class-one').hide();
-	});   // both of the event handlers target 'example-class' elements.
+	});  
 	
 	
  	
@@ -200,15 +196,16 @@ $(document).ready(() =>{
 		  })  
 		  
 		  
-			//currentTarget $(event.currentTarget)
-		    $('.product-photo').on('mouseenter', (event) => {
-			    $(event.currentTarget).addClass('photo-active')
-			  }).on('mouseleave', event => {
-			    $(event.currentTarget).removeClass('photo-active')
-			  })
-		   }); 
-	
-	// Project - Feedster (event handlers, Mouse events)
+// currentTarget $(event.currentTarget)
+	    $('.product-photo').on('mouseenter', (event) => {
+		    $(event.currentTarget).addClass('photo-active')
+		  }).on('mouseleave', event => {
+		    $(event.currentTarget).removeClass('photo-active')
+		  })
+	   }); 
+
+// Project - Feedster (event handlers, Mouse events)
+
 		$(document).ready(() => {
 		  $('.menu').on('mouseenter' , () => {
 		    $('.nav-menu').show();
@@ -238,7 +235,7 @@ $(document).ready(() =>{
 		     }
 		  })
 		}); 
-	//done
+
 
 
 
