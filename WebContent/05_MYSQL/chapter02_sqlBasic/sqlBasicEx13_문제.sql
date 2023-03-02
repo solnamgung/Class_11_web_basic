@@ -304,6 +304,17 @@ FROM
              ON O.PRODUCT_CD = P.PRODUCT_CD
 			AND O.ORDER_DT BETWEEN '2020-01-01' AND '2020-12-31';
 
+// mine
+	 SELECT
+			SUM(o.ORDER_GOODS_QTY * p.PRICE)    AS TOTAL_PRICE
+	   FROM
+			PRODUCT_TB p
+	INNER JOIN
+			ORDER_TB o
+            ON
+            p.PRODUCT_CD = o.PRODUCT_CD
+		   AND
+				o.ORDER_DT BETWEEN '2020-01-01' AND '2020-12-31';
 
 # '상품별'로 2020년 동안 판매된 수량(내림차순)순으로 정렬하여 상품코드 , 상품이름 , 상품판매량 조회하기.
 
@@ -321,8 +332,46 @@ GROUP BY
 ORDER BY
 		TOTAL_ORDER_COUNT DESC;
 
+//its' mine
+
+	 SELECT
+			p.PRODUCT_CD,
+			p.PRODUCT_NM,
+			SUM(o.ORDER_GOODS_QTY)  AS QTY
+	   FROM
+			PRODUCT_TB p
+ INNER JOIN
+			ORDER_TB o
+		 ON
+			p.PRODUCT_CD = o.PRODUCT_CD
+		AND
+			o.ORDER_DT BETWEEN '2020-01-01' AND '2020-12-31'
+	GROUP BY
+			p.PRODUCT_CD,
+            p.PRODUCT_NM
+	ORDER BY QTY DESC;
+    
+
+
 
 # '지역별'로 판매량이 많은 순서대로 정렬하여 지역명과 판매량 조회하기.
+//its mine
+SELECT
+			m.RESIDENCE				AS LOCATIONS,
+			SUM(o.ORDER_GOODS_QTY)	AS QTY
+	  FROM
+			MEMBER_TB m
+INNER JOIN
+			ORDER_TB o
+		ON
+			m.MEMBER_ID = o.MEMBER_ID
+	   AND
+			o.ORDER_GOODS_QTY
+  GROUP BY
+			LOCATIONS
+  ORDER BY
+			QTY DESC;
+
 
 SELECT
 		M.RESIDENCE			   AS RESIDENCE,
@@ -379,6 +428,21 @@ GROUP BY
 ORDER BY
 		TOTAL_SALES DESC;
 
+ //mine
+	SELECT
+			 p.PRODUCT_CD,
+	         p.PRODUCT_NM,
+	         SUM(p.PRICE * o.ORDER_GOODS_QTY)    AS TOTAL_PRICE
+		FROM
+			   PRODUCT_TB p
+	INNER JOIN
+			   ORDER_TB o
+	        ON
+			   p.PRODUCT_CD = o.PRODUCT_CD
+	  GROUP BY
+			   p.PRODUCT_CD,   p.PRODUCT_NM
+	  ORDER BY
+				TOTAL_PRICE DESC;
 
 # '메르켈' 회원의 주문 상품 이름과 배송상태를 조회하기.
 
@@ -444,20 +508,43 @@ ORDER BY
 
 #'사용자'별로 주문금액 총합이 가장 많은 사람 3명의 이름과 총 주문 금액을 순서대로 조회하기.
 
-SELECT
-		M.MEMBER_NM														AS MEMBER_NM,
-        SUM(P.PRICE * O.ORDER_GOODS_QTY + P.DELIVERY_PRICE) AS TOTAL_PRICE
-FROM
-		ORDER_TB O
-	 INNER JOIN MEMBER_TB M
-		     ON M.MEMBER_ID = O.MEMBER_ID
-	 INNER JOIN PRODUCT_TB P
-             ON P.PRODUCT_CD = O.PRODUCT_CD
-GROUP BY
-		M.MEMBER_NM
-ORDER BY 
-		 TOTAL_PRICE DESC
-LIMIT
-		3;
-        
-DROP DATABASE JOIN_TEST;
+	SELECT
+			M.MEMBER_NM														AS MEMBER_NM,
+	        SUM(P.PRICE * O.ORDER_GOODS_QTY + P.DELIVERY_PRICE) AS TOTAL_PRICE
+	FROM
+			ORDER_TB O
+		 INNER JOIN MEMBER_TB M
+			     ON M.MEMBER_ID = O.MEMBER_ID
+		 INNER JOIN PRODUCT_TB P
+	             ON P.PRODUCT_CD = O.PRODUCT_CD
+	GROUP BY
+			M.MEMBER_NM
+	ORDER BY 
+			 TOTAL_PRICE DESC
+	LIMIT
+			3;
+	        
+	DROP DATABASE JOIN_TEST;
+
+
+// its me
+	
+	    SELECT
+				m.MEMBER_NM 					   AS MEMBER_NAME,
+	            SUM(o.ORDER_GOODS_QTY * p.PRICE + p.DELIVERY_PRICE)  AS TOTAl_PRICE
+		  FROM
+				ORDER_TB o
+	INNER JOIN
+				MEMBER_TB m
+			ON
+				m.MEMBER_ID = o.MEMBER_ID
+	INNER JOIN
+				PRODUCT_TB p
+			ON
+				o.PRODUCT_CD = p.PRODUCT_CD
+	  GROUP BY	MEMBER_NAME
+	  ORDER BY  TOTAl_PRICE DESC
+	     LIMIT  3;
+				
+
+
