@@ -237,7 +237,14 @@ $(document).ready(() =>{
 		}); 
 
 
-// The DOM Tree
+
+	
+		
+</script>
+</head>
+<body>
+
+	// The DOM Tree
 	
 	<div class='parent'>
 	  <div class='child' id='sibling1'>
@@ -246,15 +253,462 @@ $(document).ready(() =>{
 	  <div class='child' id='sibling2'></div>
 	  <div class='child' id='sibling3'></div>
 	</div>
-
 	
-	
-	
+	<script>
+		const $kids = $('#holder').children();
+		$kids.on('click', event => {
+		  $(event.currentTarget).css('border', '1px solid black');
+		});
+	</script>
 		
-</script>
-</head>
-<body>
+		
+   	//Children
+    <nav>
+	    <div class='container'>
+	      <object type='image/svg+xml' data='https://content.codecademy.com/courses/jquery/audit/images/sole-logo.svg'></object>
+	      <div>
+	        <span class='menu-button'>Menu</span>
+	        <span class='login-button'>Login</span>
+	      </div>
+	    </div>
+    </nav>
+
+  <!-- Nav Menu -->
+  <div class='nav-menu hide'>
+    <div class='container'>
+      <ul>
+        <li>Shoes</li>
+        <li>Women's Shoes</li>
+        <li>Men's Shoes</li>
+        <li>Shoe Accessories</li>
+        <li>Wholesale</li>
+      </ul>
+      <ul>
+        <li>Contact</li>
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>Email</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div class='login-form'>
+    <div class='container'>
+      <form>
+        <h4>Username</h4>
+        <input class='username' />
+        <h4>Password</h4>
+        <input type='password' />
+        <input class='sign-in-button' type='submit' value='Sign In' />
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Cards -->
+  <div class='container'>
+    <div class='product-card'>
+      <div class='product-photo sole-air-ii'></div>
+      <div class='product-details'>
+        <h4>Sole Air II</h4>
+        <div>
+          <p>$35</p>
+          <div class='more-details-button'>
+            <img src='https://content.codecademy.com/courses/jquery/audit/images/right-arrow.svg' />
+          </div>
+        </div>
+      </div>
+
+      <div class='shoe-details'>
+        <p>The ultimate in style and comfort, the Sole Air II's are great for walking and casual wearing.</p>
+        <div class='size-chart'>
+          <h4>Size</h4>
+          <ul class='sizes'>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+          </ul>
+        </div>
+        <div class='buy-now-button disabled'>
+          <h3>Add to cart</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='container'>
+    <div class='product-card'>
+      <div class='product-photo tidal-x'></div>
+      <div class='product-details'>
+        <h4>Tidal X</h4>
+        <div>
+          <p>$40</p>
+          <div class='more-details-button'>
+            <img src='https://content.codecademy.com/courses/jquery/audit/images/right-arrow.svg' />
+          </div>
+        </div>
+      </div>
+
+      <div class='shoe-details'>
+        <p>The Tidal X's signature rubber midsole make this the perfect running shoe. With a soft mesh upper, and synthetic polymer outsole, these shoes really fly.</p>
+        <div class='size-chart'>
+          <h4>Size</h4>
+          <ul class='sizes'>
+            <li>6</li>
+            <li>7</li>
+            <li>10</li>
+            <li>12</li>
+            <li>13</li>
+          </ul>
+        </div>
+        <div class='buy-now-button disabled'>
+          <h3>Add to cart</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class='container'>
+    <div class='product-card'>
+      <div class='product-photo dark-sole-original'></div>
+      <div class='product-details'>
+        <h4>Dark Sole Original</h4>
+        <div>
+          <p>$60</p>
+          <div class='more-details-button'>
+            <img src='https://content.codecademy.com/courses/jquery/audit/images/right-arrow.svg' />
+          </div>
+        </div>
+      </div>
+
+      <div class='shoe-details'>
+        <p>Light up the night with the Dark Sole Original. Lights around the midsole activate when stomped.</p>
+        <div class='size-chart'>
+          <h4>Size</h4>
+          <ul class='sizes'>
+            <li>9</li>
+            <li>10</li>
+            <li>10.5</li>
+            <li>11</li>
+          </ul>
+        </div>
+        <div class='buy-now-button disabled'>
+          <h3>Add to cart</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping cart -->
+  <div class='shopping-cart'>
+    <div class='container'>
+      <div class='cart'>
+        <object type='image/svg+xml' data='https://content.codecademy.com/courses/jquery/audit/images/shopping-cart.svg'></object>
+        <h3 class='items-qty'>1</h3>
+      </div>
+      <h3>Checkout</h3>
+    </div>
+  </div>
+
+  <footer>
+    <div class='container'>
+      <object type='image/svg+xml' data='https://content.codecademy.com/courses/jquery/audit/images/sole-logo.svg'></object>
+      <div>Contact Us</div>
+    </div>
+  </footer>
+  
+  //siblings
+  <script>
+	  $('.shoe-details li').on('click', event => {
+		    $(event.currentTarget).addClass('active');
+		    
+		    $(event.currentTarget).siblings().removeClass('active')
+		    
+		    $('.shoe-details').children().removeClass('disabled')
+		  }); 
+  </script>
+  
+  //closest
+	   	<script>
+	    $('.shoe-details').show();
+	    
+	    $('.more-details-button').on('click', event => {
+	      $(event.currentTarget).closest('.product-details').next().toggle()
+	    });  
+	    
+	    $('.shoe-details li').on('click', event => {
+	      $(event.currentTarget).addClass('active');
+	      
+	      $(event.currentTarget).siblings().removeClass('active')
+	      
+	      $(event.currentTarget).closest('.shoe-details').children().removeClass('disabled')
+  	</script>	
+  	
+  	//next : selects the next sibling element of the selected element,
+  	
+  		<script>
+  			$('.more-details-button').on('click', event => {
+  		    $(event.currentTarget).closest('.product-details').next().toggle()
+  		</script>
+  		
+  	//find : This method finds and targets singular or multiple elements
+    //that are descendants of an element.
+    	<script>
+    		$(event.currentTarget).find('img').toggleClass('rotate')  	    
+  		</script>
+  		
+  		
+  		
+  		// nextUntil , prevUntil
+  		// Example 1: Changing the text of all the elements between box3 and box6
+		$('.box3').nextUntil('.box6').text('New Text');
+		
+		// Example 2: Changing the background color of all the elements between box2 and box5
+		$('.box2').nextUntil('.box5').css('background-color', 'red');
+		
+		// Example 3: Adding a class to all the elements between box4 and box1
+		$('.box4').prevUntil('.box1').addClass('selected');
+		   	
+		   	
+	// Project - Gameboard	
+		   	
 	
-   	
+        <div class="header">
+      <h1 class="logo">GameBoard</h1>
+    </div>
+
+    <div class="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>97</h2>
+                <h3>Phoenix<br/>
+                Suns</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>122</h2>
+                <h3>Denver<br/>
+                Nuggets</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>83</h2>
+                <h3>Orlando<br/>
+                Magic</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>98</h2>
+                <h3>Indiana<br/>
+                Pacers</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>78</h2>
+                <h3>New York<br/>
+                Knicks</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>105</h2>
+                <h3>OKC<br/>
+                Thunder</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>102</h2>
+                <h3>LA<br/>
+                Clippers</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>85</h2>
+                <h3>Houston<br/>
+                Rockets</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>104</h2>
+                <h3>Milwaukee <br/>
+                Bucks</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>88</h2>
+                <h3>Detroit<br/>
+                Pistons</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row scorecard">
+              <p>Final</p>
+              <div class="visitor col-xs-4">
+                <h2>91</h2>
+                <h3>NO<br/>
+                Pelicans</h3>
+              </div>
+              <div class="dash col-xs-3">
+                <h2>-</h2>
+              </div>
+              <div class="home col-xs-4">
+                <h2>100</h2>
+                <h3>Atlanta<br/>
+                Hawks</h3>
+              </div>
+            </div>
+            <div class="row more">
+              <div class="more-btn-container">
+                <a class="more-btn" href="#">More</a>
+                <ul class="more-menu">
+                  <li>Stats</li>
+                  <li class="share">Share</li>
+                  <li class="share-menu">
+                    <span>Facebook</span>
+                    <span>Google+</span>
+                    <span>Twitter</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bell">
+                <span class="notification glyphicon glyphicon-bell"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
 </body>
 </html>
+
+
+
+
