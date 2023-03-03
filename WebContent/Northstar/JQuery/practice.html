@@ -106,13 +106,32 @@
 		
 		
 		//11  '대기업 근무 경력' 이 있는 인재의 (class= person-resume) 의 색 바꾸기 
-	       $(".person-resume:contains('대기업 근무 경력')").parents('tr').css("background" , "pink");
+	 
+       $('tbody tr td:nth-child(2) div:nth-child(2) span:contains("대기업 근무 경력")').each(function() {
+
+    	    $(this).closest('tr').css('background' , 'yellow');
+    	    
+    	});
+		
 		
 		//12 신입이 아닌 사람들의 tr을지워 신입 강조하기
-	     $("span").filter(".person-resume__career--senior").parents('tr').remove();
+	    $('tbody tr td:nth-child(2) div:first-child span.career:not(:contains("신입"))').each(function() {
+
+		    $(this).closest('tr').remove();
+		});
+		
+		
 		
 		//13 '대학교(4년) 졸업'인 지원자의 경우, 지원자 이름 빨강색으로 변경 
-		$(".education--school:contains('대학교(4년) 졸업')").parents('td').siblings('th').find('dt').css("color" , "red");
+				
+			$('tbody tr td:nth-child(2) div:first-child a.dvResumeLink').each(function(){
+		     var uniSelector = $(this).text();
+		
+		    if(uniSelector.includes('4년')) {
+		        $(this).closest('td').prev().find('dl dt a').css("color", "pink");    
+		    }
+		});
+				
 		
 		//14
 		$("span:contains('기획·전략·경영')").parents('li').css("background" , "blue");
