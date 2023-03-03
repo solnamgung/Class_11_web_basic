@@ -203,22 +203,12 @@
 				
 				
 				//the other way
-				var careerText = $('tbody tr td:nth-child(2) div:first-child span.career').text();
-				var careerArray = careerText.trim().split(/\n\s+/);
-				
-				
-				careerArray.sort((a, b) => {
-								  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0); //The match() method returns an array ["5", "3"]
-								  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0); //[0] retrieves the first match in the array
-								  const aYears = (a.includes('년') ? parseInt(a.match(/\d+/)[0]) : 0);
-								  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
-								  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;			
-								});
+				var careerArray = [];
+				$('tbody tr td:nth-child(2) div:first-child span.career').each(function() {
+				  var careerText = $(this).text().replace(/\s/g,'');
+				  careerArray.push(careerText);
+				});
 				console.log(careerArray);
-				
-				
-				
-				
 			
         // 혜원씨꺼
         
