@@ -124,7 +124,7 @@
 		
 		//13 '대학교(4년) 졸업'인 지원자의 경우, 지원자 이름 빨강색으로 변경 
 				
-			$('tbody tr td:nth-child(2) div:first-child a.dvResumeLink').each(function(){
+		$('tbody tr td:nth-child(2) div:first-child a.dvResumeLink').each(function(){
 		     var uniSelector = $(this).text();
 		
 		    if(uniSelector.includes('4년')) {
@@ -135,7 +135,7 @@
 		
 		//14
 		$("span:contains('기획·전략·경영')").parents('li').css("background" , "blue");
-		
+
 		//15
 		$("span:contains('홈페이지 지원')").parent('button').css("background" , "pink");
 		
@@ -152,7 +152,7 @@
 		
 		
 		//19 경력을 기준으로 Sort -> insert table(remove fuctions)? .css("background","yellow");
-		
+		// the examples of the data are 신입(represent as null), 경력 2년4개월(년 represent 12 should add to the number of 2 and add 4(개월 represnet as a month)), 
 			var spans = $("tbody tr td.person-resume div.person-resume--title span:not(.person-resume--recommand)");
 			var arrs = Array.from(spans).map(span => span.textContent); //  creates an array 
 			
@@ -200,6 +200,25 @@
 				});
 			
 				console.log(experienceInMonths);  // Array of total months of experience
+				
+				
+				//the other way
+				var careerText = $('tbody tr td:nth-child(2) div:first-child span.career').text();
+				var careerArray = careerText.trim().split(/\n\s+/);
+				
+				
+				careerArray.sort((a, b) => {
+								  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0); //The match() method returns an array ["5", "3"]
+								  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0); //[0] retrieves the first match in the array
+								  const aYears = (a.includes('년') ? parseInt(a.match(/\d+/)[0]) : 0);
+								  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
+								  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;			
+								});
+				console.log(careerArray);
+				
+				
+				
+				
 			
         // 혜원씨꺼
         
@@ -250,12 +269,23 @@
     Array.from(tr).sort().forEach(function(ele, i){
         $(".table-list--person > tbody").append(ele);
     });
-				
+		
+    
+    
+    
+    
+    
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
 		
 		//21
 		$("*").css("color", "blue");
+		
+		
+		
+		
+		
+		
 		
 		
 		//22
