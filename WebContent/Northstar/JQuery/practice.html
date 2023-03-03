@@ -78,8 +78,6 @@
 		});
 		
 
-		
-//github.com/solnamgung/11_web_basic.git
 		//6 1~3번째 까지의 item의 테두리를 굵게(2px) 변하고 노란색으로 변경
 		
 		$('tbody tr:nth-child(-n+3').css({		
@@ -94,14 +92,17 @@
 		// 7 '지원 자격' 항목 중 '경력'이 들어가는 행 전체를 삭제
 		
 		$('tbody tr').find('td:eq(1) div:first span:contains("경력")').css('background' , 'yellow');
-		
+		$('tbody tr').find('td:eq(1) div:first span:contains("경력")').remove();
 		
 	
-		//10 지원자들 중 '신입'인 경우 해당 행의 배경을 오렌지색으로 바꾸고
-        //콘솔창에 "신입 지원자는 총 n 명입니다." 를 출력		
-		var sizeOfJunior = $("span.person-resume__career--junior:contains('신입')").size();
-		$("span.person-resume__career--junior:contains('신입')").parents('tr').css("background" , "orange");
-		console.log("신입 지원자는 총 " + sizeOfJunior + "입니다.");
+		//10 지원자들 중 '신입'인 경우 해당 행의 배경을 오렌지색으로 바꾸고 -> 콘솔창에 "신입 지원자는 총 n 명입니다." 를 출력		
+
+		var count = 0;
+		$('tbody tr td:nth-child(2) span:contains("신입")').each(function(){
+		    $(this).css("background", "blue");
+		    count++;
+		});
+		console.log("count of Junior >>>>>>>> " + count);
 		
 		
 		//11  '대기업 근무 경력' 이 있는 인재의 (class= person-resume) 의 색 바꾸기 
