@@ -7,21 +7,35 @@
 	
 	<script>
 	
-		//1 4번째 Item을 지워라
+		// 1. 4번째 Item을 지워라
 		$("tbody tr:nth-child(4)").remove();
+		$('tbody tr').eq(3).remove();
 		
-		//2	1번째와 2번째의 위치를 바꿔라 => insertAfter , 
-		const $firstRow = $('tbody tr:first');
-		const $secondRow = $('tbody tr:eq(1)');
 		
-		$secondRow.insertBefore($firstRow);
-		$firstRow.insertAfter($secondRow);
+		//2	1번째와 2번째의 위치를 바꿔라 . To swap the first and second tr elements of tbody
+	
+	    var firstPos = $('tbody tr:nth-child(1)'); 
+	    var secondPos = $('tbody tr:nth-child(2)');
+	    
+	    secondPos.insertBefore(firstPos);
+	    firstPos.insertAfter(secondPos);
+	
+	    // 2-2 1번째와 3번째의 위치를 바꿔라 , swap the first and third tr elements of tbody.
+	     var firstPos = $('tbody tr:nth-child(1)'); 
+		 var secondPos = $('tbody tr:nth-child(2)');
+		 var thirdPos = $('tbody tr:nth-child(3)');
 		
-			
-		//3
+		
+		firstPos.insertAfter(thirdPos);
+		secondPos.insertBefore(firstPos);
+				
+		// 3 color on even number
 		$("tbody tr:even").css("background" , "yellow");
+		$('tbody').find('tr td dl dd').css('background', 'green');
 		
 		//4 20대 인사람의 배경색을 빨강색으로 변경 
+		$('tbody').find('tr td dl dd').css('background', 'green');
+		
 		$('tbody th div dl dd span.person-info--age').filter(function() {
 		    var age = parseInt($(this).text());
 		    return age >= 20 && age < 30;
@@ -36,11 +50,9 @@
 		
 		     $("tbody tr").mouseleave(function(){
 		        $("tbody tr").css({"border" : "Solid black 1px"});
-		    });
-		     
-		     
-		    
+		    });    
 		});
+		
 		//6 1~3번째 까지의 item의 테두리를 굵게(2px) 변하고 노란색으로 변경
 		$("tbody tr:nth-child(1), tbody tr:nth-child(2), tbody tr:nth-child(3)").css({ "border": "Solid 2px", "background" :"yellow" });
 		
@@ -136,7 +148,55 @@
 			
 				console.log(experienceInMonths);  // Array of total months of experience
 			
+        // 혜원씨꺼
+        
+		 $(".table-list--person > tbody > tr").each(function(index, item){
+		    
+		    //신입인 경우
+		    if($(this).find("span").hasClass("person-resume__career--junior")){ 
+		        var career_length = 0;
+		        $(this).data("career_length",career_length);
+		        
+		    }else{ //경력인 경우
+		    
+		        //커리어 '경력' 제외하고 text 가져오기
+		        var career = $(this).find(".person-resume__career--senior").text().slice(3, -1);
+		
+		            //n년 n개월
+		            if(career.indexOf("년")>0 && career.indexOf("개월")>0){
+		                var career_y = career.slice(0,career.indexOf("년"));
+		                var career_m = career.slice(career.indexOf("년")+1,career.indexOf("개월"));
+		    
+		                var career_length = parseInt(career_y)*12 + parseInt(career_m);
+		                $(this).data("career_length",career_length);
+		               
+		            }else if(career.indexOf("년")>0 && career.indexOf("개월")== -1){  //n년
+		                var career_y = career.slice(0,career.indexOf("년"));
+		                var career_length = parseInt(career_y)*12;
+		                $(this).data("career_length",career_length);
+		
+		            }else{ //n개월
+		                var career_length = parseInt(career.slice(0, career.indexOf("개월")));
+		                $(this).data("career_length",career_length);
+		            }
+		        }
+		
+		    });  
 
+    var tr = $(".table-list--person > tbody > tr");
+
+    //배열
+    tr.sort(function(a,b){
+        return $(b).data("career_length") - $(a).data("career_length");
+    });
+
+    //tbody 초기화
+    $(".table-list--person > tbody").empty();
+    
+    //추가하기
+    Array.from(tr).sort().forEach(function(ele, i){
+        $(".table-list--person > tbody").append(ele);
+    });
 				
 		//20
 		$(".ara:not(:contains('서울'))").parents('tr').remove();
@@ -162,7 +222,7 @@
 		 // rowCnt : "" items to be displayed per page
 		 // naviCnt : buttons to be displayed at a time ???
 		 // pageNo : the current page number
-		 
+		 /* 
 		 function navigation(total, rowCnt, naviCnt, pageNo) {
 			  var pageCount = Math.ceil(total / rowCnt);
 			  var navStart = Math.max(1, pageNo - Math.floor(naviCnt / 2));
@@ -186,7 +246,7 @@
 			}
 		 
 			  console.log(navigation(100, 15, 5, 1));
-		 
+		  */
 		
 		
 		//23 calendar check 윤년 평년 -  
