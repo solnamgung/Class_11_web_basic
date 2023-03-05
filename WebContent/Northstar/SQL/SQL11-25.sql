@@ -434,9 +434,9 @@ ORDER BY
 	  BURGER_ITEM.ITEM_NAME;
 	  
 	  
+	  
 	  // 21
 	  --21 지점별 가장 많은 매출을 올린 직원 구하기
-			-- 더 좋은 방법이 있을거다.
 			select emp_name 사원명
 			     , store_addr 지점명
 			     , "총 매출"
@@ -469,6 +469,8 @@ ORDER BY
 			        group by store_code
 			      )
 			order by "총 매출";
+			
+			
 			-- dual
 			select case when idx = 1 then emp_code else '최대' end 사원명
 			     , store_code
@@ -491,5 +493,15 @@ ORDER BY
 			group by idx
 			       , store_code
 			       , case when idx = 1 then emp_code else '최대' end;
+			       
+			       
+			       
+			       
+			       
+			       
+			       
+			       
+			       
+			       
 				 
 				 
