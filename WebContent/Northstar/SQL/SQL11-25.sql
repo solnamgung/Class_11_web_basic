@@ -494,11 +494,53 @@ ORDER BY
 			       , store_code
 			       , case when idx = 1 then emp_code else '최대' end;
 			       
+	       
 			       
-			       
-			       
-			       
-			       
+		22		 -- 지점명 	최대 매출일자   해당일 매출  성수점	20180312	463600
+
+	
+				
+		SELECT 	
+			  st.STORE_ADDR,
+			  t2.top_sales
+		  from
+		  	  burger_store st	
+		  join
+		     (	     
+			   	SELECT 
+			   		   t.store_code,	   	
+			   		   max(t.date_sum) as top_sales
+			   		 
+			      FROM
+			     	  (
+					  	 select
+					  	 		boi2.STORE_CODE, bo2.ord_date, sum(boi2.AMOUNT) as date_sum
+					  	 	from
+					  	 	  	BURGER_ORD_ITEM boi2
+					  	 	join
+					  	 		BURGER_ORD bo2
+					  	 	  on
+					  	 	  	bo2.ord_code = boi2.ord_code
+					  	group by 
+					  			boi2.STORE_CODE , bo2.ORD_DATE
+			          ) t			
+				group by t.store_code
+			)  t2
+			on t2.store_code = st.store_code 
+			
+						
+			with A AS (
+			
+			SELECT o.ORD_DATE, o.store_code
+					  from BURGER_ORD o
+					  join burger_ord_item i 
+					    on i.STORE_CODE  = o.STORE_CODE 
+					group by o.ORD_DATE, o.store_code
+					  	
+			)
+		
+	
+	
 			       
 			       
 			       
