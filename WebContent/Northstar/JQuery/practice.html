@@ -204,11 +204,37 @@
 				
 		//the other way
 				var careerArray = [];
-				$('tbody tr td:nth-child(2) div:first-child span.career').each(function() {
-				  var careerText = $(this).text().replace(/\s/g,'');
-				  careerArray.push(careerText);
-				});
-				console.log(careerArray);
+		$('tbody tr td:nth-child(2) div:first-child span.career').each(function() {
+		  var careerText = $(this).text().replace(/\s/g,'');
+		  careerArray.push(careerText);
+		});
+		console.log(careerArray);
+		
+		careerArray.sort((a, b) => {
+		  const aMonths = (a.includes('개월') ? parseInt(a.match(/\d+/)[0]) : 0);
+		  const bMonths = (b.includes('개월') ? parseInt(b.match(/\d+/)[0]) : 0);
+		  const aYears = (a.includes('년') ? parseInt(a.match(/\d+/)[0]) : 0);
+		  const bYears = (b.includes('년') ? parseInt(b.match(/\d+/)[0]) : 0);
+		  
+		  return (aYears * 12 + aMonths) > (bYears * 12 + bMonths) ? -1 : 1;
+		});
+		
+		var tbody = $("tbody");
+		var rows = tbody.find("tr").detach();
+		
+		for (var i = 0; i < careerArray.length; i++) {
+		  var value = careerArray[i];
+		  
+		  var row = rows.filter((index, element) => {
+		    var rowText = $(element).find("td:nth-child(2) div:first-child span.career").text().replace(/\s/g,'');
+		    return rowText === value;
+		  });
+		  
+		  tbody.append(row);
+		}
+
+				
+				
 			
         // 혜원씨꺼
         
@@ -260,6 +286,8 @@
         $(".table-list--person > tbody").append(ele);
     });
 		
+    
+    
     
     
     
